@@ -10,6 +10,8 @@ const courses = [
     desc: "Your first certification. Learn to dive independently to 18 meters with a buddy.",
     duration: "4 Days",
     dives: "4 Dives",
+    depth: "18m",
+    price: "28,000",
   },
   {
     title: "Advanced Open Water",
@@ -18,6 +20,9 @@ const courses = [
     desc: "Expand your skills with deep diving, navigation, and specialty dives to 30 meters.",
     duration: "2-3 Days",
     dives: "5 Dives",
+    depth: "30m",
+    price: "22,000",
+    featured: true,
   },
   {
     title: "Adventure Diver",
@@ -26,6 +31,8 @@ const courses = [
     desc: "Try 3 different specialty dives and discover your underwater passion.",
     duration: "1-2 Days",
     dives: "3 Dives",
+    depth: "18m",
+    price: "15,000",
   },
   {
     title: "Rescue Diver",
@@ -34,6 +41,8 @@ const courses = [
     desc: "Learn to prevent and manage dive emergencies. A challenging but rewarding course.",
     duration: "3-4 Days",
     dives: "Scenario Dives",
+    depth: "18m",
+    price: "25,000",
   },
   {
     title: "Dive Master",
@@ -42,6 +51,9 @@ const courses = [
     desc: "The first professional level. Lead dives, assist instructors, and make diving your career.",
     duration: "2-4 Weeks",
     dives: "60+ Dives",
+    depth: "40m",
+    price: "55,000",
+    featured: true,
   },
   {
     title: "Emergency First Response",
@@ -50,6 +62,8 @@ const courses = [
     desc: "CPR and first aid training. Essential skills for diving and everyday life.",
     duration: "1 Day",
     dives: "Certification",
+    depth: "—",
+    price: "8,000",
   },
 ];
 
@@ -61,12 +75,18 @@ const levelColors: Record<string, string> = {
   Essential: "from-rose-500 to-pink-500",
 };
 
+const levelBg: Record<string, string> = {
+  Beginner: "rgba(34,197,94,0.06)",
+  Intermediate: "rgba(0,168,232,0.06)",
+  Advanced: "rgba(249,115,22,0.06)",
+  Professional: "rgba(168,85,247,0.06)",
+  Essential: "rgba(244,63,94,0.06)",
+};
+
 export default function Courses() {
   return (
     <section id="courses" className="relative py-16 sm:py-24 overflow-hidden">
-      {/* Section separator */}
       <div className="section-sep absolute top-0 left-0 right-0" />
-
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-ocean-500/5 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +96,7 @@ export default function Courses() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
         >
           <span className="inline-block text-ocean-400 text-sm font-semibold uppercase tracking-widest mb-4">
             PADI Certified Programs
@@ -94,52 +114,105 @@ export default function Courses() {
           {courses.map((course, i) => (
             <motion.div
               key={course.title}
-              className="group glow-card glass rounded-2xl p-6 cursor-pointer"
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer ${
+                course.featured ? "ring-1 ring-ocean-400/20" : ""
+              }`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, backgroundColor: "rgba(255,255,255,0.05)", boxShadow: "0 20px 40px rgba(0,168,232,0.08)" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
-              {/* Level badge */}
+              {/* Top accent line */}
+              <div className={`h-1 w-full bg-gradient-to-r ${levelColors[course.level]}`} />
+
               <div
-                className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-gradient-to-r ${
-                  levelColors[course.level]
-                } mb-4`}
+                className="p-6 h-full flex flex-col"
+                style={{
+                  background: course.featured
+                    ? "rgba(0,168,232,0.04)"
+                    : "rgba(255,255,255,0.02)",
+                  borderLeft: "1px solid rgba(255,255,255,0.05)",
+                  borderRight: "1px solid rgba(255,255,255,0.05)",
+                  borderBottom: "1px solid rgba(255,255,255,0.05)",
+                  borderRadius: "0 0 1rem 1rem",
+                }}
               >
-                {course.level}
+                {/* Header row */}
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-gradient-to-r ${
+                      levelColors[course.level]
+                    }`}
+                  >
+                    {course.level}
+                  </div>
+                  {course.featured && (
+                    <span className="text-[10px] uppercase tracking-wider text-ocean-400 font-bold flex items-center gap-1">
+                      <i className="fas fa-star text-[8px]" /> Popular
+                    </span>
+                  )}
+                </div>
+
+                {/* Icon + Title */}
+                <div className="flex items-center gap-3 mb-3">
+                  <motion.div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300"
+                    style={{ background: levelBg[course.level] }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                  >
+                    <i
+                      className={`fas ${course.icon} text-lg text-ocean-400 group-hover:text-ocean-300 transition-colors`}
+                    />
+                  </motion.div>
+                  <h3 className="text-lg font-bold text-white font-[family-name:var(--font-display)] leading-tight">
+                    {course.title}
+                  </h3>
+                </div>
+
+                <p className="text-white/40 text-sm leading-relaxed mb-5 flex-1">
+                  {course.desc}
+                </p>
+
+                {/* Stats row */}
+                <div className="grid grid-cols-3 gap-2 mb-5">
+                  {[
+                    { icon: "fa-clock", value: course.duration, label: "Duration" },
+                    { icon: "fa-layer-group", value: course.dives, label: "Dives" },
+                    { icon: "fa-arrows-alt-v", value: course.depth, label: "Max Depth" },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="text-center rounded-lg py-2.5 px-1"
+                      style={{ background: "rgba(255,255,255,0.02)" }}
+                    >
+                      <i className={`fas ${stat.icon} text-ocean-500/50 text-[10px] mb-1 block`} />
+                      <div className="text-white text-xs font-semibold leading-tight">{stat.value}</div>
+                      <div className="text-white/25 text-[9px] uppercase tracking-wider mt-0.5">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Price + CTA */}
+                <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                  <div>
+                    <span className="text-white/25 text-[10px] uppercase tracking-wider">From</span>
+                    <div className="text-white font-bold text-lg font-[family-name:var(--font-display)]">
+                      &#8377;{course.price}
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors">
+                    Enquire
+                    <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </div>
               </div>
 
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-xl glass flex items-center justify-center mb-4 group-hover:bg-ocean-500/15 transition-colors duration-300">
-                <i
-                  className={`fas ${course.icon} text-xl text-ocean-400 group-hover:text-ocean-300 transition-colors`}
-                />
-              </div>
-
-              <h3 className="text-lg font-bold text-white mb-2 font-[family-name:var(--font-display)]">
-                {course.title}
-              </h3>
-              <p className="text-white/40 text-sm leading-relaxed mb-5">
-                {course.desc}
-              </p>
-
-              {/* Meta */}
-              <div className="flex items-center gap-4 mb-4 text-xs text-white/30">
-                <span className="flex items-center gap-1.5">
-                  <i className="fas fa-clock text-ocean-500/60" />
-                  {course.duration}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <i className="fas fa-layer-group text-ocean-500/60" />
-                  {course.dives}
-                </span>
-              </div>
-
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors">
-                View Details
-                <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" />
-              </span>
+              {/* Hover glow */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ boxShadow: "inset 0 0 0 1px rgba(0,168,232,0.15), 0 0 30px rgba(0,168,232,0.06)" }}
+              />
             </motion.div>
           ))}
         </div>
@@ -150,7 +223,7 @@ export default function Courses() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
         >
           <div className="glass-strong rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-1">

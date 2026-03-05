@@ -141,7 +141,7 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <p className="text-white/30 text-sm">
-            &copy; 2024 Experience Scuba. All Rights Reserved.
+            &copy; 2026 Experience Scuba. All Rights Reserved.
           </p>
           <div className="flex gap-3">
             {[

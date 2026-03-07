@@ -2,12 +2,103 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import type { ExperienceData } from "@/data/experiences";
 import PageFAQ from "@/components/PageFAQ";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-export default function ExperiencePage({ data }: { data: ExperienceData }) {
+const data = {
+  title: "PADI Discover Scuba Diving Experience in Havelock",
+  shortTitle: "PADI Discover Scuba Dive",
+  tag: "Best Seller",
+  price: "4,000",
+  duration: "2-3 Hours",
+  depth: "6-12 Meters",
+  heroImage: "/images/boat-diving.webp",
+  color: "from-ocean-500 to-cyan-500",
+  description:
+    "The official PADI Discover Scuba Diving (DSD) program lets you experience the thrill of breathing underwater for the first time — no prior experience or certification needed.",
+  longDescription: [
+    "The PADI Discover Scuba Diving (DSD) program is the world's most popular introductory dive experience. Designed for anyone aged 12 and above, this program provides a safe, structured introduction to scuba diving under the direct supervision of a PADI Professional.",
+    "During the experience, you'll learn fundamental concepts like how to breathe underwater, equalize pressure, and communicate with your instructor using hand signals. After a thorough safety briefing and confined water practice session, you'll head out for your open water dive to explore the stunning coral reefs of Havelock Island.",
+    "The PADI DSD program follows strict international safety standards. Your instructor stays with you throughout the entire experience, ensuring your comfort and safety while you discover the vibrant marine life that calls these waters home. No swimming skills are required — just a sense of adventure.",
+  ],
+  includes: [
+    "All scuba diving equipment",
+    "Professional PADI certified instructor",
+    "Dedicated underwater guide",
+    "Underwater photographs & videos",
+    "Pre-dive safety briefing & training",
+    "Confined water practice session",
+    "Open water dive experience",
+  ],
+  highlights: [
+    "Official PADI DSD program",
+    "No prior experience needed",
+    "No swimming skills required",
+    "International safety standards",
+    "Vibrant coral reef exploration",
+    "Professional underwater photography",
+    "Certificate of completion",
+    "Small group sizes for personal attention",
+  ],
+  requirements: [
+    { label: "Ages 12-50", value: "No medical certificate needed (if healthy)" },
+    { label: "Ages 51-60", value: "Valid medical fitness certificate required" },
+    { label: "Above 60", value: "Not recommended" },
+    { label: "Medical conditions", value: "Asthma, heart issues require physician consultation" },
+  ],
+  steps: [
+    {
+      title: "Safety Briefing",
+      desc: "Learn essential diving theory, breathing techniques, hand signals, equipment use, and safety procedures from your PADI instructor.",
+      icon: "fa-chalkboard-teacher",
+    },
+    {
+      title: "Confined Water Practice",
+      desc: "Practice all skills in a safe, shallow environment — breathing, mask clearing, buoyancy control, and regulator recovery.",
+      icon: "fa-swimmer",
+    },
+    {
+      title: "Open Water Dive",
+      desc: "Explore coral reefs at 6-12 meters depth, encounter colorful marine life, and experience the magic of breathing underwater.",
+      icon: "fa-fish",
+    },
+    {
+      title: "Photos & Certificate",
+      desc: "Receive professional underwater photographs, videos, and a PADI Discover Scuba Diving certificate of completion.",
+      icon: "fa-camera",
+    },
+  ],
+  faqs: [
+    {
+      q: "Do I need to know how to swim for Discover Scuba Diving?",
+      a: "No, swimming skills are not required. The PADI Discover Scuba Diving program is specifically designed for non-swimmers and beginners. Your instructor provides complete guidance and all buoyancy equipment needed to keep you safe and comfortable underwater.",
+      icon: "fa-person-swimming",
+    },
+    {
+      q: "What is the difference between DSD and a regular scuba dive?",
+      a: "The PADI Discover Scuba Diving (DSD) program is a structured introductory experience that includes theory, confined water practice, and an open water dive — all under direct instructor supervision. Unlike a fun dive for certified divers, DSD is designed for people with zero experience.",
+      icon: "fa-question-circle",
+    },
+    {
+      q: "Is Discover Scuba Diving safe for first-timers?",
+      a: "Absolutely. The DSD program follows strict PADI international safety standards. You receive a thorough safety briefing, practice skills in shallow water first, and your certified instructor stays with you throughout the entire dive. Safety is our highest priority.",
+      icon: "fa-shield-alt",
+    },
+    {
+      q: "What should I bring for the experience?",
+      a: "Just bring your swimwear and a towel. All scuba equipment including wetsuits, masks, fins, tanks, regulators, and BCDs is provided. Underwater photographs and videos are also included in the package.",
+      icon: "fa-suitcase",
+    },
+    {
+      q: "Will I receive a certificate after the dive?",
+      a: "Yes, you will receive a PADI Discover Scuba Diving certificate of completion. While this is not a full diving certification, it is an official PADI recognition of your introductory dive experience and can count toward future PADI courses.",
+      icon: "fa-award",
+    },
+  ],
+};
+
+export default function DiscoverScubaDivePage() {
   return (
     <main>
       {/* ── HERO ── */}
@@ -69,7 +160,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </div>
       </section>
 
-      {/* ── QUICK STATS BAR (mobile-friendly) ── */}
+      {/* ── QUICK STATS BAR ── */}
       <section className="relative -mt-6 sm:-mt-8 z-20 px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-4xl mx-auto"
@@ -175,7 +266,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                   How It <span className="text-gradient">Works</span>
                 </h2>
 
-                {/* Mobile: vertical timeline / Desktop: 2x2 grid */}
+                {/* Mobile: vertical timeline */}
                 <div className="sm:hidden space-y-1">
                   {data.steps.map((step, i) => (
                     <motion.div
@@ -402,6 +493,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </div>
       </section>
 
+      {/* ── FAQ ── */}
       <PageFAQ faqs={data.faqs} title="Experience" />
 
       {/* ── CTA BANNER ── */}

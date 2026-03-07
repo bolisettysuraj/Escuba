@@ -1,29 +1,20 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import type { ExperienceData } from "@/data/experiences";
+import { getKidsProgramBySlug } from "@/data/kidsPrograms";
 import PageFAQ from "@/components/PageFAQ";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-export default function ExperiencePage({ data }: { data: ExperienceData }) {
+export default function BubbleMakerPage() {
+  const data = getKidsProgramBySlug("padi-bubble-maker-for-kids-havelock")!;
+
   return (
     <main>
       {/* ── HERO ── */}
       <section className="relative min-h-[55vh] sm:min-h-[65vh] flex items-end overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={data.heroImage}
-            alt={data.title}
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-deep-950 via-deep-950/50 to-deep-950/10" />
-          <div className="absolute inset-0 bg-deep-950/25" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/80 via-deep-950 to-blue-900/60" />
+        <div className="absolute inset-0 bg-deep-950/25" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-16 pt-28 sm:pt-32">
           {/* Breadcrumb */}
@@ -35,7 +26,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
           >
             <Link href="/" className="hover:text-ocean-400 transition-colors">Home</Link>
             <i className="fas fa-chevron-right text-[7px]" />
-            <Link href="/non-swimmers" className="hover:text-ocean-400 transition-colors">Non Swimmers</Link>
+            <Link href="/kids" className="hover:text-ocean-400 transition-colors">Kids</Link>
             <i className="fas fa-chevron-right text-[7px]" />
             <span className="text-ocean-400 truncate">{data.shortTitle}</span>
           </motion.nav>
@@ -69,7 +60,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </div>
       </section>
 
-      {/* ── QUICK STATS BAR (mobile-friendly) ── */}
+      {/* ── QUICK STATS BAR ── */}
       <section className="relative -mt-6 sm:-mt-8 z-20 px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-4xl mx-auto"
@@ -77,10 +68,11 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35, ease }}
         >
-          <div className="glass-strong rounded-2xl grid grid-cols-3 divide-x divide-white/5">
+          <div className="glass-strong rounded-2xl grid grid-cols-4 divide-x divide-white/5">
             {[
               { icon: "fa-clock", value: data.duration, label: "Duration" },
               { icon: "fa-arrows-alt-v", value: data.depth, label: "Depth" },
+              { icon: "fa-child", value: data.minAge, label: "Age" },
               { icon: "fa-tag", value: `₹${data.price}`, label: "From" },
             ].map((s) => (
               <div key={s.label} className="text-center py-4 sm:py-5 px-2">
@@ -93,7 +85,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </motion.div>
       </section>
 
-      {/* ── MOBILE CTA (sticky, shown only on mobile) ── */}
+      {/* ── MOBILE CTA (sticky) ── */}
       <div className="lg:hidden sticky top-[72px] z-30 px-4 pt-3 pb-2 bg-deep-950/90 backdrop-blur-md border-b border-white/5">
         <div className="flex gap-2">
           <a
@@ -132,7 +124,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 transition={{ duration: 0.6, ease }}
               >
                 <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-5">
-                  About This <span className="text-gradient">Experience</span>
+                  About This <span className="text-gradient">Program</span>
                 </h2>
                 <div className="space-y-4">
                   {data.longDescription.map((p, i) => (
@@ -143,7 +135,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 </div>
               </motion.div>
 
-              {/* What's Included — shown inline on mobile, sidebar on desktop */}
+              {/* What's Included — shown inline on mobile */}
               <motion.div
                 className="lg:hidden"
                 initial={{ opacity: 0, y: 25 }}
@@ -175,7 +167,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                   How It <span className="text-gradient">Works</span>
                 </h2>
 
-                {/* Mobile: vertical timeline / Desktop: 2x2 grid */}
+                {/* Mobile: vertical timeline */}
                 <div className="sm:hidden space-y-1">
                   {data.steps.map((step, i) => (
                     <motion.div
@@ -186,7 +178,6 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: i * 0.1 }}
                     >
-                      {/* Timeline line */}
                       <div className="flex flex-col items-center">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-ocean-500/20 to-teal-500/20 flex items-center justify-center shrink-0 border border-ocean-500/20">
                           <span className="text-ocean-400 font-bold text-xs">{i + 1}</span>
@@ -236,7 +227,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 transition={{ duration: 0.6, ease }}
               >
                 <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-5 sm:mb-6">
-                  Why Choose <span className="text-gradient">This Dive</span>
+                  Why Choose <span className="text-gradient">This Program</span>
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                   {data.highlights.map((h, i) => (
@@ -304,14 +295,14 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                     <div className="font-[family-name:var(--font-display)] text-4xl font-bold text-white mt-1">
                       &#8377;{data.price}
                     </div>
-                    <span className="text-white/25 text-xs">per person</span>
+                    <span className="text-white/25 text-xs">per child</span>
                   </div>
 
                   <div className="space-y-3 mb-6">
                     {[
                       { icon: "fa-clock", text: `Duration: ${data.duration}` },
                       { icon: "fa-arrows-alt-v", text: `Depth: ${data.depth}` },
-                      { icon: "fa-camera", text: "Photos & videos included" },
+                      { icon: "fa-child", text: `Age: ${data.minAge}+` },
                       { icon: "fa-shield-alt", text: "PADI certified instructors" },
                     ].map((item) => (
                       <div key={item.text} className="flex items-center gap-3 text-sm text-white/50">
@@ -402,7 +393,8 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </div>
       </section>
 
-      <PageFAQ faqs={data.faqs} title="Experience" />
+      {/* ── FAQ ── */}
+      <PageFAQ faqs={data.faqs} title="Kids Program" />
 
       {/* ── CTA BANNER ── */}
       <section className="relative py-16 sm:py-20 overflow-hidden">
@@ -417,7 +409,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            Ready to Dive In?
+            Ready to Enroll Your Child?
           </motion.h2>
           <motion.p
             className="text-white/40 text-base sm:text-lg mb-8 max-w-xl mx-auto"
@@ -426,7 +418,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, ease }}
           >
-            Book your {data.shortTitle} experience today and discover the underwater world of Havelock Island
+            Book the {data.shortTitle} program today and let your child blow their first bubbles underwater
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
@@ -445,11 +437,11 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
               Call to Book
             </motion.a>
             <Link
-              href="/non-swimmers"
+              href="/kids"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold glass text-white/80 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
             >
               <i className="fas fa-arrow-left text-xs" />
-              All Experiences
+              All Kids Programs
             </Link>
           </motion.div>
         </div>

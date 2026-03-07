@@ -17,6 +17,7 @@ export interface ExperienceData {
   highlights: string[];
   requirements: { label: string; value: string }[];
   steps: { title: string; desc: string; icon: string }[];
+  faqs: { q: string; a: string; icon?: string }[];
 }
 
 export const experiences: ExperienceData[] = [
@@ -81,6 +82,33 @@ export const experiences: ExperienceData[] = [
       {
         title: "Photos & Memories",
         desc: "Receive professional underwater photographs and videos of your entire diving experience.",
+        icon: "fa-camera",
+      },
+    ],
+    faqs: [
+      {
+        q: "Do I need to know how to swim?",
+        a: "No, swimming is not required for shore scuba diving. Our PADI certified instructors will guide you through every step, and all necessary buoyancy equipment is provided to keep you safe and comfortable underwater.",
+        icon: "fa-person-swimming",
+      },
+      {
+        q: "What is the age limit?",
+        a: "Ages 12-50 can dive without a medical certificate (if healthy). Ages 51-60 require a valid medical fitness certificate. Diving is not recommended for those above 60. Anyone with medical conditions like asthma or heart issues should consult a physician first.",
+        icon: "fa-user-shield",
+      },
+      {
+        q: "How deep will I go?",
+        a: "Shore dives typically reach 6-12 meters depth. This range allows you to experience the vibrant coral gardens and marine life while staying within safe limits for beginner divers.",
+        icon: "fa-arrows-alt-v",
+      },
+      {
+        q: "What equipment do I need to bring?",
+        a: "Nothing! All scuba equipment including wetsuits, masks, fins, tanks, regulators, and BCDs is provided by Experience Scuba. Just bring your swimwear and a towel.",
+        icon: "fa-suitcase",
+      },
+      {
+        q: "Will I get photos of my dive?",
+        a: "Yes, professional underwater photos and videos are included in all dive packages. Our team captures your entire experience so you can take home lasting memories of your underwater adventure.",
         icon: "fa-camera",
       },
     ],
@@ -150,6 +178,33 @@ export const experiences: ExperienceData[] = [
         icon: "fa-camera",
       },
     ],
+    faqs: [
+      {
+        q: "Do I need to know how to swim?",
+        a: "No, swimming skills are not required for boat scuba diving. Our professional PADI certified instructors provide complete guidance and stay with you throughout the entire dive, ensuring your safety at all times.",
+        icon: "fa-person-swimming",
+      },
+      {
+        q: "How long is the boat ride?",
+        a: "The boat ride to dive sites is typically 15-30 minutes from Havelock Island. The scenic ride over turquoise waters is a beautiful part of the experience, and you can relax and enjoy ocean views along the way.",
+        icon: "fa-ship",
+      },
+      {
+        q: "What makes boat diving different from shore diving?",
+        a: "Boat diving accesses deeper, more remote sites with richer marine biodiversity that are not reachable from shore. You will explore depths of 10-18 meters and encounter exotic sea creatures in pristine offshore locations.",
+        icon: "fa-water",
+      },
+      {
+        q: "What is included in the price?",
+        a: "Everything — equipment, instructor, boat transfer, photos, and videos are all included. You do not need to bring or pay for anything extra. Just show up in your swimwear and we take care of the rest.",
+        icon: "fa-box-open",
+      },
+      {
+        q: "Is it safe for first-timers?",
+        a: "Absolutely. Our PADI certified instructors conduct a thorough safety briefing, guide you through equipment setup onboard, and accompany you throughout the entire dive. Your safety is our top priority.",
+        icon: "fa-shield-alt",
+      },
+    ],
   },
   {
     slug: "skin-diver-snorkeling-havelock",
@@ -213,6 +268,33 @@ export const experiences: ExperienceData[] = [
         title: "Photos & Memories",
         desc: "Take home professional photographs and videos of your snorkeling adventure.",
         icon: "fa-camera",
+      },
+    ],
+    faqs: [
+      {
+        q: "Do I need diving experience?",
+        a: "No experience needed at all. Snorkeling is a surface-level activity that anyone can enjoy. Our PADI certified instructors will teach you proper snorkeling techniques before you enter the water.",
+        icon: "fa-user",
+      },
+      {
+        q: "Is this suitable for children?",
+        a: "Yes, snorkeling is great for families with children aged 12 and above. It is a fun and safe way to explore the underwater world without scuba equipment.",
+        icon: "fa-child",
+      },
+      {
+        q: "What will I see?",
+        a: "Expect to see colorful coral gardens, tropical fish including parrotfish, butterflyfish, and clownfish, and possibly sea turtles. Havelock Island's clear waters provide excellent visibility for spotting marine life from the surface.",
+        icon: "fa-fish",
+      },
+      {
+        q: "How long does the session last?",
+        a: "The full snorkeling experience takes 1-2 hours, including equipment briefing, skill training in shallow water, and the guided snorkeling session with our instructor.",
+        icon: "fa-clock",
+      },
+      {
+        q: "Do I need to bring my own equipment?",
+        a: "No, all high-quality snorkeling gear including mask, fins, and snorkel is provided by Experience Scuba. Just bring your swimwear and a towel.",
+        icon: "fa-suitcase",
       },
     ],
   },

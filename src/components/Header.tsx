@@ -20,7 +20,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
+  { label: "About", href: "/about" },
   {
     label: "Non Swimmers",
     href: "/non-swimmers",
@@ -42,6 +42,14 @@ const navItems: NavItem[] = [
         image: "/images/boat-diving.webp",
       },
       {
+        name: "PADI Discover Scuba Dive",
+        desc: "Complete PADI DSD experience",
+        price: "4,000",
+        href: "/non-swimmers/padi-discover-scuba-dive-havelock",
+        icon: "fa-certificate",
+        image: "/images/boat-diving.webp",
+      },
+      {
         name: "PADI Skin Diver (Snorkeling)",
         desc: "Surface-level fun, great for families",
         price: "1,500",
@@ -53,54 +61,55 @@ const navItems: NavItem[] = [
   },
   {
     label: "Scuba Courses",
-    href: "/#courses",
+    href: "/courses",
     children: [
       {
         name: "PADI Open Water Diver",
         desc: "Your first certification to 18 meters",
         price: "28,000",
-        href: "#",
+        href: "/courses/padi-open-water-diving-course",
       },
       {
         name: "PADI Advanced Open Water",
         desc: "Expand skills with deep & navigation dives",
         price: "22,000",
-        href: "#",
+        href: "/courses/padi-advanced-open-water-diving-course",
       },
       {
         name: "PADI Adventure Diver",
         desc: "Try 3 specialty dives",
         price: "15,000",
-        href: "#",
+        href: "/courses/padi-adventure-diver-course",
       },
       {
         name: "PADI Rescue Diver",
         desc: "Manage dive emergencies",
         price: "25,000",
-        href: "#",
+        href: "/courses/padi-rescue-diver-course",
       },
       {
         name: "PADI Dive Master",
         desc: "First professional level certification",
         price: "55,000",
-        href: "#",
+        href: "/courses/padi-dive-master-course",
       },
       {
         name: "PADI Scuba Diver",
         desc: "Shorter certification, dive to 12m",
         price: "20,000",
-        href: "#",
+        href: "/courses/padi-scuba-diver-course",
       },
       {
         name: "Emergency First Response",
         desc: "CPR and first aid training",
         price: "8,000",
-        href: "#",
+        href: "/courses/padi-emergency-first-repsonse-provider",
       },
     ],
   },
-  { label: "Dive Sites", href: "/#divesites" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Speciality Courses", href: "/padi-speciality-courses-andaman" },
+  { label: "Dive Sites", href: "/dive-sites" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {

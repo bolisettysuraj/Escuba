@@ -1,32 +1,29 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import type { ExperienceData } from "@/data/experiences";
+import type { CourseData } from "@/data/courses";
 import PageFAQ from "@/components/PageFAQ";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-export default function ExperiencePage({ data }: { data: ExperienceData }) {
+const levelColors: Record<string, string> = {
+  Beginner: "from-green-500 to-emerald-500",
+  Intermediate: "from-ocean-500 to-blue-500",
+  Advanced: "from-orange-500 to-amber-500",
+  Professional: "from-purple-500 to-violet-500",
+  Essential: "from-rose-500 to-pink-500",
+};
+
+export default function CoursePage({ data }: { data: CourseData }) {
   return (
     <main>
-      {/* ── HERO ── */}
-      <section className="relative min-h-[55vh] sm:min-h-[65vh] flex items-end overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src={data.heroImage}
-            alt={data.title}
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-deep-950 via-deep-950/50 to-deep-950/10" />
-          <div className="absolute inset-0 bg-deep-950/25" />
-        </div>
+      {/* HERO */}
+      <section className="relative min-h-[50vh] sm:min-h-[60vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-deep-950 via-deep-900 to-ocean-900/30" />
+        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-ocean-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-500/5 rounded-full blur-3xl" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-16 pt-28 sm:pt-32">
-          {/* Breadcrumb */}
           <motion.nav
             className="flex items-center gap-2 text-xs sm:text-sm text-white/40 mb-5"
             initial={{ opacity: 0, y: 15 }}
@@ -35,18 +32,18 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
           >
             <Link href="/" className="hover:text-ocean-400 transition-colors">Home</Link>
             <i className="fas fa-chevron-right text-[7px]" />
-            <Link href="/non-swimmers" className="hover:text-ocean-400 transition-colors">Non Swimmers</Link>
+            <Link href="/courses" className="hover:text-ocean-400 transition-colors">Courses</Link>
             <i className="fas fa-chevron-right text-[7px]" />
             <span className="text-ocean-400 truncate">{data.shortTitle}</span>
           </motion.nav>
 
           <motion.div
-            className={`inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r ${data.color} mb-3 sm:mb-4`}
+            className={`inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r ${levelColors[data.level] || data.color} mb-3 sm:mb-4`}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, delay: 0.1, ease }}
           >
-            {data.tag}
+            {data.level} Level
           </motion.div>
 
           <motion.h1
@@ -69,7 +66,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </div>
       </section>
 
-      {/* ── QUICK STATS BAR (mobile-friendly) ── */}
+      {/* QUICK STATS */}
       <section className="relative -mt-6 sm:-mt-8 z-20 px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-4xl mx-auto"
@@ -77,15 +74,16 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35, ease }}
         >
-          <div className="glass-strong rounded-2xl grid grid-cols-3 divide-x divide-white/5">
+          <div className="glass-strong rounded-2xl grid grid-cols-4 divide-x divide-white/5">
             {[
               { icon: "fa-clock", value: data.duration, label: "Duration" },
-              { icon: "fa-arrows-alt-v", value: data.depth, label: "Depth" },
+              { icon: "fa-arrows-alt-v", value: data.depth, label: "Max Depth" },
+              { icon: "fa-water", value: data.dives, label: "Dives" },
               { icon: "fa-tag", value: `₹${data.price}`, label: "From" },
             ].map((s) => (
               <div key={s.label} className="text-center py-4 sm:py-5 px-2">
                 <i className={`fas ${s.icon} text-ocean-400 text-sm mb-1.5 block`} />
-                <div className="text-white font-bold text-sm sm:text-base font-[family-name:var(--font-display)]">{s.value}</div>
+                <div className="text-white font-bold text-xs sm:text-base font-[family-name:var(--font-display)]">{s.value}</div>
                 <div className="text-white/30 text-[9px] sm:text-[10px] uppercase tracking-wider mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -93,15 +91,14 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </motion.div>
       </section>
 
-      {/* ── MOBILE CTA (sticky, shown only on mobile) ── */}
+      {/* MOBILE CTA */}
       <div className="lg:hidden sticky top-[72px] z-30 px-4 pt-3 pb-2 bg-deep-950/90 backdrop-blur-md border-b border-white/5">
         <div className="flex gap-2">
           <a
             href="tel:+916364360134"
             className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20"
           >
-            <i className="fas fa-phone text-xs" />
-            Book Now
+            <i className="fas fa-phone text-xs" /> Enquire Now
           </a>
           <a
             href="https://wa.me/916364360134"
@@ -115,15 +112,14 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </div>
       </div>
 
-      {/* ── MAIN CONTENT ── */}
+      {/* MAIN CONTENT */}
       <section className="relative py-10 sm:py-16 lg:py-24 overflow-hidden">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-ocean-500/5 rounded-full blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-10 lg:gap-16">
-            {/* ── Left: Content (2 cols on lg) ── */}
+            {/* Left: Content */}
             <div className="lg:col-span-2 space-y-12 sm:space-y-16">
-
               {/* About */}
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
@@ -132,18 +128,16 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 transition={{ duration: 0.6, ease }}
               >
                 <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-5">
-                  About This <span className="text-gradient">Experience</span>
+                  About This <span className="text-gradient">Course</span>
                 </h2>
                 <div className="space-y-4">
                   {data.longDescription.map((p, i) => (
-                    <p key={i} className="text-white/50 text-sm sm:text-base leading-relaxed">
-                      {p}
-                    </p>
+                    <p key={i} className="text-white/50 text-sm sm:text-base leading-relaxed">{p}</p>
                   ))}
                 </div>
               </motion.div>
 
-              {/* What's Included — shown inline on mobile, sidebar on desktop */}
+              {/* What's Included — mobile */}
               <motion.div
                 className="lg:hidden"
                 initial={{ opacity: 0, y: 25 }}
@@ -164,7 +158,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 </div>
               </motion.div>
 
-              {/* How It Works */}
+              {/* Course Structure */}
               <motion.div
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -172,12 +166,11 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 transition={{ duration: 0.6, ease }}
               >
                 <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-6 sm:mb-8">
-                  How It <span className="text-gradient">Works</span>
+                  Course <span className="text-gradient">Structure</span>
                 </h2>
 
-                {/* Mobile: vertical timeline / Desktop: 2x2 grid */}
                 <div className="sm:hidden space-y-1">
-                  {data.steps.map((step, i) => (
+                  {data.courseStructure.map((step, i) => (
                     <motion.div
                       key={step.title}
                       className="flex gap-4"
@@ -186,12 +179,11 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: i * 0.1 }}
                     >
-                      {/* Timeline line */}
                       <div className="flex flex-col items-center">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-ocean-500/20 to-teal-500/20 flex items-center justify-center shrink-0 border border-ocean-500/20">
                           <span className="text-ocean-400 font-bold text-xs">{i + 1}</span>
                         </div>
-                        {i < data.steps.length - 1 && (
+                        {i < data.courseStructure.length - 1 && (
                           <div className="w-px flex-1 bg-gradient-to-b from-ocean-500/20 to-transparent min-h-[40px]" />
                         )}
                       </div>
@@ -203,9 +195,8 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                   ))}
                 </div>
 
-                {/* Desktop/tablet grid */}
                 <div className="hidden sm:grid sm:grid-cols-2 gap-4">
-                  {data.steps.map((step, i) => (
+                  {data.courseStructure.map((step, i) => (
                     <motion.div
                       key={step.title}
                       className="glass rounded-xl p-5 group hover:bg-white/[0.04] transition-colors"
@@ -236,7 +227,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 transition={{ duration: 0.6, ease }}
               >
                 <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-5 sm:mb-6">
-                  Why Choose <span className="text-gradient">This Dive</span>
+                  Why Choose <span className="text-gradient">This Course</span>
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                   {data.highlights.map((h, i) => (
@@ -263,7 +254,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 transition={{ duration: 0.6, ease }}
               >
                 <h2 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-5 sm:mb-6">
-                  Requirements & <span className="text-gradient">Eligibility</span>
+                  Requirements & <span className="text-gradient">Prerequisites</span>
                 </h2>
                 <div className="space-y-2.5">
                   {data.requirements.map((r, i) => (
@@ -286,9 +277,10 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                   ))}
                 </div>
               </motion.div>
+
             </div>
 
-            {/* ── Right: Sidebar (desktop only) ── */}
+            {/* Right: Sidebar */}
             <div className="hidden lg:block lg:col-span-1">
               <div className="sticky top-28 space-y-6">
                 {/* Pricing card */}
@@ -310,9 +302,10 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                   <div className="space-y-3 mb-6">
                     {[
                       { icon: "fa-clock", text: `Duration: ${data.duration}` },
-                      { icon: "fa-arrows-alt-v", text: `Depth: ${data.depth}` },
-                      { icon: "fa-camera", text: "Photos & videos included" },
-                      { icon: "fa-shield-alt", text: "PADI certified instructors" },
+                      { icon: "fa-arrows-alt-v", text: `Max Depth: ${data.depth}` },
+                      { icon: "fa-water", text: `Dives: ${data.dives}` },
+                      { icon: "fa-user", text: `Min Age: ${data.minAge}` },
+                      { icon: "fa-certificate", text: "PADI certification included" },
                     ].map((item) => (
                       <div key={item.text} className="flex items-center gap-3 text-sm text-white/50">
                         <i className={`fas ${item.icon} text-ocean-400/70 text-xs w-4 text-center`} />
@@ -327,10 +320,8 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                     whileHover={{ scale: 1.03, boxShadow: "0 15px 30px rgba(0,168,232,0.3)" }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    <i className="fas fa-phone text-xs" />
-                    Book Now
+                    <i className="fas fa-phone text-xs" /> Enquire Now
                   </motion.a>
-
                   <motion.a
                     href="https://wa.me/916364360134"
                     target="_blank"
@@ -339,8 +330,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                     whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.06)" }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    <i className="fab fa-whatsapp text-[#25D366]" />
-                    WhatsApp Us
+                    <i className="fab fa-whatsapp text-[#25D366]" /> WhatsApp Us
                   </motion.a>
                 </motion.div>
 
@@ -368,27 +358,20 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
                 {/* Contact */}
                 <motion.div
                   className="rounded-2xl p-6"
-                  style={{
-                    background: "rgba(1, 10, 19, 0.6)",
-                    border: "1px solid rgba(0, 168, 232, 0.1)",
-                  }}
+                  style={{ background: "rgba(1, 10, 19, 0.6)", border: "1px solid rgba(0, 168, 232, 0.1)" }}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.4, ease }}
                 >
                   <h3 className="text-white font-semibold text-sm mb-3">Need Help?</h3>
-                  <p className="text-white/40 text-xs mb-4 leading-relaxed">
-                    Our team responds within minutes.
-                  </p>
+                  <p className="text-white/40 text-xs mb-4 leading-relaxed">Our team responds within minutes.</p>
                   <div className="space-y-2 text-sm">
                     <a href="tel:+916364360134" className="flex items-center gap-2 text-white/50 hover:text-ocean-400 transition-colors">
-                      <i className="fas fa-phone text-ocean-400/60 text-xs" />
-                      +91 6364360134
+                      <i className="fas fa-phone text-ocean-400/60 text-xs" /> +91 6364360134
                     </a>
                     <a href="tel:+919632362244" className="flex items-center gap-2 text-white/50 hover:text-ocean-400 transition-colors">
-                      <i className="fas fa-phone text-ocean-400/60 text-xs" />
-                      +91 9632362244
+                      <i className="fas fa-phone text-ocean-400/60 text-xs" /> +91 9632362244
                     </a>
                     <a href="mailto:experiencescubadive.andaman@gmail.com" className="flex items-center gap-2 text-white/50 hover:text-ocean-400 transition-colors break-all">
                       <i className="fas fa-envelope text-ocean-400/60 text-xs shrink-0" />
@@ -402,13 +385,12 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
         </div>
       </section>
 
-      <PageFAQ faqs={data.faqs} title="Experience" />
+      <PageFAQ faqs={data.faqs} title="Course" />
 
-      {/* ── CTA BANNER ── */}
+      {/* CTA BANNER */}
       <section className="relative py-16 sm:py-20 overflow-hidden">
         <div className="section-sep absolute top-0 left-0 right-0" />
         <div className="absolute inset-0 bg-gradient-to-br from-ocean-900/40 via-deep-950 to-teal-900/40" />
-
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2
             className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4"
@@ -417,7 +399,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            Ready to Dive In?
+            Ready to Get <span className="text-gradient">Certified?</span>
           </motion.h2>
           <motion.p
             className="text-white/40 text-base sm:text-lg mb-8 max-w-xl mx-auto"
@@ -426,7 +408,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1, ease }}
           >
-            Book your {data.shortTitle} experience today and discover the underwater world of Havelock Island
+            Start your {data.shortTitle} journey today in the stunning waters of Havelock Island
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
@@ -441,15 +423,13 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
               whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,168,232,0.4)" }}
               whileTap={{ scale: 0.97 }}
             >
-              <i className="fas fa-phone" />
-              Call to Book
+              <i className="fas fa-phone" /> Call to Enroll
             </motion.a>
             <Link
-              href="/non-swimmers"
+              href="/courses"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold glass text-white/80 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
             >
-              <i className="fas fa-arrow-left text-xs" />
-              All Experiences
+              <i className="fas fa-arrow-left text-xs" /> All Courses
             </Link>
           </motion.div>
         </div>

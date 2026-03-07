@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -50,19 +51,22 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {[
-                { label: "About Us", href: "#about" },
-                { label: "Non-Swimmers", href: "#experiences" },
-                { label: "PADI Courses", href: "#courses" },
-                { label: "Dive Sites", href: "#divesites" },
-                { label: "Contact Us", href: "#contact" },
+                { label: "About Us", href: "/about" },
+                { label: "Non-Swimmers", href: "/non-swimmers" },
+                { label: "PADI Courses", href: "/courses" },
+                { label: "Specialty Courses", href: "/padi-speciality-courses-andaman" },
+                { label: "Dive Sites", href: "/dive-sites" },
+                { label: "Kids Programs", href: "/kids" },
+                { label: "Contact Us", href: "/contact" },
+                { label: "Terms & Conditions", href: "/terms-and-conditions" },
               ].map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-white/40 text-sm hover:text-ocean-400 transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -80,19 +84,19 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5">
               {[
-                "Shore Diving",
-                "Boat Diving",
-                "Snorkeling",
-                "Kids Programs",
-                "Specialty Courses",
-              ].map((label) => (
-                <li key={label}>
-                  <a
-                    href="#"
+                { label: "Shore Diving", href: "/non-swimmers/shore-scuba-diving" },
+                { label: "Boat Diving", href: "/non-swimmers/boat-scuba-diving-havelock" },
+                { label: "Snorkeling", href: "/non-swimmers/skin-diver-snorkeling-havelock" },
+                { label: "Kids Programs", href: "/kids" },
+                { label: "Specialty Courses", href: "/padi-speciality-courses-andaman" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
                     className="text-white/40 text-sm hover:text-ocean-400 transition-colors"
                   >
-                    {label}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

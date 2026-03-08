@@ -293,7 +293,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
               <div className="sticky top-28 space-y-6">
                 {/* Pricing card */}
                 <motion.div
-                  className="glass-strong rounded-2xl p-7"
+                  className="glass-strong rounded-2xl p-7 gradient-border"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -323,7 +323,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
 
                   <motion.a
                     href="tel:+916364360134"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20 btn-shimmer"
                     whileHover={{ scale: 1.03, boxShadow: "0 15px 30px rgba(0,168,232,0.3)" }}
                     whileTap={{ scale: 0.97 }}
                   >
@@ -437,7 +437,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
           >
             <motion.a
               href="tel:+916364360134"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25 btn-shimmer"
               whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,168,232,0.4)" }}
               whileTap={{ scale: 0.97 }}
             >
@@ -446,7 +446,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
             </motion.a>
             <Link
               href="/non-swimmers"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold glass text-white/80 hover:text-white hover:bg-white/[0.06] transition-all duration-300"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white/80 hover:text-white transition-all duration-300 border border-white/10 hover:border-white/20 backdrop-blur-md"
             >
               <i className="fas fa-arrow-left text-xs" />
               All Experiences

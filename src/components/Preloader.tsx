@@ -28,16 +28,16 @@ export default function Preloader() {
         alt="Experience Scuba"
         width={180}
         height={50}
-        className="h-12 w-auto mb-6 opacity-80"
+        className="h-14 w-auto mb-8"
         priority
       />
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2.5 mb-4">
         {[0, 1, 2].map((i) => (
           <div
             key={i}
-            className="w-2 h-2 rounded-full bg-ocean-500"
+            className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-ocean-500 to-teal-500"
             style={{
-              animation: `loaderPulse 1.2s ease-in-out ${i * 0.15}s infinite`,
+              animation: `loaderPulse 1.2s ease-in-out ${i * 0.2}s infinite`,
             }}
           />
         ))}

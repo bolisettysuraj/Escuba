@@ -70,8 +70,8 @@ export default function ParallaxDivider() {
         >
           <motion.a
             href="tel:+916364360134"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25"
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,168,232,0.4)" }}
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25 btn-shimmer"
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,168,232,0.45), 0 0 80px rgba(0,168,232,0.15)" }}
             whileTap={{ scale: 0.97 }}
           >
             <i className="fas fa-phone" />
@@ -81,8 +81,8 @@ export default function ParallaxDivider() {
             href="https://wa.me/916364360134"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold glass text-white/80"
-            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.06)" }}
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold text-white/80 border border-white/10 backdrop-blur-md"
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.2)" }}
             whileTap={{ scale: 0.97 }}
           >
             <i className="fab fa-whatsapp text-[#25D366]" />

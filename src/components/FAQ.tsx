@@ -89,8 +89,8 @@ export default function FAQ() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <motion.a
                   href="tel:+916364360134"
-                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20"
-                  whileHover={{ scale: 1.03, boxShadow: "0 12px 24px rgba(0,168,232,0.3)" }}
+                  className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20 btn-shimmer"
+                  whileHover={{ scale: 1.03, boxShadow: "0 12px 30px rgba(0,168,232,0.35)" }}
                   whileTap={{ scale: 0.97 }}
                 >
                   <i className="fas fa-phone text-xs" />

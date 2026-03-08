@@ -63,7 +63,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-white/40 text-sm hover:text-ocean-400 transition-colors"
+                    className="footer-link text-white/40 text-sm hover:text-ocean-400 transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -93,7 +93,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-white/40 text-sm hover:text-ocean-400 transition-colors"
+                    className="footer-link text-white/40 text-sm hover:text-ocean-400 transition-colors duration-300"
                   >
                     {item.label}
                   </Link>
@@ -149,18 +149,19 @@ export default function Footer() {
           </p>
           <div className="flex gap-3">
             {[
-              { icon: "fab fa-whatsapp", label: "WhatsApp" },
-              { icon: "fab fa-facebook-f", label: "Facebook" },
-              { icon: "fab fa-instagram", label: "Instagram" },
-              { icon: "fab fa-youtube", label: "YouTube" },
+              { icon: "fab fa-whatsapp", label: "WhatsApp", hoverBg: "rgba(37,211,102,0.2)", hoverColor: "#25D366" },
+              { icon: "fab fa-facebook-f", label: "Facebook", hoverBg: "rgba(59,89,152,0.2)", hoverColor: "#3B5998" },
+              { icon: "fab fa-instagram", label: "Instagram", hoverBg: "rgba(225,48,108,0.2)", hoverColor: "#E1306C" },
+              { icon: "fab fa-youtube", label: "YouTube", hoverBg: "rgba(255,0,0,0.15)", hoverColor: "#FF0000" },
             ].map((s) => (
               <motion.a
                 key={s.label}
                 href="#"
-                className="w-9 h-9 rounded-full glass flex items-center justify-center text-white/30 hover:text-white hover:bg-ocean-500/20 transition-all duration-300"
+                className="w-9 h-9 rounded-full glass flex items-center justify-center text-white/30 transition-all duration-300"
                 aria-label={s.label}
-                whileHover={{ scale: 1.15, y: -2 }}
+                whileHover={{ scale: 1.15, y: -3, backgroundColor: s.hoverBg, color: s.hoverColor }}
                 whileTap={{ scale: 0.9 }}
+                style={{ color: undefined }}
               >
                 <i className={`${s.icon} text-sm`} />
               </motion.a>

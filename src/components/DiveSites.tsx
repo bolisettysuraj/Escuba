@@ -49,8 +49,8 @@ export default function DiveSites() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-deep-950 to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-deep-950 to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-deep-950 via-deep-950/80 to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-deep-950 via-deep-950/80 to-transparent z-10" />
           <div className="flex animate-marquee whitespace-nowrap">
             {[...allSiteNames, ...allSiteNames].map((site, i) => (
               <span
@@ -69,7 +69,7 @@ export default function DiveSites() {
           {sites.map((site, i) => (
             <motion.div
               key={site.name}
-              className={`group relative rounded-2xl overflow-hidden cursor-pointer ${
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer gradient-border ${
                 site.large ? "sm:col-span-2 lg:col-span-1 lg:row-span-2" : ""
               }`}
               initial={{ opacity: 0, y: 50, scale: 0.95 }}

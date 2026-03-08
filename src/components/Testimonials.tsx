@@ -80,9 +80,10 @@ export default function Testimonials() {
           <div className="glass-strong rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden">
             {/* Quote icon */}
             <motion.i
-              className="fas fa-quote-left text-5xl text-ocean-500/10 absolute top-6 left-8"
-              animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="fas fa-quote-left text-6xl sm:text-7xl absolute top-4 left-6 sm:top-6 sm:left-8"
+              style={{ background: "linear-gradient(135deg, rgba(0,168,232,0.12), rgba(45,212,191,0.06))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
+              animate={{ scale: [1, 1.08, 1], opacity: [0.6, 0.9, 0.6] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             />
 
             {/* Stars */}
@@ -121,20 +122,24 @@ export default function Testimonials() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
-                className="mt-8 flex items-center justify-center gap-3"
+                className="mt-8 flex items-center justify-center gap-4"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center text-white font-bold text-sm">
-                  {testimonials[current].initials}
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center text-white font-bold text-sm">
+                    {testimonials[current].initials}
+                  </div>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-ocean-500/30 to-teal-500/30 blur-md -z-10" />
                 </div>
                 <div className="text-left">
                   <div className="text-white font-semibold">
                     {testimonials[current].name}
                   </div>
-                  <div className="text-white/40 text-sm">
+                  <div className="text-white/40 text-sm flex items-center gap-1.5">
+                    <span className="w-3 h-px bg-ocean-500/50" />
                     {testimonials[current].role}
                   </div>
                 </div>

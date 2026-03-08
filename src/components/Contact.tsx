@@ -1,14 +1,19 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000);
+    }, 1200);
   };
 
   return (
@@ -115,22 +120,22 @@ export default function Contact() {
               {/* Social links */}
               <div className="flex gap-3">
                 {[
-                  { icon: "fab fa-whatsapp", label: "WhatsApp" },
-                  { icon: "fab fa-facebook-f", label: "Facebook" },
-                  { icon: "fab fa-instagram", label: "Instagram" },
-                  { icon: "fab fa-youtube", label: "YouTube" },
-                  { icon: "fas fa-map-marked-alt", label: "Google Maps" },
+                  { icon: "fab fa-whatsapp", label: "WhatsApp", hoverBg: "rgba(37,211,102,0.2)", hoverColor: "#25D366" },
+                  { icon: "fab fa-facebook-f", label: "Facebook", hoverBg: "rgba(59,89,152,0.2)", hoverColor: "#3B5998" },
+                  { icon: "fab fa-instagram", label: "Instagram", hoverBg: "rgba(225,48,108,0.2)", hoverColor: "#E1306C" },
+                  { icon: "fab fa-youtube", label: "YouTube", hoverBg: "rgba(255,0,0,0.15)", hoverColor: "#FF0000" },
+                  { icon: "fas fa-map-marked-alt", label: "Google Maps", hoverBg: "rgba(66,133,244,0.2)", hoverColor: "#4285F4" },
                 ].map((s, i) => (
                   <motion.a
                     key={s.label}
                     href="#"
-                    className="w-10 h-10 rounded-full glass flex items-center justify-center text-white/40 hover:text-white hover:bg-ocean-500/20 transition-all duration-300"
+                    className="w-10 h-10 rounded-full glass flex items-center justify-center text-white/40 transition-all duration-300"
                     aria-label={s.label}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: 0.5 + i * 0.06, ease: "backOut" }}
-                    whileHover={{ scale: 1.15, y: -2 }}
+                    whileHover={{ scale: 1.15, y: -3, backgroundColor: s.hoverBg }}
                     whileTap={{ scale: 0.9 }}
                   >
                     <i className={`${s.icon} text-sm`} />
@@ -176,10 +181,10 @@ export default function Contact() {
                       type={field.type}
                       placeholder={field.placeholder}
                       required
-                      className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.06] transition-all duration-300"
+                      className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300"
                     />
                     <i
-                      className={`fas ${field.icon} absolute left-4 top-1/2 -translate-y-1/2 text-white/20 text-xs`}
+                      className={`fas ${field.icon} absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-xs peer-focus:text-ocean-400 transition-colors`}
                     />
                   </motion.div>
                 ))}
@@ -194,7 +199,7 @@ export default function Contact() {
                   <select
                     required
                     defaultValue=""
-                    className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-sm text-white/25 focus:text-white focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.06] transition-all duration-300 appearance-none"
+                    className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white/30 focus:text-white focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300 appearance-none"
                   >
                     <option value="" disabled>
                       Select Experience
@@ -220,28 +225,67 @@ export default function Contact() {
                   <textarea
                     placeholder="Your Message"
                     rows={3}
-                    className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.06] transition-all duration-300 resize-none"
+                    className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300 resize-none"
                   />
                   <i className="fas fa-comment absolute left-4 top-4 text-white/20 text-xs" />
                 </motion.div>
 
                 <motion.button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20"
-                  whileHover={{ scale: 1.02, boxShadow: "0 15px 30px rgba(0,168,232,0.3)" }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={loading}
+                  className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-sm font-semibold text-white shadow-lg shadow-ocean-500/20 transition-all duration-300 ${
+                    submitted
+                      ? "bg-gradient-to-r from-green-500 to-emerald-500 shadow-green-500/20"
+                      : "bg-gradient-to-r from-ocean-500 to-teal-500 btn-shimmer"
+                  }`}
+                  whileHover={!loading && !submitted ? { scale: 1.02, boxShadow: "0 15px 40px rgba(0,168,232,0.35)" } : {}}
+                  whileTap={!loading ? { scale: 0.98 } : {}}
                 >
-                  {submitted ? (
-                    <>
-                      <i className="fas fa-check" />
-                      Sent Successfully!
-                    </>
-                  ) : (
-                    <>
-                      Send Enquiry
-                      <i className="fas fa-paper-plane text-xs" />
-                    </>
-                  )}
+                  <AnimatePresence mode="wait">
+                    {loading ? (
+                      <motion.span
+                        key="loading"
+                        className="flex items-center gap-2"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                      >
+                        <motion.i
+                          className="fas fa-circle-notch"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        Sending...
+                      </motion.span>
+                    ) : submitted ? (
+                      <motion.span
+                        key="success"
+                        className="flex items-center gap-2"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                      >
+                        <motion.i
+                          className="fas fa-check-circle"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ type: "spring", stiffness: 500 }}
+                        />
+                        Sent Successfully!
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="default"
+                        className="flex items-center gap-2"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                      >
+                        Send Enquiry
+                        <i className="fas fa-paper-plane text-xs" />
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </motion.button>
               </form>
             </motion.div>

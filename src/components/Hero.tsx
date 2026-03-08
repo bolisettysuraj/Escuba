@@ -246,27 +246,28 @@ export default function Hero() {
             <motion.div variants={fadeUp} className="flex items-center justify-center gap-4 mb-14">
               <motion.a
                 href="#experiences"
-                className="group flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,168,232,0.35)" }}
+                className="group relative flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25 btn-shimmer"
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,168,232,0.4), 0 0 80px rgba(0,168,232,0.15)" }}
                 whileTap={{ scale: 0.97 }}
               >
                 Explore Experiences
-                <i className="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform" />
+                <i className="fas fa-arrow-right text-sm group-hover:translate-x-1.5 transition-transform duration-300" />
               </motion.a>
               <motion.a
                 href="#about"
-                className="group flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold glass text-white/90"
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.08)" }}
+                className="group flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white/90 border border-white/10 backdrop-blur-md"
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.08)", borderColor: "rgba(255,255,255,0.2)" }}
                 whileTap={{ scale: 0.97 }}
               >
-                <i className="fas fa-play text-xs" />
+                <i className="fas fa-play text-xs opacity-70 group-hover:opacity-100 transition-opacity" />
                 Our Story
               </motion.a>
             </motion.div>
 
             <motion.div
               variants={scaleIn}
-              className="inline-flex items-center gap-8 lg:gap-12 glass rounded-2xl px-8 py-5"
+              className="inline-flex items-center gap-8 lg:gap-12 rounded-2xl px-8 py-5 border border-white/[0.08]"
+              style={{ background: "rgba(1, 10, 19, 0.5)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
             >
               {stats.map((s, i) => (
                 <div key={i} className="flex items-center gap-8 lg:gap-12">
@@ -286,18 +287,29 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 z-10"
-        animate={{ opacity: [0.3, 0.7, 0.3] }}
-        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.8 }}
       >
-        <div className="w-5 h-8 rounded-full border-2 border-white/15 flex items-start justify-center p-1">
+        <motion.div
+          className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-1.5"
+          animate={{ borderColor: ["rgba(255,255,255,0.15)", "rgba(0,168,232,0.4)", "rgba(255,255,255,0.15)"] }}
+          transition={{ duration: 3, repeat: Infinity }}
+        >
           <motion.div
-            className="w-1 h-2 bg-ocean-400 rounded-full"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="w-1.5 h-2.5 rounded-full bg-gradient-to-b from-ocean-400 to-teal-400"
+            animate={{ y: [0, 10, 0], opacity: [1, 0.5, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           />
-        </div>
-        <span className="text-[10px] text-white/25 uppercase tracking-widest">Scroll</span>
+        </motion.div>
+        <motion.span
+          className="text-[10px] text-white/30 uppercase tracking-[0.2em]"
+          animate={{ opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          Scroll
+        </motion.span>
       </motion.div>
     </section>
   );

@@ -102,14 +102,14 @@ export default function About() {
                   transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
                 >
                   <motion.div
-                    className="w-12 h-12 rounded-xl glass flex items-center justify-center shrink-0"
-                    whileHover={{ scale: 1.1, backgroundColor: "rgba(0,168,232,0.15)" }}
+                    className="w-12 h-12 rounded-xl glass flex items-center justify-center shrink-0 group-hover:bg-ocean-500/15 transition-colors duration-300"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    <i className={`fas ${f.icon} text-ocean-400`} />
+                    <i className={`fas ${f.icon} text-ocean-400 group-hover:text-ocean-300 transition-colors`} />
                   </motion.div>
                   <div>
-                    <h4 className="text-white font-semibold">{f.title}</h4>
-                    <p className="text-white/40 text-sm">{f.desc}</p>
+                    <h4 className="text-white font-semibold group-hover:text-ocean-300 transition-colors duration-300">{f.title}</h4>
+                    <p className="text-white/45 text-sm">{f.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -117,11 +117,11 @@ export default function About() {
 
             <motion.a
               href="#experiences"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white"
-              whileHover={{ scale: 1.05, boxShadow: "0 15px 30px rgba(0,168,232,0.3)" }}
+              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20 btn-shimmer"
+              whileHover={{ scale: 1.05, boxShadow: "0 15px 40px rgba(0,168,232,0.35)" }}
               whileTap={{ scale: 0.97 }}
             >
-              Discover More <i className="fas fa-arrow-right text-xs" />
+              Discover More <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300" />
             </motion.a>
           </motion.div>
         </div>

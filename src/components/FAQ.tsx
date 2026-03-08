@@ -194,7 +194,8 @@ export default function FAQ() {
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     >
                       <div className="px-5 sm:px-6 pl-[76px] sm:pl-[88px] pb-6">
-                        <p className="text-white/40 text-sm leading-relaxed">
+                        <div className="w-8 h-px bg-gradient-to-r from-ocean-500/30 to-transparent mb-3" />
+                        <p className="text-white/45 text-sm leading-relaxed">
                           {faq.a}
                         </p>
                       </div>

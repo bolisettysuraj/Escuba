@@ -71,9 +71,10 @@ export default function Experiences() {
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className={`group relative rounded-2xl overflow-hidden ${
-                exp.featured ? "ring-1 ring-ocean-400/30 shadow-lg shadow-ocean-500/10" : ""
+              className={`group relative rounded-2xl overflow-hidden gradient-border ${
+                exp.featured ? "shadow-lg shadow-ocean-500/15" : ""
               }`}
+              style={exp.featured ? { animation: "glowPulse 4s ease-in-out infinite" } : {}}
             >
               {/* Image */}
               <div className="relative h-56 sm:h-64 overflow-hidden">
@@ -94,31 +95,34 @@ export default function Experiences() {
               <div className="relative p-6 bg-deep-900/80 backdrop-blur-sm border-t border-white/5">
                 <div className="flex items-center gap-3 mb-3">
                   <motion.div
-                    className="w-10 h-10 rounded-lg glass flex items-center justify-center"
+                    className="w-10 h-10 rounded-lg glass flex items-center justify-center group-hover:bg-ocean-500/15 transition-colors duration-300"
                     whileHover={{ rotate: 8, scale: 1.1 }}
                   >
-                    <i className={`fas ${exp.icon} text-ocean-400`} />
+                    <i className={`fas ${exp.icon} text-ocean-400 group-hover:text-ocean-300 transition-colors`} />
                   </motion.div>
-                  <h3 className="text-xl font-bold text-white font-[family-name:var(--font-display)]">
+                  <h3 className="text-xl font-bold text-white font-[family-name:var(--font-display)] group-hover:text-gradient transition-all duration-500">
                     {exp.title}
                   </h3>
                 </div>
-                <p className="text-white/40 text-sm leading-relaxed mb-4">{exp.desc}</p>
-                <ul className="space-y-1.5 mb-5">
+                <p className="text-white/45 text-sm leading-relaxed mb-4">{exp.desc}</p>
+                <ul className="space-y-2 mb-5">
                   {exp.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-white/50">
-                      <i className="fas fa-check text-teal-400 text-xs" />
+                    <li key={f} className="flex items-center gap-2.5 text-sm text-white/55">
+                      <span className="w-5 h-5 rounded-full bg-teal-500/10 flex items-center justify-center shrink-0">
+                        <i className="fas fa-check text-teal-400 text-[9px]" />
+                      </span>
                       {f}
                     </li>
                   ))}
                 </ul>
                 <motion.a
                   href="#"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-ocean-400 group/link"
-                  whileHover={{ x: 4 }}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-ocean-400 hover:text-ocean-300 transition-colors group/link"
+                  whileHover={{ x: 6 }}
+                  transition={{ type: "spring", stiffness: 400 }}
                 >
                   Learn More
-                  <i className="fas fa-arrow-right text-xs" />
+                  <i className="fas fa-arrow-right text-xs transition-transform duration-300 group-hover/link:translate-x-1" />
                 </motion.a>
               </div>
 

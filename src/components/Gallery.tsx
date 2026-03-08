@@ -34,7 +34,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 auto-rows-[180px] sm:auto-rows-[220px]">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 auto-rows-[200px] sm:auto-rows-[240px]">
           {items.map((item, i) => (
             <motion.div
               key={item.name}
@@ -52,16 +52,20 @@ export default function Gallery() {
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                 sizes="(max-width: 768px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-deep-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-white font-semibold text-sm">
+              {/* Always visible gradient at bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-deep-950/70 via-transparent to-transparent" />
+              {/* Intensify on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-deep-950/90 via-deep-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Always visible name */}
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <span className="text-white font-semibold text-sm drop-shadow-lg group-hover:text-ocean-300 transition-colors duration-300">
                   {item.name}
                 </span>
               </div>
-              {/* Subtle glow border */}
+              {/* Glow border on hover */}
               <div
                 className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-                style={{ boxShadow: "inset 0 0 0 1px rgba(0,168,232,0.25)" }}
+                style={{ boxShadow: "inset 0 0 0 1px rgba(0,168,232,0.3), 0 0 20px rgba(0,168,232,0.08)" }}
               />
             </motion.div>
           ))}

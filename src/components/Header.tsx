@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -113,10 +114,16 @@ const navItems: NavItem[] = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [openDesktopDropdown, setOpenDesktopDropdown] = useState<string | null>(null);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -167,13 +174,17 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-white transition-colors rounded-lg hover:bg-white/[0.06] flex items-center gap-1.5"
+                  className={`nav-link px-4 py-2.5 text-sm font-medium transition-colors rounded-lg hover:bg-white/[0.06] flex items-center gap-1.5 ${
+                    isActive(item.href)
+                      ? "active text-white"
+                      : "text-white/70 hover:text-white"
+                  }`}
                 >
                   {item.label}
                   {item.children && (
                     <i
-                      className={`fas fa-chevron-down text-[9px] opacity-50 transition-all duration-300 ${
-                        openDesktopDropdown === item.label ? "rotate-180 opacity-100" : ""
+                      className={`fas fa-chevron-down text-[9px] transition-all duration-300 ${
+                        openDesktopDropdown === item.label ? "rotate-180 opacity-100" : "opacity-40"
                       }`}
                     />
                   )}
@@ -199,13 +210,14 @@ export default function Header() {
                         border: "1px solid rgba(0, 168, 232, 0.12)",
                       }}
                     >
-                      {item.children.map((child) => (
+                      {item.children.map((child, ci) => (
                         <Link
                           key={child.name}
                           href={child.href}
-                          className="flex items-center gap-3 px-5 py-3 text-sm text-white/70 hover:text-white hover:bg-white/[0.06] transition-all duration-200 group/item"
+                          className="flex items-center gap-3 px-5 py-3 text-sm text-white/60 hover:text-white hover:bg-white/[0.06] hover:pl-6 transition-all duration-300 group/item"
+                          style={{ transitionDelay: openDesktopDropdown === item.label ? `${ci * 30}ms` : "0ms" }}
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-ocean-500/40 group-hover/item:bg-ocean-400 group-hover/item:shadow-sm group-hover/item:shadow-ocean-400/50 transition-all" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-ocean-500/30 group-hover/item:bg-ocean-400 group-hover/item:shadow-md group-hover/item:shadow-ocean-400/50 transition-all duration-300 group-hover/item:scale-150" />
                           {child.name}
                         </Link>
                       ))}
@@ -220,7 +232,7 @@ export default function Header() {
           <div className="flex items-center gap-3 z-[110] relative">
             <a
               href="tel:+916364360134"
-              className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white hover:shadow-lg hover:shadow-ocean-500/30 transition-all duration-300 hover:scale-105"
+              className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-md shadow-ocean-500/20 hover:shadow-lg hover:shadow-ocean-500/40 transition-all duration-300 hover:scale-105 btn-shimmer"
             >
               <i className="fas fa-phone text-xs" />
               Book Now
@@ -282,9 +294,11 @@ export default function Header() {
           {navItems.map((item, idx) => (
             <div
               key={item.label}
-              className="w-full max-w-sm"
+              className={`w-full max-w-sm transition-all duration-500 ${
+                mobileOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+              }`}
               style={{
-                transitionDelay: mobileOpen ? `${idx * 60}ms` : "0ms",
+                transitionDelay: mobileOpen ? `${150 + idx * 80}ms` : "0ms",
               }}
             >
               {item.children ? (
@@ -370,9 +384,14 @@ export default function Header() {
                 <Link
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-2 py-3"
+                  className="flex items-center gap-3 px-2 py-3"
                 >
-                  <span className="text-xl font-[family-name:var(--font-display)] text-white/90 font-semibold">
+                  {isActive(item.href) && (
+                    <span className="w-1 h-6 rounded-full bg-gradient-to-b from-ocean-500 to-teal-500" />
+                  )}
+                  <span className={`text-xl font-[family-name:var(--font-display)] font-semibold ${
+                    isActive(item.href) ? "text-white" : "text-white/70"
+                  }`}>
                     {item.label}
                   </span>
                 </Link>

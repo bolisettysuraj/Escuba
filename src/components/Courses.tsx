@@ -114,9 +114,10 @@ export default function Courses() {
           {courses.map((course, i) => (
             <motion.div
               key={course.title}
-              className={`group relative rounded-2xl overflow-hidden cursor-pointer ${
-                course.featured ? "ring-1 ring-ocean-400/20" : ""
+              className={`group relative rounded-2xl overflow-hidden cursor-pointer gradient-border ${
+                course.featured ? "" : ""
               }`}
+              style={course.featured ? { animation: "glowPulse 4s ease-in-out infinite" } : {}}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -124,7 +125,7 @@ export default function Courses() {
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
               {/* Top accent line */}
-              <div className={`h-1 w-full bg-gradient-to-r ${levelColors[course.level]}`} />
+              <div className={`h-1 w-full bg-gradient-to-r ${levelColors[course.level]} group-hover:h-1.5 transition-all duration-300`} />
 
               <div
                 className="p-6 h-full flex flex-col"
@@ -186,9 +187,9 @@ export default function Courses() {
                       className="text-center rounded-lg py-2.5 px-1"
                       style={{ background: "rgba(255,255,255,0.02)" }}
                     >
-                      <i className={`fas ${stat.icon} text-ocean-500/50 text-[10px] mb-1 block`} />
-                      <div className="text-white text-xs font-semibold leading-tight">{stat.value}</div>
-                      <div className="text-white/25 text-[9px] uppercase tracking-wider mt-0.5">{stat.label}</div>
+                      <i className={`fas ${stat.icon} text-ocean-500/60 text-[11px] mb-1.5 block`} />
+                      <div className="text-white text-xs font-bold leading-tight">{stat.value}</div>
+                      <div className="text-white/30 text-[10px] uppercase tracking-wider mt-0.5">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -197,13 +198,14 @@ export default function Courses() {
                 <div className="flex items-center justify-between pt-4 border-t border-white/5">
                   <div>
                     <span className="text-white/25 text-[10px] uppercase tracking-wider">From</span>
-                    <div className="text-white font-bold text-lg font-[family-name:var(--font-display)]">
-                      &#8377;{course.price}
+                    <div className="font-bold text-xl font-[family-name:var(--font-display)] flex items-baseline gap-0.5">
+                      <span className="text-white/50 text-sm">&#8377;</span>
+                      <span className="text-white">{course.price}</span>
                     </div>
                   </div>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors">
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-all px-4 py-2 rounded-full group-hover:bg-ocean-500/10">
                     Enquire
-                    <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" />
+                    <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </div>
               </div>

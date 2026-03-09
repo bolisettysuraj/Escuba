@@ -106,7 +106,7 @@ export default function Hero() {
           <div className="absolute inset-[-15%] pointer-events-none">
             <iframe
               src="https://www.youtube.com/embed/vPkikG3TTcY?autoplay=1&mute=1&loop=1&playlist=vPkikG3TTcY&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&disablekb=1&start=2"
-              title="Background Video"
+              title="Experience Scuba promotional video"
               className="w-full h-full"
               style={{ border: "none", transform: "scale(1.4)" }}
               allow="autoplay; encrypted-media"
@@ -155,10 +155,10 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1 variants={titleReveal} className="font-[family-name:var(--font-display)] mb-4">
-              <span className="block text-[2.2rem] font-bold text-white leading-[1.05]">
+              <span className="block text-[1.8rem] sm:text-[2.2rem] font-bold text-white leading-[1.05]">
                 Dive Into
               </span>
-              <span className="block text-[2.8rem] font-bold text-gradient leading-[1.05]">
+              <span className="block text-[2rem] sm:text-[2.5rem] md:text-[2.8rem] font-bold text-gradient leading-[1.05]">
                 The Deep
               </span>
             </motion.h1>
@@ -202,10 +202,10 @@ export default function Hero() {
                 <div key={i} className="flex items-center gap-3">
                   {i > 0 && <div className="w-px h-8 bg-white/10" />}
                   <div className="text-center flex-1">
-                    <div className="text-xl font-bold text-white font-[family-name:var(--font-display)]">
+                    <div className="text-lg sm:text-xl font-bold text-white font-[family-name:var(--font-display)]">
                       <AnimatedCounter target={s.value} />
                     </div>
-                    <div className="text-[9px] text-white/35 uppercase tracking-wider mt-0.5">{s.label}</div>
+                    <div className="text-[8px] sm:text-[9px] text-white/35 uppercase tracking-wider mt-0.5">{s.label}</div>
                   </div>
                 </div>
               ))}
@@ -330,6 +330,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 z-10"
+        aria-hidden="true"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 0.8 }}

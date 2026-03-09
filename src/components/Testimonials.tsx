@@ -35,6 +35,27 @@ export default function Testimonials() {
     [current]
   );
 
+  const goToPrev = useCallback(() => {
+    goTo((current - 1 + testimonials.length) % testimonials.length);
+  }, [current, goTo]);
+
+  const goToNext = useCallback(() => {
+    goTo((current + 1) % testimonials.length);
+  }, [current, goTo]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPrev();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToNext();
+      }
+    },
+    [goToPrev, goToNext]
+  );
+
   useEffect(() => {
     const timer = setInterval(() => {
       setDirection(1);
@@ -50,7 +71,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="relative py-16 sm:py-24 overflow-hidden">
+    <section id="testimonials" className="relative py-16 sm:py-24 overflow-hidden" aria-label="Customer testimonials">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-ocean-500/5 rounded-full blur-3xl" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,7 +98,7 @@ export default function Testimonials() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="glass-strong rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden">
+          <div className="glass-strong rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-ocean-500/50 focus:ring-offset-2 focus:ring-offset-transparent" tabIndex={0} onKeyDown={handleKeyDown} role="region" aria-roledescription="carousel">
             {/* Quote icon */}
             <motion.i
               className="fas fa-quote-left text-6xl sm:text-7xl absolute top-4 left-6 sm:top-6 sm:left-8"
@@ -101,7 +122,7 @@ export default function Testimonials() {
             </div>
 
             {/* Text with AnimatePresence for smooth transitions */}
-            <div className="relative min-h-[100px] sm:min-h-[80px] flex items-center justify-center">
+            <div className="relative min-h-[80px] sm:min-h-[100px] flex items-center justify-center" aria-live="polite">
               <AnimatePresence custom={direction} mode="wait">
                 <motion.p
                   key={current}
@@ -149,11 +170,7 @@ export default function Testimonials() {
             {/* Dots & nav */}
             <div className="flex items-center justify-center gap-4 mt-8">
               <motion.button
-                onClick={() =>
-                  goTo(
-                    (current - 1 + testimonials.length) % testimonials.length
-                  )
-                }
+                onClick={goToPrev}
                 className="w-10 h-10 rounded-full glass flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -176,7 +193,7 @@ export default function Testimonials() {
                 ))}
               </div>
               <motion.button
-                onClick={() => goTo((current + 1) % testimonials.length)}
+                onClick={goToNext}
                 className="w-10 h-10 rounded-full glass flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}

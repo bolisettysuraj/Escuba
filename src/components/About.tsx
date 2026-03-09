@@ -30,7 +30,7 @@ export default function About() {
 
             {/* Floating secondary image */}
             <motion.div
-              className="absolute -bottom-8 right-2 sm:right-[-2rem] w-40 sm:w-52 aspect-square rounded-xl overflow-hidden border-4 border-deep-950 shadow-2xl"
+              className="absolute -bottom-8 right-0 sm:right-[-1rem] lg:right-[-2rem] w-40 sm:w-52 aspect-square rounded-xl overflow-hidden border-4 border-deep-950 shadow-2xl"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -117,7 +117,7 @@ export default function About() {
 
             <motion.a
               href="#experiences"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20 btn-shimmer"
+              className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/20 btn-shimmer"
               whileHover={{ scale: 1.05, boxShadow: "0 15px 40px rgba(0,168,232,0.35)" }}
               whileTap={{ scale: 0.97 }}
             >

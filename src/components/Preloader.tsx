@@ -7,8 +7,8 @@ export default function Preloader() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setFadeOut(true), 800);
-    const hideTimer = setTimeout(() => setHidden(true), 1400);
+    const fadeTimer = setTimeout(() => setFadeOut(true), 600);
+    const hideTimer = setTimeout(() => setHidden(true), 1000);
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(hideTimer);
@@ -28,14 +28,14 @@ export default function Preloader() {
         alt="Experience Scuba"
         width={180}
         height={50}
-        className="h-14 w-auto mb-8"
+        className="h-10 sm:h-12 md:h-14 w-auto mb-8"
         priority
       />
       <div className="flex gap-2.5 mb-4">
         {[0, 1, 2].map((i) => (
           <div
             key={i}
-            className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-ocean-500 to-teal-500"
+            className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gradient-to-r from-ocean-500 to-teal-500"
             style={{
               animation: `loaderPulse 1.2s ease-in-out ${i * 0.2}s infinite`,
             }}

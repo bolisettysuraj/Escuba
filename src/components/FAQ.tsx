@@ -34,7 +34,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative py-16 sm:py-24 overflow-hidden">
+    <section id="faq" className="relative py-16 sm:py-24 overflow-hidden" aria-label="Frequently asked questions">
       <div className="section-sep absolute top-0 left-0 right-0" />
 
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-teal-500/5 rounded-full blur-3xl" />
@@ -143,7 +143,11 @@ export default function FAQ() {
                 transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
                 whileHover={open !== i ? { backgroundColor: "rgba(255,255,255,0.03)" } : {}}
               >
-                <button className="w-full flex items-center gap-4 p-5 sm:p-6 text-left">
+                <button
+                  id={`faq-q-${i}`}
+                  className="w-full flex items-center gap-4 p-5 sm:p-6 text-left"
+                  aria-expanded={open === i}
+                >
                   <motion.div
                     className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
                       open === i
@@ -193,7 +197,7 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-5 sm:px-6 pl-[76px] sm:pl-[88px] pb-6">
+                      <div className="px-5 sm:px-6 pl-[76px] sm:pl-[88px] pb-6" role="region" aria-labelledby={`faq-q-${i}`}>
                         <div className="w-8 h-px bg-gradient-to-r from-ocean-500/30 to-transparent mb-3" />
                         <p className="text-white/45 text-sm leading-relaxed">
                           {faq.a}

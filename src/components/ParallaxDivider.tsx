@@ -42,7 +42,7 @@ export default function ParallaxDivider() {
         </motion.div>
 
         <motion.h2
-          className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-5 leading-tight"
+          className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -52,7 +52,7 @@ export default function ParallaxDivider() {
         </motion.h2>
 
         <motion.p
-          className="text-white/40 text-lg sm:text-xl mb-10 max-w-2xl mx-auto"
+          className="text-white/40 text-base sm:text-lg lg:text-xl mb-10 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -70,7 +70,7 @@ export default function ParallaxDivider() {
         >
           <motion.a
             href="tel:+916364360134"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25 btn-shimmer"
+            className="w-full sm:w-auto justify-center inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25 btn-shimmer"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,168,232,0.45), 0 0 80px rgba(0,168,232,0.15)" }}
             whileTap={{ scale: 0.97 }}
           >
@@ -81,7 +81,7 @@ export default function ParallaxDivider() {
             href="https://wa.me/916364360134"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold text-white/80 border border-white/10 backdrop-blur-md"
+            className="w-full sm:w-auto justify-center inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold text-white/80 border border-white/10 backdrop-blur-md"
             whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.2)" }}
             whileTap={{ scale: 0.97 }}
           >

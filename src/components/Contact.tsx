@@ -157,16 +157,20 @@ export default function Contact() {
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
                 {[
-                  { type: "text", placeholder: "Your Name", icon: "fa-user" },
+                  { type: "text", placeholder: "Your Name", icon: "fa-user", label: "Full Name", id: "contact-name" },
                   {
                     type: "tel",
                     placeholder: "Phone Number",
                     icon: "fa-phone",
+                    label: "Phone Number",
+                    id: "contact-phone",
                   },
                   {
                     type: "email",
                     placeholder: "Email Address",
                     icon: "fa-envelope",
+                    label: "Email Address",
+                    id: "contact-email",
                   },
                 ].map((field, i) => (
                   <motion.div
@@ -177,57 +181,76 @@ export default function Contact() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.35 + i * 0.08 }}
                   >
-                    <input
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      required
-                      className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300"
-                    />
-                    <i
-                      className={`fas ${field.icon} absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-xs peer-focus:text-ocean-400 transition-colors`}
-                    />
+                    <label htmlFor={field.id} className="text-white/50 text-xs uppercase tracking-wider mb-1.5 block">
+                      {field.label}
+                    </label>
+                    <div className="relative">
+                      <input
+                        id={field.id}
+                        type={field.type}
+                        placeholder={field.placeholder}
+                        required
+                        aria-required="true"
+                        className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300"
+                      />
+                      <i
+                        className={`fas ${field.icon} absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-xs peer-focus:text-ocean-400 transition-colors`}
+                      />
+                    </div>
                   </motion.div>
                 ))}
 
                 <motion.div
-                  className="relative"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.59 }}
                 >
-                  <select
-                    required
-                    defaultValue=""
-                    className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white/30 focus:text-white focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300 appearance-none"
-                  >
-                    <option value="" disabled>
-                      Select Experience
-                    </option>
-                    <option className="bg-deep-900 text-white">Shore Diving</option>
-                    <option className="bg-deep-900 text-white">Boat Diving</option>
-                    <option className="bg-deep-900 text-white">Snorkeling</option>
-                    <option className="bg-deep-900 text-white">Open Water Diver Course</option>
-                    <option className="bg-deep-900 text-white">Advanced Open Water</option>
-                    <option className="bg-deep-900 text-white">Other Course</option>
-                  </select>
-                  <i className="fas fa-water absolute left-4 top-1/2 -translate-y-1/2 text-white/20 text-xs" />
-                  <i className="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-white/20 text-xs" />
+                  <label htmlFor="contact-experience" className="text-white/50 text-xs uppercase tracking-wider mb-1.5 block">
+                    Interested In
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="contact-experience"
+                      required
+                      aria-required="true"
+                      defaultValue=""
+                      className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white/30 focus:text-white focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300 appearance-none"
+                    >
+                      <option value="" disabled>
+                        Select Experience
+                      </option>
+                      <option className="bg-deep-900 text-white">Shore Diving</option>
+                      <option className="bg-deep-900 text-white">Boat Diving</option>
+                      <option className="bg-deep-900 text-white">Snorkeling</option>
+                      <option className="bg-deep-900 text-white">Open Water Diver Course</option>
+                      <option className="bg-deep-900 text-white">Advanced Open Water</option>
+                      <option className="bg-deep-900 text-white">Other Course</option>
+                    </select>
+                    <i className="fas fa-water absolute left-4 top-1/2 -translate-y-1/2 text-white/20 text-xs" />
+                    <i className="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-white/20 text-xs" />
+                  </div>
                 </motion.div>
 
                 <motion.div
-                  className="relative"
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.67 }}
                 >
-                  <textarea
-                    placeholder="Your Message"
-                    rows={3}
-                    className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300 resize-none"
-                  />
-                  <i className="fas fa-comment absolute left-4 top-4 text-white/20 text-xs" />
+                  <label htmlFor="contact-message" className="text-white/50 text-xs uppercase tracking-wider mb-1.5 block">
+                    Your Message
+                  </label>
+                  <div className="relative">
+                    <textarea
+                      id="contact-message"
+                      placeholder="Your Message"
+                      rows={3}
+                      aria-required="true"
+                      className="w-full bg-white/[0.06] border border-white/[0.08] rounded-xl px-4 py-3.5 pl-11 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-ocean-500/50 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.1)] transition-all duration-300 resize-none"
+                    />
+                    <i className="fas fa-comment absolute left-4 top-4 text-white/20 text-xs" />
+                  </div>
                 </motion.div>
 
                 <motion.button

@@ -3,12 +3,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const items = [
-  { name: "Manta Ray", image: "/images/marine-1.webp", className: "row-span-2" },
+  { name: "Manta Ray", image: "/images/marine-1.webp", className: "sm:row-span-2" },
   { name: "Sea Turtle", image: "/images/marine-2.webp", className: "" },
   { name: "Coral Gardens", image: "/images/marine-3.webp", className: "" },
-  { name: "Tropical Fish", image: "/images/marine-4.webp", className: "col-span-2" },
+  { name: "Tropical Fish", image: "/images/marine-4.webp", className: "sm:col-span-2" },
   { name: "Whale Shark", image: "/images/marine-5.webp", className: "" },
-  { name: "Zebra Shark", image: "/images/marine-6.webp", className: "row-span-2" },
+  { name: "Zebra Shark", image: "/images/marine-6.webp", className: "sm:row-span-2" },
 ];
 
 export default function Gallery() {
@@ -49,6 +49,7 @@ export default function Gallery() {
                 src={item.image}
                 alt={item.name}
                 fill
+                loading="lazy"
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                 sizes="(max-width: 768px) 50vw, 33vw"
               />

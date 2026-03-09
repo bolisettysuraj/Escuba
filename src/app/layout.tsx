@@ -24,6 +24,23 @@ export const metadata: Metadata = {
   description:
     "Experience Scuba - Your gateway to exploring the breathtaking underwater world of the Andaman Islands. PADI certified dive centre in Havelock Island.",
   icons: { icon: "/logo.png" },
+  openGraph: {
+    title: "Experience Scuba | Best Dive Centre in Andaman",
+    description:
+      "Your gateway to exploring the breathtaking underwater world of the Andaman Islands. PADI certified dive centre in Havelock Island.",
+    url: "https://experiencescuba.com",
+    siteName: "Experience Scuba",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Experience Scuba - Dive Centre in Andaman",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -41,6 +58,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
+          rel="preconnect"
+          href="https://cdnjs.cloudflare.com"
+          crossOrigin="anonymous"
+        />
+        <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           rel="stylesheet"
         />
@@ -48,10 +70,13 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${inter.variable} antialiased bg-deep-950 text-slate-200`}
       >
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <Bubbles />
         <ScrollReveal />
         <Header />
-        {children}
+        <div id="main-content">
+          {children}
+        </div>
         <Footer />
         <FloatingButtons />
       </body>

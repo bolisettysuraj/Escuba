@@ -139,6 +139,7 @@ export default function Header() {
   return (
     <>
       <header
+        role="banner"
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
           scrolled ? "py-2 shadow-xl shadow-black/30" : "py-4"
         }`}
@@ -151,7 +152,7 @@ export default function Header() {
           borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
         }}
       >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <nav aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 z-[110] relative">
             <Image
@@ -241,7 +242,8 @@ export default function Header() {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden flex flex-col gap-1.5 p-2"
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileOpen}
             >
               <span
                 className={`w-6 h-0.5 bg-white transition-all duration-300 origin-center ${
@@ -265,6 +267,8 @@ export default function Header() {
 
       {/* Mobile Menu — rendered OUTSIDE header for proper z-index stacking */}
       <div
+        role="dialog"
+        aria-label="Navigation menu"
         className={`lg:hidden fixed inset-0 z-[150] transition-all duration-500 ${
           mobileOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}

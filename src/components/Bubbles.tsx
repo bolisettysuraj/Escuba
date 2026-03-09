@@ -13,9 +13,10 @@ export default function Bubbles() {
   const [bubbles, setBubbles] = useState<BubbleData[]>([]);
 
   useEffect(() => {
-    const arr: BubbleData[] = Array.from({ length: 15 }, (_, i) => ({
+    const count = window.innerWidth >= 768 ? 15 : 8;
+    const arr: BubbleData[] = Array.from({ length: count }, (_, i) => ({
       id: i,
-      size: Math.random() * 40 + 10,
+      size: Math.random() * 30 + 8,
       left: Math.random() * 100,
       duration: Math.random() * 15 + 10,
       delay: Math.random() * 10,

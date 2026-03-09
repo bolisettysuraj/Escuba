@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 pt-16 pb-8 overflow-hidden">
+    <footer className="relative border-t border-white/5 pt-16 pb-8 overflow-hidden" role="contentinfo">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-px bg-gradient-to-r from-transparent via-ocean-500/30 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12" aria-label="Footer navigation">
           {/* Brand */}
           <motion.div
             className="sm:col-span-2 lg:col-span-1"
@@ -134,7 +134,7 @@ export default function Footer() {
               </p>
             </div>
           </motion.div>
-        </div>
+        </nav>
 
         {/* Bottom bar */}
         <motion.div
@@ -149,16 +149,16 @@ export default function Footer() {
           </p>
           <div className="flex gap-3">
             {[
-              { icon: "fab fa-whatsapp", label: "WhatsApp", hoverBg: "rgba(37,211,102,0.2)", hoverColor: "#25D366" },
-              { icon: "fab fa-facebook-f", label: "Facebook", hoverBg: "rgba(59,89,152,0.2)", hoverColor: "#3B5998" },
-              { icon: "fab fa-instagram", label: "Instagram", hoverBg: "rgba(225,48,108,0.2)", hoverColor: "#E1306C" },
-              { icon: "fab fa-youtube", label: "YouTube", hoverBg: "rgba(255,0,0,0.15)", hoverColor: "#FF0000" },
+              { icon: "fab fa-whatsapp", label: "WhatsApp", ariaLabel: "Follow us on WhatsApp", hoverBg: "rgba(37,211,102,0.2)", hoverColor: "#25D366" },
+              { icon: "fab fa-facebook-f", label: "Facebook", ariaLabel: "Follow us on Facebook", hoverBg: "rgba(59,89,152,0.2)", hoverColor: "#3B5998" },
+              { icon: "fab fa-instagram", label: "Instagram", ariaLabel: "Follow us on Instagram", hoverBg: "rgba(225,48,108,0.2)", hoverColor: "#E1306C" },
+              { icon: "fab fa-youtube", label: "YouTube", ariaLabel: "Follow us on YouTube", hoverBg: "rgba(255,0,0,0.15)", hoverColor: "#FF0000" },
             ].map((s) => (
               <motion.a
                 key={s.label}
                 href="#"
                 className="w-9 h-9 rounded-full glass flex items-center justify-center text-white/30 transition-all duration-300"
-                aria-label={s.label}
+                aria-label={s.ariaLabel}
                 whileHover={{ scale: 1.15, y: -3, backgroundColor: s.hoverBg, color: s.hoverColor }}
                 whileTap={{ scale: 0.9 }}
                 style={{ color: undefined }}

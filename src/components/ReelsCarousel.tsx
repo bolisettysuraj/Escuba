@@ -52,7 +52,7 @@ export default function ReelsCarousel() {
         scrollToIndex(next);
         return next;
       });
-    }, 6000);
+    }, 8000);
   };
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export default function ReelsCarousel() {
   }, []);
 
   return (
-    <section className="relative py-16 sm:py-24 overflow-hidden">
+    <section className="relative py-16 sm:py-24 overflow-hidden" aria-label="Instagram reels carousel">
       <div className="section-sep absolute top-0 left-0 right-0" />
       <div className="absolute top-1/3 -left-48 w-96 h-96 bg-ocean-500/5 rounded-full blur-3xl" />
 

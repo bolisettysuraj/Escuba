@@ -22,9 +22,9 @@ const scaleIn = {
   show: { opacity: 1, scale: 1, transition: { duration: 0.7, ease } },
 };
 
-function AnimatedCounter({ target, suffix = "+" }: { target: number | string; suffix?: string }) {
+function AnimatedCounter({ target, suffix = "+", isRating }: { target: number | string; suffix?: string; isRating?: boolean }) {
   const [count, setCount] = useState(0);
-  const numericTarget = typeof target === "string" ? parseInt(target) || 0 : target;
+  const numericTarget = typeof target === "string" ? parseFloat(target) || 0 : target;
 
   useEffect(() => {
     let start = 0;
@@ -36,14 +36,22 @@ function AnimatedCounter({ target, suffix = "+" }: { target: number | string; su
           setCount(numericTarget);
           clearInterval(interval);
         } else {
-          setCount(Math.floor(start));
+          setCount(isRating ? parseFloat(start.toFixed(1)) : Math.floor(start));
         }
       }, 16);
     }, 1000);
     return () => clearTimeout(timer);
-  }, [numericTarget]);
+  }, [numericTarget, isRating]);
 
-  const display = numericTarget >= 1000 ? `${Math.floor(count / 1000)}k` : count;
+  let display: string | number;
+  if (isRating) {
+    display = count.toFixed(1);
+  } else if (numericTarget >= 1000) {
+    display = `${Math.floor(count / 1000)}k`;
+  } else {
+    display = count;
+  }
+
   return (
     <>
       {display}
@@ -202,6 +210,23 @@ export default function Hero() {
                 </div>
               ))}
             </motion.div>
+
+            {/* Google Rating */}
+            <motion.div
+              variants={fadeUp}
+              className="flex items-center justify-center mt-4"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass">
+                <i className="fab fa-google text-white/70 text-xs" />
+                <span className="text-white font-bold text-sm font-[family-name:var(--font-display)] leading-none">4.9</span>
+                <div className="flex items-center gap-px">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <i key={i} className="fas fa-star text-gold-400 text-[8px]" />
+                  ))}
+                </div>
+                <span className="text-white/35 text-[10px] leading-none">on Google</span>
+              </div>
+            </motion.div>
           </motion.div>
         )}
 
@@ -280,6 +305,23 @@ export default function Hero() {
                   </div>
                 </div>
               ))}
+            </motion.div>
+
+            {/* Google Rating */}
+            <motion.div
+              variants={fadeUp}
+              className="flex items-center justify-center mt-6"
+            >
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass">
+                <i className="fab fa-google text-white/70 text-sm" />
+                <span className="text-white font-bold text-lg font-[family-name:var(--font-display)] leading-none">4.9</span>
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <i key={i} className="fas fa-star text-gold-400 text-xs" />
+                  ))}
+                </div>
+                <span className="text-white/40 text-sm leading-none">on Google</span>
+              </div>
             </motion.div>
           </motion.div>
         )}

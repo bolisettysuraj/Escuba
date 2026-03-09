@@ -425,6 +425,15 @@ img {
   transition: opacity 0.4s ease;
 }
 
+/* ── Scrollbar hide utility ── */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* ── Better scrollbar for mobile ── */
 @media (max-width: 640px) {
   ::-webkit-scrollbar {

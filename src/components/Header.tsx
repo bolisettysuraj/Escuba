@@ -154,13 +154,22 @@ export default function Header() {
       >
         <nav aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 z-[110] relative">
+          <Link href="/" className="flex items-center gap-3 z-[110] relative">
             <Image
               src="/logo.png"
               alt="Experience Scuba"
               width={160}
               height={40}
               className="h-16 sm:h-[72px] w-auto"
+              priority
+            />
+            <span className="w-px h-8 sm:h-10 bg-white/15 shrink-0" />
+            <Image
+              src="/PADI.png"
+              alt="PADI Certified"
+              width={80}
+              height={40}
+              className="h-10 sm:h-12 w-auto"
               priority
             />
           </Link>

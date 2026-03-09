@@ -110,6 +110,7 @@ const navItems: NavItem[] = [
   },
   { label: "Speciality Courses", href: "/padi-speciality-courses-andaman" },
   { label: "Dive Sites", href: "/dive-sites" },
+  { label: "Articles", href: "/articles" },
   { label: "Contact", href: "/contact" },
 ];
 

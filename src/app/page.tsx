@@ -12,6 +12,7 @@ import ReelsCarousel from "@/components/ReelsCarousel";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
+import Articles from "@/components/Articles";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <Testimonials />
         <FAQ />
         <Contact />
+        <Articles />
       </main>
     </>
   );

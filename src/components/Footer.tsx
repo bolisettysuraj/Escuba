@@ -140,21 +140,21 @@ export default function Footer() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease }}
             >
-              <div className="flex items-center gap-3 mb-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3">
                 <Image
                   src="/logo.png"
                   alt="Experience Scuba"
                   width={200}
                   height={50}
-                  className="h-16 w-auto"
+                  className="h-12 sm:h-14 lg:h-16 w-auto"
                 />
-                <span className="w-px h-10 bg-white/15 shrink-0" />
+                <span className="w-px h-7 sm:h-8 lg:h-10 bg-white/15 shrink-0" />
                 <Image
                   src="/PADI.png"
                   alt="PADI Certified"
                   width={80}
                   height={40}
-                  className="h-12 w-auto"
+                  className="h-8 sm:h-10 lg:h-12 w-auto"
                 />
               </div>
               <p className="font-display text-lg text-gradient font-semibold italic mb-3 tracking-wide">

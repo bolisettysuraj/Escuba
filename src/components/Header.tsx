@@ -141,7 +141,7 @@ export default function Header() {
       <header
         role="banner"
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          scrolled ? "py-2 shadow-xl shadow-black/30" : "py-4"
+          scrolled ? "py-1.5 sm:py-2 shadow-xl shadow-black/30" : "py-2 sm:py-4"
         }`}
         style={{
           background: scrolled
@@ -152,24 +152,24 @@ export default function Header() {
           borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
         }}
       >
-        <nav aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <nav aria-label="Main navigation" className="max-w-7xl mx-auto pl-2 pr-3 sm:pl-4 sm:pr-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 z-[110] relative">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 z-[110] relative">
             <Image
               src="/logo.png"
               alt="Experience Scuba"
               width={160}
               height={40}
-              className="h-16 sm:h-[72px] w-auto"
+              className="h-12 sm:h-16 lg:h-[72px] w-auto"
               priority
             />
-            <span className="w-px h-8 sm:h-10 bg-white/15 shrink-0" />
+            <span className="w-px h-6 sm:h-8 lg:h-10 bg-white/15 shrink-0" />
             <Image
               src="/PADI.png"
               alt="PADI Certified"
               width={80}
               height={40}
-              className="h-10 sm:h-12 w-auto"
+              className="h-7 sm:h-10 lg:h-12 w-auto"
               priority
             />
           </Link>

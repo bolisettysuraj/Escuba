@@ -152,7 +152,7 @@ export default function Header() {
           borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
         }}
       >
-        <nav aria-label="Main navigation" className="max-w-7xl mx-auto pl-2 pr-3 sm:pl-4 sm:pr-6 lg:px-8 flex items-center justify-between">
+        <nav aria-label="Main navigation" className="max-w-7xl mx-auto pl-2 pr-3 sm:pl-4 sm:pr-6 lg:pl-0 lg:pr-8 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 z-[110] relative">
             <Image

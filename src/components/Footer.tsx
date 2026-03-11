@@ -56,7 +56,7 @@ export default function Footer() {
                 onSubmit={handleSubscribe}
                 className="flex-1 w-full max-w-md"
               >
-                <div className="relative flex items-center">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 sm:relative">
                   <input
                     type="email"
                     placeholder="Enter your email"
@@ -64,14 +64,14 @@ export default function Footer() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     aria-label="Email address for newsletter"
-                    className="w-full px-5 py-3.5 pr-36 rounded-xl bg-white/[0.06] border border-white/10 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-ocean-500/40 focus:shadow-[0_0_0_3px_rgba(0,168,232,0.12)] transition-all duration-300"
+                    className="w-full px-5 py-3.5 sm:pr-36 rounded-xl bg-white/[0.06] border border-white/10 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-ocean-500/40 focus:shadow-[0_0_0_3px_rgba(0,168,232,0.12)] transition-all duration-300"
                   />
                   <button
                     type="submit"
-                    className="absolute right-1.5 px-5 py-2 rounded-lg bg-gradient-to-r from-ocean-500 to-teal-500 text-white text-sm font-semibold hover:shadow-[0_0_24px_rgba(0,168,232,0.4)] transition-all duration-300 btn-shimmer"
+                    className="w-full sm:w-auto sm:absolute sm:right-1.5 px-5 py-2.5 sm:py-2 rounded-xl sm:rounded-lg bg-gradient-to-r from-ocean-500 to-teal-500 text-white text-sm font-semibold hover:shadow-[0_0_24px_rgba(0,168,232,0.4)] transition-all duration-300 btn-shimmer"
                   >
                     {subscribed ? (
-                      <span className="flex items-center gap-1.5">
+                      <span className="flex items-center justify-center gap-1.5">
                         <i className="fas fa-check" /> Subscribed
                       </span>
                     ) : (

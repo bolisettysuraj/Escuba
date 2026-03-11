@@ -83,9 +83,9 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
               { icon: "fa-arrows-alt-v", value: data.depth, label: "Depth" },
               { icon: "fa-tag", value: `₹${data.price}`, label: "From" },
             ].map((s) => (
-              <div key={s.label} className="text-center py-4 sm:py-5 px-2">
+              <div key={s.label} className="text-center py-4 sm:py-5 px-3 sm:px-4 min-w-0">
                 <i className={`fas ${s.icon} text-ocean-400 text-sm mb-1.5 block`} />
-                <div className="text-white font-bold text-sm sm:text-base font-[family-name:var(--font-display)]">{s.value}</div>
+                <div className="text-white font-bold text-sm sm:text-base font-[family-name:var(--font-display)] truncate">{s.value}</div>
                 <div className="text-white/30 text-[9px] sm:text-[10px] uppercase tracking-wider mt-0.5">{s.label}</div>
               </div>
             ))}

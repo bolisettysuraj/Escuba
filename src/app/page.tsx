@@ -3,6 +3,7 @@ import Preloader from "@/components/Preloader";
 import Hero from "@/components/Hero";
 import VideoShowcase from "@/components/VideoShowcase";
 import About from "@/components/About";
+import DiveCategories from "@/components/DiveCategories";
 import Experiences from "@/components/Experiences";
 import ParallaxDivider from "@/components/ParallaxDivider";
 import Courses from "@/components/Courses";
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero />
         <VideoShowcase />
         <About />
+        <DiveCategories />
         <Experiences />
         <ParallaxDivider />
         <Courses />

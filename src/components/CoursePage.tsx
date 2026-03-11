@@ -74,16 +74,16 @@ export default function CoursePage({ data }: { data: CourseData }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35, ease }}
         >
-          <div className="glass-strong rounded-2xl grid grid-cols-4 divide-x divide-white/5">
+          <div className="glass-strong rounded-2xl grid grid-cols-2 sm:grid-cols-4 divide-x divide-white/5">
             {[
               { icon: "fa-clock", value: data.duration, label: "Duration" },
               { icon: "fa-arrows-alt-v", value: data.depth, label: "Max Depth" },
               { icon: "fa-water", value: data.dives, label: "Dives" },
               { icon: "fa-tag", value: `₹${data.price}`, label: "From" },
-            ].map((s) => (
-              <div key={s.label} className="text-center py-4 sm:py-5 px-2">
+            ].map((s, idx) => (
+              <div key={s.label} className={`text-center py-4 sm:py-5 px-3 sm:px-4 min-w-0 ${idx >= 2 ? "border-t border-white/5 sm:border-t-0" : ""}`}>
                 <i className={`fas ${s.icon} text-ocean-400 text-sm mb-1.5 block`} />
-                <div className="text-white font-bold text-xs sm:text-base font-[family-name:var(--font-display)]">{s.value}</div>
+                <div className="text-white font-bold text-sm sm:text-base font-[family-name:var(--font-display)] truncate">{s.value}</div>
                 <div className="text-white/30 text-[9px] sm:text-[10px] uppercase tracking-wider mt-0.5">{s.label}</div>
               </div>
             ))}

@@ -461,8 +461,8 @@ export default function DiveSites() {
                 id={`dive-card-${i}`}
                 className={`group relative rounded-2xl overflow-hidden cursor-pointer ${
                   site.large
-                    ? "sm:col-span-2 lg:col-span-1 lg:row-span-2 min-h-[400px] lg:min-h-[500px]"
-                    : "min-h-[250px]"
+                    ? "sm:col-span-2 lg:col-span-1 lg:row-span-2 min-h-[360px] sm:min-h-[400px] lg:min-h-[500px]"
+                    : "min-h-[280px] sm:min-h-[280px]"
                 }`}
                 initial={{ opacity: 0, y: 60, scale: 0.93 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -541,10 +541,10 @@ export default function DiveSites() {
 
                 {/* Bottom content */}
                 <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 z-10">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-[family-name:var(--font-display)] mb-1.5 group-hover:text-ocean-300 transition-colors duration-300">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white font-[family-name:var(--font-display)] mb-1.5 group-hover:text-ocean-300 transition-colors duration-300 leading-tight">
                     {site.name}
                   </h3>
-                  <p className="text-white/45 text-sm leading-relaxed mb-4">
+                  <p className="text-white/45 text-sm leading-relaxed mb-4 line-clamp-2">
                     {site.desc}
                   </p>
 

@@ -30,7 +30,7 @@ export default function About() {
 
             {/* Floating secondary image */}
             <motion.div
-              className="absolute -bottom-8 right-0 sm:right-[-1rem] lg:right-[-2rem] w-40 sm:w-52 aspect-square rounded-xl overflow-hidden border-4 border-deep-950 shadow-2xl"
+              className="absolute -bottom-6 sm:-bottom-8 right-2 sm:right-[-1rem] lg:right-[-2rem] w-28 sm:w-40 lg:w-52 aspect-square rounded-xl overflow-hidden border-4 border-deep-950 shadow-2xl"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -39,29 +39,29 @@ export default function About() {
 
             {/* PADI Badge */}
             <motion.div
-              className="absolute top-6 right-2 sm:right-[-1rem] rounded-xl px-4 py-3 flex items-center gap-3 shadow-lg shadow-black/20"
+              className="absolute top-4 sm:top-6 right-2 sm:right-[-1rem] rounded-xl px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-2 sm:gap-3 shadow-lg shadow-black/20"
               style={{ background: "rgba(4,18,36,0.9)", border: "1px solid rgba(0,168,232,0.15)" }}
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center">
-                <i className="fas fa-certificate text-white text-sm" />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center shrink-0">
+                <i className="fas fa-certificate text-white text-xs sm:text-sm" />
               </div>
               <div>
-                <div className="text-white font-bold text-sm">PADI</div>
-                <div className="text-white/50 text-xs">Certified Centre</div>
+                <div className="text-white font-bold text-xs sm:text-sm">PADI</div>
+                <div className="text-white/50 text-[10px] sm:text-xs">Certified Centre</div>
               </div>
             </motion.div>
 
             {/* Since badge */}
             <motion.div
-              className="absolute bottom-12 left-2 sm:left-[-1rem] rounded-xl px-5 py-3 text-center shadow-lg shadow-black/30"
+              className="absolute bottom-8 sm:bottom-12 left-2 sm:left-[-1rem] rounded-xl px-3 sm:px-5 py-2 sm:py-3 text-center shadow-lg shadow-black/30"
               style={{ background: "rgba(1, 10, 19, 0.85)", border: "1px solid rgba(0, 168, 232, 0.15)" }}
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             >
-              <div className="text-white/40 text-xs uppercase tracking-wider">Since</div>
-              <div className="text-2xl font-bold text-gradient font-[family-name:var(--font-display)]">2011</div>
+              <div className="text-white/40 text-[10px] sm:text-xs uppercase tracking-wider">Since</div>
+              <div className="text-xl sm:text-2xl font-bold text-gradient font-[family-name:var(--font-display)]">2011</div>
             </motion.div>
           </motion.div>
 
@@ -107,7 +107,7 @@ export default function About() {
                   >
                     <i className={`fas ${f.icon} text-ocean-400 group-hover:text-ocean-300 transition-colors`} />
                   </motion.div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h4 className="text-white font-semibold group-hover:text-ocean-300 transition-colors duration-300">{f.title}</h4>
                     <p className="text-white/45 text-sm">{f.desc}</p>
                   </div>

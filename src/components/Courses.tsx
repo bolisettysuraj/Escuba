@@ -158,15 +158,15 @@ export default function Courses() {
                 {/* Icon + Title */}
                 <div className="flex items-center gap-3 mb-3">
                   <motion.div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300"
                     style={{ background: levelBg[course.level] }}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
                     <i
-                      className={`fas ${course.icon} text-lg text-ocean-400 group-hover:text-ocean-300 transition-colors`}
+                      className={`fas ${course.icon} text-base sm:text-lg text-ocean-400 group-hover:text-ocean-300 transition-colors`}
                     />
                   </motion.div>
-                  <h3 className="text-lg font-bold text-white font-[family-name:var(--font-display)] leading-tight">
+                  <h3 className="text-base sm:text-lg font-bold text-white font-[family-name:var(--font-display)] leading-tight min-w-0">
                     {course.title}
                   </h3>
                 </div>
@@ -184,28 +184,28 @@ export default function Courses() {
                   ].map((stat) => (
                     <div
                       key={stat.label}
-                      className="text-center rounded-lg py-2.5 px-1"
+                      className="text-center rounded-lg py-2.5 px-2 min-w-0 overflow-hidden"
                       style={{ background: "rgba(255,255,255,0.02)" }}
                     >
                       <i className={`fas ${stat.icon} text-ocean-500/60 text-[11px] mb-1.5 block`} />
-                      <div className="text-white text-xs font-bold leading-tight">{stat.value}</div>
-                      <div className="text-white/30 text-[10px] uppercase tracking-wider mt-0.5">{stat.label}</div>
+                      <div className="text-white text-[11px] sm:text-xs font-bold leading-tight truncate">{stat.value}</div>
+                      <div className="text-white/30 text-[9px] sm:text-[10px] uppercase tracking-wider mt-0.5">{stat.label}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Price + CTA */}
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <div>
+                <div className="flex items-center justify-between gap-2 pt-4 border-t border-white/5">
+                  <div className="min-w-0 shrink-0">
                     <span className="text-white/25 text-[10px] uppercase tracking-wider">From</span>
-                    <div className="font-bold text-xl font-[family-name:var(--font-display)] flex items-baseline gap-0.5">
-                      <span className="text-white/50 text-sm">&#8377;</span>
+                    <div className="font-bold text-lg sm:text-xl font-[family-name:var(--font-display)] flex items-baseline gap-0.5">
+                      <span className="text-white/50 text-xs sm:text-sm">&#8377;</span>
                       <span className="text-white">{course.price}</span>
                     </div>
                   </div>
-                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-all px-4 py-2 rounded-full group-hover:bg-ocean-500/10">
+                  <span className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-all px-3 sm:px-4 py-2 rounded-full group-hover:bg-ocean-500/10 shrink-0">
                     Enquire
-                    <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300" />
+                    <i className="fas fa-arrow-right text-[10px] sm:text-xs group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </div>
               </div>
@@ -227,15 +227,15 @@ export default function Courses() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
         >
-          <div className="glass-strong rounded-2xl p-8 sm:p-10 flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1">
-              <span className="inline-block text-teal-400 text-sm font-semibold uppercase tracking-widest mb-3">
+          <div className="glass-strong rounded-2xl p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row items-center gap-6 sm:gap-8">
+            <div className="flex-1 min-w-0">
+              <span className="inline-block text-teal-400 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-3">
                 For Young Explorers
               </span>
-              <h3 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl font-bold text-white mb-3">
+              <h3 className="font-[family-name:var(--font-display)] text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3">
                 Kids Programs
               </h3>
-              <p className="text-white/40 leading-relaxed mb-5">
+              <p className="text-white/40 text-sm sm:text-base leading-relaxed mb-5">
                 Introduce your little ones to the underwater world with our PADI
                 Seal Team and Bubble Maker programs. Safe, fun, and
                 unforgettable.

@@ -211,14 +211,14 @@ function TestimonialCard({
         )}
       </AnimatePresence>
 
-      <div className="relative p-5 sm:p-6 lg:p-8 pl-6 sm:pl-7 lg:pl-10">
+      <div className="relative p-5 sm:p-6 lg:p-8 pl-6 sm:pl-7 lg:pl-10 overflow-hidden">
         {/* Stars */}
-        <div className="mb-3">
+        <div className="mb-3 relative z-[1]">
           <StarRating active={isActive} delay={0.15} />
         </div>
 
         {/* Testimonial text */}
-        <div className={`mb-5 ${isActive ? "min-h-[80px]" : "min-h-0"}`}>
+        <div className={`mb-5 relative z-[1] ${isActive ? "min-h-[80px]" : "min-h-0"}`}>
           <AnimatePresence mode="wait">
             <TypewriterText
               key={`${index}-${isActive}`}
@@ -229,7 +229,7 @@ function TestimonialCard({
         </div>
 
         {/* Author row */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 relative z-[1]">
           {/* Avatar */}
           <div className="relative">
             <motion.div

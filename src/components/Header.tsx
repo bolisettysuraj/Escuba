@@ -152,66 +152,99 @@ export default function Header() {
           borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
         }}
       >
-        <nav aria-label="Main navigation" className="max-w-7xl mx-auto pl-2 pr-3 sm:pl-4 sm:pr-6 lg:pl-0 lg:pr-8 flex items-center justify-between">
+        <nav
+          aria-label="Main navigation"
+          className="px-3 sm:px-5 xl:px-6 2xl:px-10 flex items-center"
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 z-[110] relative">
+          <Link
+            href="/"
+            className="flex items-center gap-2 sm:gap-3 z-[110] relative shrink-0"
+          >
             <Image
               src="/logo.png"
               alt="Experience Scuba"
               width={160}
               height={40}
-              className="h-12 sm:h-16 lg:h-[72px] w-auto"
+              className="h-12 sm:h-16 xl:h-[72px] w-auto"
               priority
             />
-            <span className="w-px h-6 sm:h-8 lg:h-10 bg-white/15 shrink-0" />
+            <span className="w-px h-6 sm:h-8 xl:h-10 bg-white/15 shrink-0" />
             <Image
               src="/PADI.png"
               alt="PADI Certified"
               width={80}
               height={40}
-              className="h-7 sm:h-10 lg:h-12 w-auto"
+              className="h-7 sm:h-10 xl:h-12 w-auto"
               priority
             />
           </Link>
 
+          {/* Desktop: Glass separator */}
+          <div className="hidden xl:flex items-center self-stretch mx-5 2xl:mx-7 py-4">
+            <div
+              className="w-px h-full"
+              style={{
+                background:
+                  "linear-gradient(to bottom, transparent, rgba(0,168,232,0.3), transparent)",
+              }}
+            />
+          </div>
+
           {/* Desktop Nav */}
-          <ul className="hidden lg:flex items-center gap-0.5">
+          <ul className="hidden xl:flex items-center gap-0.5 2xl:gap-1 flex-nowrap min-w-0">
             {navItems.map((item) => (
               <li
                 key={item.label}
                 className="relative"
-                onMouseEnter={() => item.children && setOpenDesktopDropdown(item.label)}
+                onMouseEnter={() =>
+                  item.children && setOpenDesktopDropdown(item.label)
+                }
                 onMouseLeave={() => setOpenDesktopDropdown(null)}
               >
                 <Link
                   href={item.href}
-                  className={`nav-link px-4 py-2.5 text-sm font-medium transition-colors rounded-lg hover:bg-white/[0.06] flex items-center gap-1.5 ${
+                  className={`group/nav relative px-2.5 2xl:px-3.5 py-2.5 text-[13px] 2xl:text-sm font-medium transition-all duration-300 rounded-lg flex items-center gap-1.5 whitespace-nowrap ${
                     isActive(item.href)
-                      ? "active text-white"
-                      : "text-white/70 hover:text-white"
+                      ? "text-white"
+                      : "text-white/60 hover:text-white"
                   }`}
                 >
                   {item.label}
                   {item.children && (
                     <i
-                      className={`fas fa-chevron-down text-[9px] transition-all duration-300 ${
-                        openDesktopDropdown === item.label ? "rotate-180 opacity-100" : "opacity-40"
+                      className={`fas fa-chevron-down text-[8px] transition-all duration-300 ${
+                        openDesktopDropdown === item.label
+                          ? "rotate-180 opacity-100"
+                          : "opacity-40"
                       }`}
                     />
                   )}
+                  {/* Active indicator — gradient underline */}
+                  {isActive(item.href) && (
+                    <span
+                      className="absolute bottom-0.5 left-1/2 -translate-x-1/2 h-[2px] w-5 rounded-full"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, rgba(0,168,232,0.8), rgba(45,212,191,0.8))",
+                        boxShadow: "0 0 8px rgba(0,168,232,0.4)",
+                      }}
+                    />
+                  )}
+                  {/* Hover glow bg */}
+                  <span className="absolute inset-0 rounded-lg bg-white/0 group-hover/nav:bg-white/[0.04] transition-colors duration-300" />
                 </Link>
 
-                {/* Desktop Dropdown — names only */}
+                {/* Desktop Dropdown */}
                 {item.children && (
                   <div
-                    className={`absolute top-full left-0 pt-1 transition-all duration-300 ${
+                    className={`absolute top-full left-0 pt-2 transition-all duration-300 ${
                       openDesktopDropdown === item.label
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible translate-y-2 pointer-events-none"
                     }`}
                     style={{ zIndex: 200 }}
                   >
-                    <div className="h-1 w-full" />
                     <div
                       className="rounded-xl py-2 min-w-[260px] shadow-2xl shadow-black/50"
                       style={{
@@ -226,7 +259,12 @@ export default function Header() {
                           key={child.name}
                           href={child.href}
                           className="flex items-center gap-3 px-5 py-3 text-sm text-white/60 hover:text-white hover:bg-white/[0.06] hover:pl-6 transition-all duration-300 group/item"
-                          style={{ transitionDelay: openDesktopDropdown === item.label ? `${ci * 30}ms` : "0ms" }}
+                          style={{
+                            transitionDelay:
+                              openDesktopDropdown === item.label
+                                ? `${ci * 30}ms`
+                                : "0ms",
+                          }}
                         >
                           <span className="w-1.5 h-1.5 rounded-full bg-ocean-500/30 group-hover/item:bg-ocean-400 group-hover/item:shadow-md group-hover/item:shadow-ocean-400/50 transition-all duration-300 group-hover/item:scale-150" />
                           {child.name}
@@ -239,18 +277,27 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* CTA + Mobile Toggle */}
-          <div className="flex items-center gap-3 z-[110] relative">
+          {/* Desktop Book Now — pushed to right */}
+          <a
+            href="tel:+916364360134"
+            className="hidden xl:flex items-center gap-2 ml-auto px-5 2xl:px-6 py-2.5 rounded-full text-[13px] 2xl:text-sm font-semibold whitespace-nowrap bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-md shadow-ocean-500/25 hover:shadow-lg hover:shadow-ocean-500/40 transition-all duration-300 hover:scale-105 btn-shimmer shrink-0"
+          >
+            <i className="fas fa-phone text-[10px] 2xl:text-xs" />
+            Book Now
+          </a>
+
+          {/* Mobile / Tablet: CTA + Hamburger */}
+          <div className="flex xl:hidden items-center gap-3 z-[110] relative ml-auto shrink-0">
             <a
               href="tel:+916364360134"
-              className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-md shadow-ocean-500/20 hover:shadow-lg hover:shadow-ocean-500/40 transition-all duration-300 hover:scale-105 btn-shimmer"
+              className="hidden sm:flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-md shadow-ocean-500/20 hover:shadow-lg hover:shadow-ocean-500/40 transition-all duration-300 hover:scale-105 btn-shimmer"
             >
               <i className="fas fa-phone text-xs" />
               Book Now
             </a>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden flex flex-col gap-1.5 p-2"
+              className="flex flex-col gap-1.5 p-2"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileOpen}
             >
@@ -274,11 +321,11 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Mobile Menu — rendered OUTSIDE header for proper z-index stacking */}
+      {/* Mobile Menu */}
       <div
         role="dialog"
         aria-label="Navigation menu"
-        className={`lg:hidden fixed inset-0 z-[150] transition-all duration-500 ${
+        className={`xl:hidden fixed inset-0 z-[150] transition-all duration-500 ${
           mobileOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
       >
@@ -292,7 +339,7 @@ export default function Header() {
           onClick={() => setMobileOpen(false)}
         />
         <div
-          className={`relative z-10 flex flex-col items-center h-full gap-2 px-8 pt-20 pb-8 overflow-y-auto transition-all duration-500 ${
+          className={`relative z-10 flex flex-col items-center h-full gap-2 px-5 sm:px-8 pt-20 pb-8 overflow-y-auto transition-all duration-500 ${
             mobileOpen ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"
           }`}
         >
@@ -319,11 +366,13 @@ export default function Header() {
                 <>
                   <button
                     onClick={() =>
-                      setActiveDropdown(activeDropdown === item.label ? null : item.label)
+                      setActiveDropdown(
+                        activeDropdown === item.label ? null : item.label
+                      )
                     }
                     className="w-full flex items-center justify-between px-2 py-3"
                   >
-                    <span className="text-xl font-[family-name:var(--font-display)] text-white/90 font-semibold">
+                    <span className="text-lg sm:text-xl font-[family-name:var(--font-display)] text-white/90 font-semibold">
                       {item.label}
                     </span>
                     <span
@@ -335,7 +384,9 @@ export default function Header() {
                     >
                       <i
                         className={`fas fa-chevron-down text-[10px] transition-colors ${
-                          activeDropdown === item.label ? "text-ocean-400" : "text-white/30"
+                          activeDropdown === item.label
+                            ? "text-ocean-400"
+                            : "text-white/30"
                         }`}
                       />
                     </span>
@@ -347,7 +398,10 @@ export default function Header() {
                         : "max-h-0 opacity-0"
                     }`}
                   >
-                    <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(0,168,232,0.08)" }}>
+                    <div
+                      className="rounded-2xl overflow-hidden"
+                      style={{ border: "1px solid rgba(0,168,232,0.08)" }}
+                    >
                       {item.children.map((child, ci) => (
                         <Link
                           key={child.name}
@@ -355,8 +409,14 @@ export default function Header() {
                           onClick={() => setMobileOpen(false)}
                           className="flex items-start gap-3.5 px-4 py-3.5 text-left transition-colors active:bg-white/[0.04]"
                           style={{
-                            background: ci % 2 === 0 ? "rgba(255,255,255,0.015)" : "rgba(255,255,255,0.03)",
-                            borderBottom: ci < (item.children?.length ?? 0) - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+                            background:
+                              ci % 2 === 0
+                                ? "rgba(255,255,255,0.015)"
+                                : "rgba(255,255,255,0.03)",
+                            borderBottom:
+                              ci < (item.children?.length ?? 0) - 1
+                                ? "1px solid rgba(255,255,255,0.04)"
+                                : "none",
                           }}
                         >
                           {child.image ? (
@@ -374,7 +434,9 @@ export default function Header() {
                               className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 mt-0.5"
                               style={{ background: "rgba(0,168,232,0.08)" }}
                             >
-                              <i className={`fas ${child.icon || "fa-circle"} text-ocean-400 text-xs`} />
+                              <i
+                                className={`fas ${child.icon || "fa-circle"} text-ocean-400 text-xs`}
+                              />
                             </div>
                           )}
                           <div className="flex-1 min-w-0">
@@ -403,9 +465,11 @@ export default function Header() {
                   {isActive(item.href) && (
                     <span className="w-1 h-6 rounded-full bg-gradient-to-b from-ocean-500 to-teal-500" />
                   )}
-                  <span className={`text-xl font-[family-name:var(--font-display)] font-semibold ${
-                    isActive(item.href) ? "text-white" : "text-white/70"
-                  }`}>
+                  <span
+                    className={`text-lg sm:text-xl font-[family-name:var(--font-display)] font-semibold ${
+                      isActive(item.href) ? "text-white" : "text-white/70"
+                    }`}
+                  >
                     {item.label}
                   </span>
                 </Link>
@@ -427,7 +491,10 @@ export default function Header() {
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-base font-semibold text-white/80"
-              style={{ background: "rgba(37,211,102,0.15)", border: "1px solid rgba(37,211,102,0.25)" }}
+              style={{
+                background: "rgba(37,211,102,0.15)",
+                border: "1px solid rgba(37,211,102,0.25)",
+              }}
             >
               <i className="fab fa-whatsapp text-[#25D366] text-lg" />
               WhatsApp Us

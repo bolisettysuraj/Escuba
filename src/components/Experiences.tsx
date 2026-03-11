@@ -96,8 +96,8 @@ export default function Experiences() {
                 }}
                 className={`group relative rounded-2xl overflow-hidden cursor-pointer block ${
                   isFeatured
-                    ? "lg:col-span-7 lg:row-span-2 min-h-[280px] md:min-h-[360px] lg:min-h-0"
-                    : "lg:col-span-5 min-h-[280px] md:min-h-[300px]"
+                    ? "lg:col-span-7 lg:row-span-2 min-h-[340px] md:min-h-[400px] lg:min-h-0"
+                    : "lg:col-span-5 min-h-[340px] md:min-h-[340px]"
                 }`}
               >
                 {/* ── Full-bleed background image ── */}
@@ -162,17 +162,17 @@ export default function Experiences() {
                 {/* ── Content overlay at bottom ── */}
                 <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 flex flex-col justify-end">
                   {/* Title + icon row */}
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <div className="w-9 h-9 rounded-lg glass flex items-center justify-center shrink-0 group-hover:bg-ocean-500/20 transition-colors duration-300">
+                  <div className="flex items-center gap-2.5 sm:gap-3 mb-2">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg glass flex items-center justify-center shrink-0 group-hover:bg-ocean-500/20 transition-colors duration-300">
                       <i
-                        className={`fas ${exp.icon} text-ocean-400 text-sm group-hover:text-ocean-300 transition-colors`}
+                        className={`fas ${exp.icon} text-ocean-400 text-xs sm:text-sm group-hover:text-ocean-300 transition-colors`}
                       />
                     </div>
                     <h3
-                      className={`font-[family-name:var(--font-display)] font-bold text-white transition-all duration-500 ${
+                      className={`font-[family-name:var(--font-display)] font-bold text-white transition-all duration-500 leading-tight ${
                         isFeatured
-                          ? "text-2xl sm:text-3xl"
-                          : "text-xl sm:text-2xl"
+                          ? "text-xl sm:text-2xl lg:text-3xl"
+                          : "text-lg sm:text-xl lg:text-2xl"
                       }`}
                     >
                       {exp.title}
@@ -181,23 +181,23 @@ export default function Experiences() {
 
                   {/* Description */}
                   <p
-                    className={`text-white/50 leading-relaxed mb-4 ${
+                    className={`text-white/50 leading-relaxed mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none ${
                       isFeatured
-                        ? "text-sm sm:text-base max-w-lg"
-                        : "text-sm max-w-md"
+                        ? "text-xs sm:text-sm lg:text-base max-w-lg"
+                        : "text-xs sm:text-sm max-w-md"
                     }`}
                   >
                     {exp.desc}
                   </p>
 
                   {/* Feature list with gradient dots */}
-                  <ul className="flex flex-wrap gap-x-5 gap-y-2 mb-5">
+                  <ul className="flex flex-wrap gap-x-4 sm:gap-x-5 gap-y-1.5 sm:gap-y-2 mb-4 sm:mb-5">
                     {exp.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-2 text-sm text-white/60"
+                        className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/60"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-ocean-400 to-teal-400 shrink-0" />
+                        <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gradient-to-br from-ocean-400 to-teal-400 shrink-0" />
                         {f}
                       </li>
                     ))}

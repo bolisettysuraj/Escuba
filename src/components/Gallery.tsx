@@ -119,12 +119,12 @@ function GalleryCard({ item, index }: { item: GalleryItem; index: number }) {
       </div>
 
       {/* Species label — slides up from bottom on hover */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 p-4 sm:p-5">
-        <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-          <h3 className="text-white font-semibold text-sm sm:text-base drop-shadow-lg group-hover:text-ocean-300 transition-colors duration-300 font-[family-name:var(--font-display)]">
+      <div className="absolute bottom-0 left-0 right-0 z-10 p-4 sm:p-5 overflow-hidden">
+        <div className="transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+          <h3 className="text-white font-semibold text-sm sm:text-base drop-shadow-lg group-hover:text-ocean-300 transition-colors duration-300 font-[family-name:var(--font-display)] truncate">
             {item.name}
           </h3>
-          <p className="text-white/0 group-hover:text-white/50 text-xs italic tracking-wide transition-all duration-500 delay-75 mt-0.5 translate-y-3 group-hover:translate-y-0">
+          <p className="text-white/0 group-hover:text-white/50 text-xs italic tracking-wide transition-all duration-500 delay-75 mt-0.5 translate-y-2 group-hover:translate-y-0 truncate">
             {item.scientific}
           </p>
         </div>

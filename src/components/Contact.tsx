@@ -147,10 +147,10 @@ export default function Contact() {
           <span className="inline-block text-ocean-400 text-sm font-semibold uppercase tracking-[0.2em] mb-4">
             Get In Touch
           </span>
-          <h2 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight">
+          <h2 className="font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-5 leading-tight">
             Start Your <span className="text-gradient">Adventure</span>
           </h2>
-          <p className="text-white/50 text-lg leading-relaxed max-w-2xl mx-auto">
+          <p className="text-white/50 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto">
             Ready to explore the underwater world? Contact us to book your dive
             or get answers to your questions.
           </p>
@@ -179,19 +179,19 @@ export default function Contact() {
               whileTap={{ scale: 0.98 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-green-600/20 to-emerald-500/20 backdrop-blur-xl border border-green-400/20 rounded-2xl" />
-              <div className="relative flex items-center gap-4 p-5 sm:p-6">
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shrink-0 shadow-lg shadow-green-500/25 group-hover:shadow-green-500/40 transition-shadow duration-300">
-                  <i className="fab fa-whatsapp text-white text-2xl" />
+              <div className="relative flex items-center gap-3 sm:gap-4 p-4 sm:p-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shrink-0 shadow-lg shadow-green-500/25 group-hover:shadow-green-500/40 transition-shadow duration-300">
+                  <i className="fab fa-whatsapp text-white text-xl sm:text-2xl" />
                 </div>
-                <div className="min-w-0">
-                  <h4 className="text-white font-bold text-base mb-0.5">
+                <div className="min-w-0 flex-1">
+                  <h4 className="text-white font-bold text-sm sm:text-base mb-0.5">
                     Chat with us on WhatsApp
                   </h4>
-                  <p className="text-green-300/60 text-sm">
+                  <p className="text-green-300/60 text-xs sm:text-sm">
                     Instant replies &bull; Available 8AM - 10PM
                   </p>
                 </div>
-                <i className="fas fa-arrow-right text-green-400/40 ml-auto text-sm group-hover:text-green-400 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                <i className="fas fa-arrow-right text-green-400/40 ml-auto text-sm group-hover:text-green-400 group-hover:translate-x-1 transition-all duration-300 shrink-0 hidden sm:block" />
               </div>
               {/* pulse ring */}
               <div className="absolute top-4 right-4 w-3 h-3">
@@ -210,14 +210,14 @@ export default function Contact() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease }}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div
-                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0 shadow-lg opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300`}
+                    className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shrink-0 shadow-lg opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300`}
                   >
-                    <i className={`fas ${item.icon} text-white text-base`} />
+                    <i className={`fas ${item.icon} text-white text-sm sm:text-base`} />
                   </div>
-                  <div className="min-w-0">
-                    <h4 className="text-white font-bold text-base mb-0.5">
+                  <div className="min-w-0 flex-1">
+                    <h4 className="text-white font-bold text-sm sm:text-base mb-0.5">
                       {item.title}
                     </h4>
                     <p className="text-white/30 text-xs mb-2">

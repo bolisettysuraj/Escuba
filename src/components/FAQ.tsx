@@ -145,11 +145,11 @@ export default function FAQ() {
               >
                 <button
                   id={`faq-q-${i}`}
-                  className="w-full flex items-center gap-4 p-5 sm:p-6 text-left"
+                  className="w-full flex items-center gap-3 sm:gap-4 p-4 sm:p-5 md:p-6 text-left"
                   aria-expanded={open === i}
                 >
                   <motion.div
-                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                    className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 ${
                       open === i
                         ? "bg-gradient-to-br from-ocean-500 to-teal-500 shadow-md shadow-ocean-500/20"
                         : "glass"
@@ -165,7 +165,7 @@ export default function FAQ() {
                   </motion.div>
 
                   <span
-                    className={`flex-1 font-medium transition-colors duration-300 ${
+                    className={`flex-1 text-sm sm:text-base font-medium transition-colors duration-300 min-w-0 ${
                       open === i ? "text-white" : "text-white/70"
                     }`}
                   >
@@ -197,9 +197,9 @@ export default function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                     >
-                      <div className="px-5 sm:px-6 pl-[76px] sm:pl-[88px] pb-6" role="region" aria-labelledby={`faq-q-${i}`}>
+                      <div className="px-4 sm:px-5 md:px-6 pl-[64px] sm:pl-[76px] md:pl-[88px] pb-4 sm:pb-5 md:pb-6" role="region" aria-labelledby={`faq-q-${i}`}>
                         <div className="w-8 h-px bg-gradient-to-r from-ocean-500/30 to-transparent mb-3" />
-                        <p className="text-white/45 text-sm leading-relaxed">
+                        <p className="text-white/45 text-xs sm:text-sm leading-relaxed">
                           {faq.a}
                         </p>
                       </div>

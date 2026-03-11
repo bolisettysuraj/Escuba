@@ -152,13 +152,13 @@ export default function DiveCategories() {
                   <div className="relative h-9 overflow-hidden rounded-lg">
                     <div className="absolute inset-0 flex items-center transition-all duration-500 ease-out group-hover:opacity-0 group-hover:-translate-y-full">
                       <span className="text-sm font-semibold text-ocean-400 flex items-center gap-2">
-                        Explore
+                        Book Now
                         <i className="fas fa-arrow-right text-xs" />
                       </span>
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center glass rounded-lg opacity-0 translate-y-full transition-all duration-500 ease-out group-hover:opacity-100 group-hover:translate-y-0 bg-ocean-500/10">
                       <span className="text-sm font-semibold text-white flex items-center gap-2">
-                        View Programs
+                        Book Now
                         <i className="fas fa-arrow-right text-xs text-ocean-300" />
                       </span>
                     </div>

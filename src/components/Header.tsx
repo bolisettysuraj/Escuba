@@ -164,18 +164,18 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Experience Scuba"
-              width={160}
-              height={40}
-              className="h-12 sm:h-16 xl:h-[72px] w-auto"
+              width={200}
+              height={50}
+              className="h-14 sm:h-[72px] xl:h-[86px] w-auto"
               priority
             />
-            <span className="w-px h-6 sm:h-8 xl:h-10 bg-white/15 shrink-0" />
+            <span className="w-px h-7 sm:h-9 xl:h-11 bg-white/15 shrink-0" />
             <Image
               src="/PADI.png"
               alt="PADI Certified"
-              width={80}
-              height={40}
-              className="h-7 sm:h-10 xl:h-12 w-auto"
+              width={100}
+              height={50}
+              className="h-9 sm:h-12 xl:h-14 w-auto"
               priority
             />
           </Link>

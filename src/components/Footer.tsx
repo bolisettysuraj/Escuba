@@ -2,89 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 4000);
-    }
-  };
-
   return (
     <footer className="relative overflow-hidden" role="contentinfo">
-      {/* ── Newsletter / CTA Band ── */}
-      <motion.section
-        className="relative py-16 px-4 sm:px-6 lg:px-8"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease }}
-        aria-label="Newsletter subscription"
-      >
-        {/* Subtle gradient background behind the band */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ocean-900/20 to-deep-950" />
-
-        <div className="relative max-w-4xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden">
-            {/* Glass card with gradient border */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-ocean-500/20 via-teal-500/10 to-ocean-500/20" />
-            <div className="absolute inset-[1px] rounded-2xl bg-deep-950/80 backdrop-blur-xl" />
-
-            <div className="relative px-6 py-10 sm:px-12 sm:py-12 flex flex-col lg:flex-row items-center gap-8">
-              {/* Text */}
-              <div className="flex-1 text-center lg:text-left">
-                <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-2">
-                  Stay Updated
-                </h3>
-                <p className="text-white/40 text-sm sm:text-base max-w-md">
-                  Get the latest dive conditions, exclusive offers, and underwater
-                  stories delivered to your inbox.
-                </p>
-              </div>
-
-              {/* Form */}
-              <form
-                onSubmit={handleSubscribe}
-                className="flex-1 w-full max-w-md"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 sm:relative">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    aria-label="Email address for newsletter"
-                    className="w-full px-5 py-3.5 sm:pr-36 rounded-xl bg-white/[0.06] border border-white/10 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-ocean-500/40 focus:shadow-[0_0_0_3px_rgba(0,168,232,0.12)] transition-all duration-300"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto sm:absolute sm:right-1.5 px-5 py-2.5 sm:py-2 rounded-xl sm:rounded-lg bg-gradient-to-r from-ocean-500 to-teal-500 text-white text-sm font-semibold hover:shadow-[0_0_24px_rgba(0,168,232,0.4)] transition-all duration-300 btn-shimmer"
-                  >
-                    {subscribed ? (
-                      <span className="flex items-center justify-center gap-1.5">
-                        <i className="fas fa-check" /> Subscribed
-                      </span>
-                    ) : (
-                      "Subscribe"
-                    )}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
       {/* ── Main Footer ── */}
       <div className="relative border-t border-white/5 pt-16 pb-8">
         {/* Topographic wave pattern background */}
@@ -144,17 +67,17 @@ export default function Footer() {
                 <Image
                   src="/logo.png"
                   alt="Experience Scuba"
-                  width={200}
-                  height={50}
-                  className="h-12 sm:h-14 lg:h-16 w-auto"
+                  width={240}
+                  height={60}
+                  className="h-14 sm:h-[68px] lg:h-[76px] w-auto"
                 />
-                <span className="w-px h-7 sm:h-8 lg:h-10 bg-white/15 shrink-0" />
+                <span className="w-px h-8 sm:h-9 lg:h-11 bg-white/15 shrink-0" />
                 <Image
                   src="/PADI.png"
                   alt="PADI Certified"
-                  width={80}
-                  height={40}
-                  className="h-8 sm:h-10 lg:h-12 w-auto"
+                  width={100}
+                  height={50}
+                  className="h-10 sm:h-12 lg:h-14 w-auto"
                 />
               </div>
               <p className="font-display text-lg text-gradient font-semibold italic mb-3 tracking-wide">
@@ -173,7 +96,7 @@ export default function Footer() {
                 </span>
               </div>
 
-              {/* Social Icons - Larger and more dramatic */}
+              {/* Social Icons */}
               <div className="flex gap-3">
                 {[
                   {

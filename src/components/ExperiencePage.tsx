@@ -94,7 +94,7 @@ export default function ExperiencePage({ data }: { data: ExperienceData }) {
       </section>
 
       {/* ── MOBILE CTA (sticky, shown only on mobile) ── */}
-      <div className="lg:hidden sticky top-[72px] z-30 px-4 pt-3 pb-2 bg-deep-950/90 backdrop-blur-md border-b border-white/5">
+      <div className="lg:hidden sticky top-[60px] sm:top-[72px] z-30 px-4 pt-3 pb-2 bg-deep-950/90 backdrop-blur-md border-b border-white/5">
         <div className="flex gap-2">
           <a
             href="tel:+916364360134"

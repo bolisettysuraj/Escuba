@@ -335,7 +335,7 @@ function PillStrip({
             <motion.button
               key={name}
               onClick={() => onSelect(name)}
-              className={`relative flex-shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer whitespace-nowrap ${
+              className={`relative flex-shrink-0 inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer whitespace-nowrap ${
                 isActive
                   ? "bg-ocean-500/20 text-ocean-300 border border-ocean-500/40"
                   : featured

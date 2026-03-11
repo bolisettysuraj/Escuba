@@ -96,8 +96,8 @@ export default function Experiences() {
                 }}
                 className={`group relative rounded-2xl overflow-hidden cursor-pointer block ${
                   isFeatured
-                    ? "lg:col-span-7 lg:row-span-2 min-h-[340px] md:min-h-[400px] lg:min-h-0"
-                    : "lg:col-span-5 min-h-[340px] md:min-h-[340px]"
+                    ? "lg:col-span-7 lg:row-span-2 min-h-[300px] sm:min-h-[340px] md:min-h-[400px] lg:min-h-0"
+                    : "lg:col-span-5 min-h-[280px] sm:min-h-[340px] md:min-h-[340px]"
                 }`}
               >
                 {/* ── Full-bleed background image ── */}
@@ -127,21 +127,21 @@ export default function Experiences() {
                 </div>
 
                 {/* ── Price badge (top-left glass pill) ── */}
-                <div className="absolute top-4 left-4 z-10">
-                  <div className="glass-strong px-3.5 py-1.5 rounded-full flex items-center gap-2">
-                    <span className="text-white font-bold text-sm tracking-wide">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+                  <div className="glass-strong px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2">
+                    <span className="text-white font-bold text-xs sm:text-sm tracking-wide">
                       {exp.price}
                     </span>
-                    <span className="text-white/40 text-xs font-medium">
+                    <span className="text-white/40 text-[10px] sm:text-xs font-medium">
                       / person
                     </span>
                   </div>
                 </div>
 
                 {/* ── Tag badge ── */}
-                <div className="absolute top-14 left-4 z-10">
+                <div className="absolute top-11 sm:top-14 left-3 sm:left-4 z-10">
                   <span
-                    className={`inline-block px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-gradient-to-r ${exp.color} text-white shadow-lg`}
+                    className={`inline-block px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider bg-gradient-to-r ${exp.color} text-white shadow-lg`}
                   >
                     {exp.tag}
                   </span>
@@ -160,42 +160,42 @@ export default function Experiences() {
                 </div>
 
                 {/* ── Content overlay at bottom ── */}
-                <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6 flex flex-col justify-end">
+                <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-6 flex flex-col justify-end">
                   {/* Title + icon row */}
-                  <div className="flex items-center gap-2.5 sm:gap-3 mb-2">
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg glass flex items-center justify-center shrink-0 group-hover:bg-ocean-500/20 transition-colors duration-300">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                    <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg glass flex items-center justify-center shrink-0 group-hover:bg-ocean-500/20 transition-colors duration-300">
                       <i
-                        className={`fas ${exp.icon} text-ocean-400 text-xs sm:text-sm group-hover:text-ocean-300 transition-colors`}
+                        className={`fas ${exp.icon} text-ocean-400 text-[10px] sm:text-sm group-hover:text-ocean-300 transition-colors`}
                       />
                     </div>
                     <h3
                       className={`font-[family-name:var(--font-display)] font-bold text-white transition-all duration-500 leading-tight ${
                         isFeatured
-                          ? "text-xl sm:text-2xl lg:text-3xl"
-                          : "text-lg sm:text-xl lg:text-2xl"
+                          ? "text-lg sm:text-2xl lg:text-3xl"
+                          : "text-base sm:text-xl lg:text-2xl"
                       }`}
                     >
                       {exp.title}
                     </h3>
                   </div>
 
-                  {/* Description */}
+                  {/* Description — hidden on small mobile */}
                   <p
-                    className={`text-white/50 leading-relaxed mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none ${
+                    className={`hidden sm:block text-white/50 leading-relaxed mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none ${
                       isFeatured
-                        ? "text-xs sm:text-sm lg:text-base max-w-lg"
-                        : "text-xs sm:text-sm max-w-md"
+                        ? "text-sm lg:text-base max-w-lg"
+                        : "text-sm max-w-md"
                     }`}
                   >
                     {exp.desc}
                   </p>
 
                   {/* Feature list with gradient dots */}
-                  <ul className="flex flex-wrap gap-x-4 sm:gap-x-5 gap-y-1.5 sm:gap-y-2 mb-4 sm:mb-5">
+                  <ul className="flex flex-wrap gap-x-3 sm:gap-x-5 gap-y-1 sm:gap-y-2 mb-3 sm:mb-5">
                     {exp.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-white/60"
+                        className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm text-white/60"
                       >
                         <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-gradient-to-br from-ocean-400 to-teal-400 shrink-0" />
                         {f}
@@ -204,7 +204,7 @@ export default function Experiences() {
                   </ul>
 
                   {/* Book Now bar -- transforms to full-width on hover */}
-                  <div className="relative h-10 overflow-hidden rounded-lg">
+                  <div className="relative h-9 sm:h-10 overflow-hidden rounded-lg">
                     {/* Default state */}
                     <div className="absolute inset-0 flex items-center transition-all duration-500 ease-out group-hover:opacity-0 group-hover:-translate-y-full">
                       <span className="text-sm font-semibold text-ocean-400 flex items-center gap-2">

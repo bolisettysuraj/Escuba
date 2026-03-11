@@ -199,13 +199,13 @@ export default function Hero() {
               className="flex items-center justify-between glass rounded-2xl px-4 py-3.5"
             >
               {stats.map((s, i) => (
-                <div key={i} className="flex items-center gap-2 sm:gap-3 min-w-0">
-                  {i > 0 && <div className="w-px h-8 bg-white/10 shrink-0" />}
+                <div key={i} className="flex items-center gap-1.5 sm:gap-3 min-w-0">
+                  {i > 0 && <div className="w-px h-7 sm:h-8 bg-white/10 shrink-0" />}
                   <div className="text-center flex-1 min-w-0">
-                    <div className="text-base sm:text-xl font-bold text-white font-[family-name:var(--font-display)] truncate">
+                    <div className="text-sm sm:text-xl font-bold text-white font-[family-name:var(--font-display)] truncate">
                       <AnimatedCounter target={s.value} />
                     </div>
-                    <div className="text-[8px] sm:text-[9px] text-white/35 uppercase tracking-wider mt-0.5 truncate">{s.label}</div>
+                    <div className="text-[7px] sm:text-[9px] text-white/35 uppercase tracking-wider mt-0.5 truncate">{s.label}</div>
                   </div>
                 </div>
               ))}

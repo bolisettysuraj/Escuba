@@ -181,7 +181,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* ── Bento grid ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] sm:auto-rows-[220px] lg:auto-rows-[240px] gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] sm:auto-rows-[220px] lg:auto-rows-[240px] gap-3 sm:gap-4">
           {items.map((item, i) => (
             <GalleryCard key={item.name} item={item} index={i} />
           ))}

@@ -34,7 +34,7 @@ export default function CoursePage({ data }: { data: CourseData }) {
             <i className="fas fa-chevron-right text-[7px]" />
             <Link href="/courses" className="hover:text-ocean-400 transition-colors">Courses</Link>
             <i className="fas fa-chevron-right text-[7px]" />
-            <span className="text-ocean-400 truncate">{data.shortTitle}</span>
+            <span className="text-ocean-400 truncate max-w-[150px] inline-block align-bottom">{data.shortTitle}</span>
           </motion.nav>
 
           <motion.div
@@ -92,7 +92,7 @@ export default function CoursePage({ data }: { data: CourseData }) {
       </section>
 
       {/* MOBILE CTA */}
-      <div className="lg:hidden sticky top-[72px] z-30 px-4 pt-3 pb-2 bg-deep-950/90 backdrop-blur-md border-b border-white/5">
+      <div className="lg:hidden sticky top-[60px] sm:top-[72px] z-30 px-4 pt-3 pb-2 bg-deep-950/90 backdrop-blur-md border-b border-white/5">
         <div className="flex gap-2">
           <a
             href="tel:+916364360134"

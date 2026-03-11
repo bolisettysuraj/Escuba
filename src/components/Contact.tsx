@@ -228,7 +228,7 @@ export default function Contact() {
                         <a
                           key={j}
                           href={line.href}
-                          className="block text-white/60 text-sm hover:text-ocean-400 transition-colors duration-200 break-all"
+                          className="block text-white/60 text-sm hover:text-ocean-400 transition-colors duration-200 break-words"
                         >
                           {line.text}
                         </a>

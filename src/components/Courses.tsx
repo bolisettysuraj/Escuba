@@ -201,7 +201,7 @@ export default function Courses() {
                   <div className="flex items-center justify-between gap-1 sm:gap-2 pt-2 sm:pt-4 border-t border-white/5 mt-auto">
                     <div className="min-w-0 shrink-0">
                       <span className="hidden sm:block text-white/40 text-[10px] uppercase tracking-wider font-semibold">From</span>
-                      <div className="font-bold text-sm sm:text-xl font-[family-name:var(--font-display)] flex items-baseline gap-0.5">
+                      <div className="font-bold text-sm sm:text-xl flex items-baseline gap-0.5">
                         <span className="text-gold-400/70 text-[9px] sm:text-sm">&#8377;</span>
                         <span className="text-gold-400">{course.price}</span>
                       </div>

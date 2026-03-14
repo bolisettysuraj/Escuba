@@ -187,7 +187,7 @@ export default function NonSwimmersPage() {
                     <div className="flex items-center justify-between mt-auto">
                       <div>
                         <span className="hidden sm:inline text-white/50 text-xs">Starting from</span>
-                        <span className="text-gold-400 font-bold text-xs sm:text-lg sm:ml-2 font-[family-name:var(--font-display)]">
+                        <span className="text-gold-400 font-bold text-xs sm:text-lg sm:ml-2">
                           &#8377;{exp.price}
                         </span>
                       </div>

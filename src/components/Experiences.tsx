@@ -132,7 +132,7 @@ export default function Experiences() {
                     <span className="text-white/70 text-[9px] sm:text-xs font-medium">
                       from
                     </span>
-                    <span className="text-gold-400 font-bold text-sm sm:text-lg tracking-wide font-[family-name:var(--font-display)]">
+                    <span className="text-gold-400 font-bold text-sm sm:text-lg tracking-wide">
                       {exp.price}
                     </span>
                     <span className="text-white/70 text-[9px] sm:text-xs font-medium">

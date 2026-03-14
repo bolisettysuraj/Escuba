@@ -126,7 +126,7 @@ function TrustBadges({ mobile = false }: { mobile?: boolean }) {
                 dangerouslySetInnerHTML={{ __html: b.label }}
               />
               <div className="flex items-center gap-1.5">
-                <span className="text-white font-bold text-base font-[family-name:var(--font-display)] leading-none">
+                <span className="text-white font-bold text-base leading-none">
                   {b.value}
                 </span>
                 {b.stars && (
@@ -327,7 +327,7 @@ export default function Hero() {
                     }}
                   >
                     <i className={`${s.icon} ${s.iconColor} text-2xl mb-2 block`} />
-                    <div className="text-white font-bold text-[12px] font-[family-name:var(--font-display)] leading-tight">{s.value}</div>
+                    <div className="text-white font-bold text-[12px] leading-tight">{s.value}</div>
                     <div className="text-white/80 text-[10px] mt-1 leading-tight">{s.sub}</div>
                   </div>
                 ))}

@@ -117,7 +117,7 @@ export default function DiveCategories() {
                 <div className="absolute top-4 left-4 z-10">
                   <div className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1.5" style={{ background: "rgba(0,0,0,0.8)", border: "1px solid rgba(251,191,36,0.3)", boxShadow: "0 4px 16px rgba(0,0,0,0.4)" }}>
                     <span className="text-white/70 text-[10px] sm:text-xs font-medium">From</span>
-                    <span className="text-gold-400 font-bold text-sm sm:text-lg font-[family-name:var(--font-display)]">&#8377;{cat.price}</span>
+                    <span className="text-gold-400 font-bold text-sm sm:text-lg">&#8377;{cat.price}</span>
                     <span className="text-white/70 text-[9px] sm:text-[10px] font-medium">/person</span>
                   </div>
                 </div>

@@ -83,7 +83,7 @@ export default function CoursePage({ data }: { data: CourseData }) {
             ].map((s, idx) => (
               <div key={s.label} className={`text-center py-4 sm:py-5 px-3 sm:px-4 min-w-0 ${idx >= 2 ? "border-t border-white/5 sm:border-t-0" : ""}`}>
                 <i className={`fas ${s.icon} text-ocean-400 text-sm mb-1.5 block`} />
-                <div className="text-white font-bold text-sm sm:text-base font-[family-name:var(--font-display)] truncate">{s.value}</div>
+                <div className="text-white font-bold text-sm sm:text-base truncate">{s.value}</div>
                 <div className="text-white/30 text-[9px] sm:text-[10px] uppercase tracking-wider mt-0.5">{s.label}</div>
               </div>
             ))}
@@ -293,7 +293,7 @@ export default function CoursePage({ data }: { data: CourseData }) {
                 >
                   <div className="text-center mb-6">
                     <span className="text-white/40 text-sm">Starting from</span>
-                    <div className="font-[family-name:var(--font-display)] text-4xl font-bold text-white mt-1">
+                    <div className="text-4xl font-bold text-gold-400 mt-1">
                       &#8377;{data.price}
                     </div>
                     <span className="text-white/25 text-xs">per person</span>

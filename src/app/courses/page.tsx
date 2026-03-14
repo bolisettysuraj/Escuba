@@ -1,9 +1,39 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { courses } from "@/data/courses";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
+
+const similarOptions = [
+  {
+    title: "Non-Swimmers",
+    desc: "No swimming skills needed — shore diving, boat diving, and snorkeling for absolute beginners.",
+    icon: "fa-water",
+    href: "/non-swimmers",
+    color: "from-cyan-500 to-blue-600",
+    image: "/images/shore-diving.webp",
+  },
+  {
+    title: "Kids Diving",
+    desc: "Fun underwater programs for young adventurers aged 8+ with PADI Bubble Maker and Seal Team.",
+    icon: "fa-child",
+    href: "/kids",
+    color: "from-teal-400 to-emerald-500",
+    image: "/images/kids-diving.webp",
+  },
+  {
+    title: "Dive Sites",
+    desc: "15+ stunning dive sites around Havelock — coral walls, wrecks, and vibrant reef systems.",
+    icon: "fa-map-marked-alt",
+    href: "/dive-sites",
+    color: "from-ocean-500 to-teal-500",
+    image: "/images/divesite-1.webp",
+  },
+];
 
 const levelColors: Record<string, string> = {
   Beginner: "from-green-500 to-emerald-500",
@@ -183,6 +213,91 @@ export default function CoursesPage() {
         </div>
       </section>
 
+      {/* Customer Reviews */}
+      <Testimonials />
+
+      {/* FAQ */}
+      <FAQ />
+
+      {/* Similar Options */}
+      <section className="relative py-16 sm:py-24 overflow-hidden">
+        <div className="section-sep absolute top-0 left-0 right-0" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-ocean-500/5 rounded-full blur-3xl" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease }}
+          >
+            <span className="inline-block text-ocean-400 text-sm font-semibold uppercase tracking-[0.2em] mb-4">
+              Explore More
+            </span>
+            <h2 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+              You Might Also <span className="text-gradient">Like</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-6 lg:gap-8">
+            {similarOptions.map((option, i) => (
+              <motion.div
+                key={option.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease }}
+                whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                className="flex"
+              >
+                <Link
+                  href={option.href}
+                  className="group relative block rounded-xl sm:rounded-2xl overflow-hidden flex flex-col w-full border border-white/[0.06]"
+                  style={{ background: "rgba(255,255,255,0.02)" }}
+                >
+                  {/* Image */}
+                  <div className="relative h-28 sm:h-48 lg:h-52 overflow-hidden">
+                    <Image
+                      src={option.image}
+                      alt={option.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      sizes="33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep-950 via-deep-950/40 to-transparent" />
+                    {/* Icon overlay */}
+                    <div className={`absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${option.color} shadow-lg`}>
+                      <i className={`fas ${option.icon} text-white text-xs sm:text-sm`} />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-2.5 sm:p-5 flex-1 flex flex-col">
+                    <h3 className="text-[11px] sm:text-lg font-bold text-white font-[family-name:var(--font-display)] mb-1 sm:mb-2 leading-tight">
+                      {option.title}
+                    </h3>
+                    <p className="text-white/45 text-[9px] sm:text-sm leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-none flex-1">
+                      {option.desc}
+                    </p>
+                    <span className="inline-flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors mt-auto">
+                      Explore
+                      <i className="fas fa-arrow-right text-[7px] sm:text-xs group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+
+                  {/* Hover glow */}
+                  <div
+                    className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{ boxShadow: "inset 0 0 0 1px rgba(0,168,232,0.2), 0 0 30px rgba(0,168,232,0.06)" }}
+                  />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="relative py-20 overflow-hidden">
         <div className="section-sep absolute top-0 left-0 right-0" />
@@ -199,7 +314,7 @@ export default function CoursesPage() {
             Ready to Get <span className="text-gradient">Certified?</span>
           </motion.h2>
           <motion.p
-            className="text-white/40 text-lg mb-8 max-w-xl mx-auto"
+            className="text-white/50 text-lg mb-8 max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -224,7 +339,7 @@ export default function CoursesPage() {
               Call +91 6364360134
             </motion.a>
             <motion.a
-              href="https://wa.me/916364360134"
+              href="https://wa.me/916364360134?text=Hi%20Experience%20Scuba!%20I'm%20interested%20in%20PADI%20certification%20courses%20in%20Havelock%20Island.%20Could%20you%20share%20details%20about%20your%20courses%2C%20schedule%20and%20pricing%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold glass text-white/80"

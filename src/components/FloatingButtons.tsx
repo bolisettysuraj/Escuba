@@ -1,10 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-
-const WA_MESSAGE = encodeURIComponent(
-  "Hi Experience Scuba! I'm interested in diving in Havelock Island. Could you share more details about your experiences and availability?"
-);
 
 const formFields = [
   { type: "text" as const, placeholder: "Your Name", icon: "fa-user", label: "Full Name", id: "popup-name" },
@@ -12,16 +9,63 @@ const formFields = [
   { type: "email" as const, placeholder: "Email Address", icon: "fa-envelope", label: "Email Address", id: "popup-email" },
 ];
 
-const experiences = [
+const allOptions = [
   "Shore Diving",
   "Boat Diving",
   "Snorkeling",
+  "PADI Discover Scuba Dive",
   "Open Water Diver Course",
   "Advanced Open Water",
-  "Other Course",
+  "Rescue Diver Course",
+  "Dive Master Course",
+  "Kids Diving",
+  "Other",
 ];
 
+function getPageContext(pathname: string) {
+  if (pathname.startsWith("/non-swimmers")) {
+    return {
+      waMessage: encodeURIComponent(
+        "Hi Experience Scuba! I'm interested in scuba diving for non-swimmers in Havelock Island. Could you share details about your beginner experiences and availability?"
+      ),
+      defaultOption: pathname.includes("shore") ? "Shore Diving"
+        : pathname.includes("boat") ? "Boat Diving"
+        : pathname.includes("snorkeling") || pathname.includes("skin-diver") ? "Snorkeling"
+        : pathname.includes("padi-discover") ? "PADI Discover Scuba Dive"
+        : "",
+    };
+  }
+  if (pathname.startsWith("/courses")) {
+    return {
+      waMessage: encodeURIComponent(
+        "Hi Experience Scuba! I'm interested in PADI certification courses in Havelock Island. Could you share details about your courses, schedule and pricing?"
+      ),
+      defaultOption: pathname.includes("open-water") && !pathname.includes("advanced") ? "Open Water Diver Course"
+        : pathname.includes("advanced") ? "Advanced Open Water"
+        : pathname.includes("rescue") ? "Rescue Diver Course"
+        : pathname.includes("dive-master") ? "Dive Master Course"
+        : "",
+    };
+  }
+  if (pathname.startsWith("/kids")) {
+    return {
+      waMessage: encodeURIComponent(
+        "Hi Experience Scuba! I'm interested in kids diving programs in Havelock Island. Could you share details about Bubble Maker and Seal Team programs?"
+      ),
+      defaultOption: "Kids Diving",
+    };
+  }
+  return {
+    waMessage: encodeURIComponent(
+      "Hi Experience Scuba! I'm interested in diving in Havelock Island. Could you share more details about your experiences and availability?"
+    ),
+    defaultOption: "",
+  };
+}
+
 export default function FloatingButtons() {
+  const pathname = usePathname();
+  const { waMessage, defaultOption } = getPageContext(pathname);
   const [visible, setVisible] = useState(false);
   const [showTop, setShowTop] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -83,7 +127,7 @@ export default function FloatingButtons() {
     },
     {
       key: "whatsapp",
-      href: `https://wa.me/916364360134?text=${WA_MESSAGE}`,
+      href: `https://wa.me/916364360134?text=${waMessage}`,
       label: "WhatsApp",
       icon: "fab fa-whatsapp",
       color: "from-[#25D366] to-[#128C7E]",
@@ -99,7 +143,7 @@ export default function FloatingButtons() {
       <AnimatePresence>
         {visible && (
           <motion.div
-            className="fixed bottom-6 left-1/2 z-50 flex items-center gap-2 rounded-full px-2 py-2 border border-white/10"
+            className="fixed bottom-6 left-1/2 z-50 flex items-center gap-2.5 sm:gap-3 rounded-full px-2.5 sm:px-3 py-2.5 sm:py-3 border border-white/10"
             style={{
               background: "rgba(1,10,19,0.85)",
               backdropFilter: "blur(24px)",
@@ -116,13 +160,13 @@ export default function FloatingButtons() {
                 <motion.button
                   key={c.key}
                   onClick={c.onClick}
-                  className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold bg-gradient-to-r ${c.color} transition-shadow duration-300 cursor-pointer`}
+                  className={`relative flex items-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 rounded-full text-white text-sm sm:text-base font-semibold bg-gradient-to-r ${c.color} transition-shadow duration-300 cursor-pointer`}
                   style={{ boxShadow: `0 4px 16px ${c.glow}` }}
                   whileHover={{ scale: 1.06, boxShadow: `0 6px 24px ${c.glow}` }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={c.label}
                 >
-                  <i className={`${c.icon} text-sm`} />
+                  <i className={`${c.icon} text-sm sm:text-base`} />
                   <span className="hidden sm:inline">{c.label}</span>
                 </motion.button>
               ) : (
@@ -131,13 +175,13 @@ export default function FloatingButtons() {
                   href={c.href}
                   target={c.external ? "_blank" : undefined}
                   rel={c.external ? "noopener noreferrer" : undefined}
-                  className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-semibold bg-gradient-to-r ${c.color} transition-shadow duration-300`}
+                  className={`relative flex items-center gap-2 sm:gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 rounded-full text-white text-sm sm:text-base font-semibold bg-gradient-to-r ${c.color} transition-shadow duration-300`}
                   style={{ boxShadow: `0 4px 16px ${c.glow}` }}
                   whileHover={{ scale: 1.06, boxShadow: `0 6px 24px ${c.glow}` }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={c.label}
                 >
-                  <i className={`${c.icon} text-sm`} />
+                  <i className={`${c.icon} text-sm sm:text-base`} />
                   <span className="hidden sm:inline">{c.label}</span>
                 </motion.a>
               )
@@ -241,11 +285,12 @@ export default function FloatingButtons() {
                         <select
                           id="popup-experience"
                           required
-                          defaultValue=""
-                          className="w-full bg-white/[0.05] border border-white/[0.08] rounded-xl px-4 py-3 pl-10 text-sm text-white/30 focus:text-white focus:outline-none focus:border-ocean-500/40 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.08)] transition-all duration-300 appearance-none"
+                          defaultValue={defaultOption}
+                          key={defaultOption}
+                          className={`w-full bg-white/[0.05] border border-white/[0.08] rounded-xl px-4 py-3 pl-10 text-sm ${defaultOption ? "text-white" : "text-white/30"} focus:text-white focus:outline-none focus:border-ocean-500/40 focus:bg-white/[0.08] focus:shadow-[0_0_0_3px_rgba(0,168,232,0.08)] transition-all duration-300 appearance-none`}
                         >
                           <option value="" disabled>Select Experience</option>
-                          {experiences.map((exp) => (
+                          {allOptions.map((exp) => (
                             <option key={exp} className="bg-deep-900 text-white">{exp}</option>
                           ))}
                         </select>

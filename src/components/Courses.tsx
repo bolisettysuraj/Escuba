@@ -110,13 +110,11 @@ export default function Courses() {
         </motion.div>
 
         {/* Course grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        <div className="grid grid-cols-3 gap-2.5 sm:gap-5 lg:gap-6">
           {courses.map((course, i) => (
             <motion.div
               key={course.title}
-              className={`group relative rounded-2xl overflow-hidden cursor-pointer gradient-border ${
-                course.featured ? "" : ""
-              }`}
+              className={`group relative rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer gradient-border flex`}
               style={course.featured ? { animation: "glowPulse 4s ease-in-out infinite" } : {}}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -124,95 +122,102 @@ export default function Courses() {
               transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
-              {/* Top accent line */}
-              <div className={`h-1 w-full bg-gradient-to-r ${levelColors[course.level]} group-hover:h-1.5 transition-all duration-300`} />
+              <div className="w-full flex flex-col">
+                {/* Top accent line */}
+                <div className={`h-1 w-full bg-gradient-to-r ${levelColors[course.level]} group-hover:h-1.5 transition-all duration-300`} />
 
-              <div
-                className="p-6 h-full flex flex-col"
-                style={{
-                  background: course.featured
-                    ? "rgba(0,168,232,0.04)"
-                    : "rgba(255,255,255,0.02)",
-                  borderLeft: "1px solid rgba(255,255,255,0.05)",
-                  borderRight: "1px solid rgba(255,255,255,0.05)",
-                  borderBottom: "1px solid rgba(255,255,255,0.05)",
-                  borderRadius: "0 0 1rem 1rem",
-                }}
-              >
-                {/* Header row */}
-                <div className="flex items-start justify-between mb-4">
-                  <div
-                    className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-white bg-gradient-to-r ${
-                      levelColors[course.level]
-                    }`}
-                  >
-                    {course.level}
+                <div
+                  className="p-2.5 sm:p-6 flex-1 flex flex-col"
+                  style={{
+                    background: course.featured
+                      ? "rgba(0,168,232,0.04)"
+                      : "rgba(255,255,255,0.02)",
+                    borderLeft: "1px solid rgba(255,255,255,0.05)",
+                    borderRight: "1px solid rgba(255,255,255,0.05)",
+                    borderBottom: "1px solid rgba(255,255,255,0.05)",
+                    borderRadius: "0 0 0.75rem 0.75rem",
+                  }}
+                >
+                  {/* Header row */}
+                  <div className="flex items-start justify-between mb-2 sm:mb-4">
+                    <div
+                      className={`inline-block px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[7px] sm:text-[11px] font-bold uppercase tracking-wider text-white bg-gradient-to-r ${
+                        levelColors[course.level]
+                      }`}
+                    >
+                      {course.level}
+                    </div>
+                    {course.featured && (
+                      <span className="hidden sm:flex text-[10px] uppercase tracking-wider text-ocean-400 font-bold items-center gap-1">
+                        <i className="fas fa-star text-[8px]" /> Popular
+                      </span>
+                    )}
                   </div>
-                  {course.featured && (
-                    <span className="text-[10px] uppercase tracking-wider text-ocean-400 font-bold flex items-center gap-1">
-                      <i className="fas fa-star text-[8px]" /> Popular
-                    </span>
-                  )}
-                </div>
 
-                {/* Icon + Title */}
-                <div className="flex items-center gap-3 mb-3">
-                  <motion.div
-                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300"
-                    style={{ background: levelBg[course.level] }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    <i
-                      className={`fas ${course.icon} text-base sm:text-lg text-ocean-400 group-hover:text-ocean-300 transition-colors`}
-                    />
-                  </motion.div>
-                  <h3 className="text-base sm:text-lg font-bold text-white font-[family-name:var(--font-display)] leading-tight min-w-0">
+                  {/* Icon + Title - Desktop */}
+                  <div className="hidden sm:flex items-center gap-3 mb-3">
+                    <motion.div
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors duration-300"
+                      style={{ background: levelBg[course.level] }}
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      <i
+                        className={`fas ${course.icon} text-base sm:text-lg text-ocean-400 group-hover:text-ocean-300 transition-colors`}
+                      />
+                    </motion.div>
+                    <h3 className="text-base sm:text-lg font-bold text-white font-[family-name:var(--font-display)] leading-tight min-w-0">
+                      {course.title}
+                    </h3>
+                  </div>
+                  {/* Mobile title */}
+                  <h3 className="sm:hidden text-[10px] font-bold text-white font-[family-name:var(--font-display)] leading-tight mb-1.5">
                     {course.title}
                   </h3>
-                </div>
 
-                <p className="text-white/40 text-sm leading-relaxed mb-5 flex-1">
-                  {course.desc}
-                </p>
+                  <p className="text-white/40 text-[8px] sm:text-sm leading-relaxed mb-2 sm:mb-5 flex-1 line-clamp-2 sm:line-clamp-none">
+                    {course.desc}
+                  </p>
 
-                {/* Stats row */}
-                <div className="grid grid-cols-3 gap-2 mb-5">
-                  {[
-                    { icon: "fa-clock", value: course.duration, label: "Duration" },
-                    { icon: "fa-layer-group", value: course.dives, label: "Dives" },
-                    { icon: "fa-arrows-alt-v", value: course.depth, label: "Max Depth" },
-                  ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="text-center rounded-lg py-2.5 px-2 min-w-0 overflow-hidden"
-                      style={{ background: "rgba(255,255,255,0.02)" }}
-                    >
-                      <i className={`fas ${stat.icon} text-ocean-500/60 text-[11px] mb-1.5 block`} />
-                      <div className="text-white text-[11px] sm:text-xs font-bold leading-tight truncate">{stat.value}</div>
-                      <div className="text-white/30 text-[9px] sm:text-[10px] uppercase tracking-wider mt-0.5">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Price + CTA */}
-                <div className="flex items-center justify-between gap-2 pt-4 border-t border-white/5">
-                  <div className="min-w-0 shrink-0">
-                    <span className="text-white/25 text-[10px] uppercase tracking-wider">From</span>
-                    <div className="font-bold text-lg sm:text-xl font-[family-name:var(--font-display)] flex items-baseline gap-0.5">
-                      <span className="text-white/50 text-xs sm:text-sm">&#8377;</span>
-                      <span className="text-white">{course.price}</span>
-                    </div>
+                  {/* Stats row - hidden on mobile */}
+                  <div className="hidden sm:grid grid-cols-3 gap-2 mb-5">
+                    {[
+                      { icon: "fa-clock", value: course.duration, label: "Duration" },
+                      { icon: "fa-layer-group", value: course.dives, label: "Dives" },
+                      { icon: "fa-arrows-alt-v", value: course.depth, label: "Max Depth" },
+                    ].map((stat) => (
+                      <div
+                        key={stat.label}
+                        className="text-center rounded-lg py-2.5 px-2 min-w-0 overflow-hidden"
+                        style={{ background: "rgba(255,255,255,0.02)" }}
+                      >
+                        <i className={`fas ${stat.icon} text-ocean-500/60 text-[11px] mb-1.5 block`} />
+                        <div className="text-white text-[11px] sm:text-xs font-bold leading-tight truncate">{stat.value}</div>
+                        <div className="text-white/30 text-[9px] sm:text-[10px] uppercase tracking-wider mt-0.5">{stat.label}</div>
+                      </div>
+                    ))}
                   </div>
-                  <span className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-all px-3 sm:px-4 py-2 rounded-full group-hover:bg-ocean-500/10 shrink-0">
-                    Enquire
-                    <i className="fas fa-arrow-right text-[10px] sm:text-xs group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
+
+                  {/* Price + CTA */}
+                  <div className="flex items-center justify-between gap-1 sm:gap-2 pt-2 sm:pt-4 border-t border-white/5 mt-auto">
+                    <div className="min-w-0 shrink-0">
+                      <span className="hidden sm:block text-white/25 text-[10px] uppercase tracking-wider">From</span>
+                      <div className="font-bold text-xs sm:text-xl font-[family-name:var(--font-display)] flex items-baseline gap-0.5">
+                        <span className="text-white/50 text-[8px] sm:text-sm">&#8377;</span>
+                        <span className="text-gold-400">{course.price}</span>
+                      </div>
+                    </div>
+                    <span className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-all px-3 sm:px-4 py-2 rounded-full group-hover:bg-ocean-500/10 shrink-0">
+                      Enquire
+                      <i className="fas fa-arrow-right text-[10px] sm:text-xs group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                    <i className="sm:hidden fas fa-arrow-right text-[8px] text-ocean-400" />
+                  </div>
                 </div>
               </div>
 
               {/* Hover glow */}
               <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{ boxShadow: "inset 0 0 0 1px rgba(0,168,232,0.15), 0 0 30px rgba(0,168,232,0.06)" }}
               />
             </motion.div>

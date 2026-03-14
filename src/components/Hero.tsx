@@ -313,22 +313,22 @@ export default function Hero() {
               {/* 3 trust cards — taller, more glow */}
               <motion.div variants={scaleIn} className="grid grid-cols-3 gap-2.5" style={{ marginBottom: "42px" }}>
                 {[
-                  { icon: "fas fa-award", value: "TripAdvisor", sub: "Choice 2019–2025", color: "rgba(52,224,161,0.12)", borderColor: "rgba(52,224,161,0.3)", iconColor: "text-[#34e0a1]", glow: "0 0 24px rgba(52,224,161,0.12)" },
-                  { icon: "fab fa-google", value: "4.9 ★★★★★", sub: "Google Rated", color: "rgba(251,191,36,0.1)", borderColor: "rgba(251,191,36,0.3)", iconColor: "text-gold-400", glow: "0 0 24px rgba(251,191,36,0.1)" },
-                  { icon: "fas fa-users", value: "10,000+", sub: "Happy Divers", color: "rgba(0,168,232,0.1)", borderColor: "rgba(0,168,232,0.3)", iconColor: "text-ocean-400", glow: "0 0 24px rgba(0,168,232,0.1)" },
+                  { icon: "fas fa-award", value: "TripAdvisor", sub: "Choice 2019–2025", color: "rgba(52,224,161,0.15)", borderColor: "rgba(52,224,161,0.35)", iconColor: "text-[#34e0a1]", glow: "0 0 30px rgba(52,224,161,0.15)" },
+                  { icon: "fab fa-google", value: "4.9 ★★★★★", sub: "Google Rated", color: "rgba(251,191,36,0.12)", borderColor: "rgba(251,191,36,0.35)", iconColor: "text-gold-400", glow: "0 0 30px rgba(251,191,36,0.12)" },
+                  { icon: "fas fa-users", value: "10,000+", sub: "Happy Divers", color: "rgba(0,168,232,0.12)", borderColor: "rgba(0,168,232,0.35)", iconColor: "text-ocean-400", glow: "0 0 30px rgba(0,168,232,0.12)" },
                 ].map((s, i) => (
                   <div
                     key={i}
                     className="rounded-2xl py-4 px-2 text-center"
                     style={{
-                      background: `linear-gradient(180deg, rgba(1,10,19,0.9), ${s.color})`,
+                      background: `linear-gradient(180deg, rgba(0,0,0,0.7), ${s.color})`,
                       border: `1px solid ${s.borderColor}`,
                       boxShadow: s.glow,
                     }}
                   >
-                    <i className={`${s.icon} ${s.iconColor} text-xl mb-2 block`} />
-                    <div className="text-white font-bold text-[11px] font-[family-name:var(--font-display)] leading-tight">{s.value}</div>
-                    <div className="text-white/60 text-[9px] mt-1 leading-tight">{s.sub}</div>
+                    <i className={`${s.icon} ${s.iconColor} text-2xl mb-2 block`} />
+                    <div className="text-white font-bold text-[12px] font-[family-name:var(--font-display)] leading-tight">{s.value}</div>
+                    <div className="text-white/80 text-[10px] mt-1 leading-tight">{s.sub}</div>
                   </div>
                 ))}
               </motion.div>

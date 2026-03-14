@@ -224,8 +224,8 @@ export default function Hero() {
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-950/60 via-deep-950/10 to-deep-950" />
-          <div className="absolute inset-0 bg-deep-950/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-950/70 via-deep-950/50 to-deep-950/90" />
+          <div className="absolute inset-0 bg-deep-950/40" />
         </div>
 
         {/* DESKTOP: YouTube video */}
@@ -275,78 +275,80 @@ export default function Hero() {
         {/* ── MOBILE ── */}
         {isMobile && (
             <motion.div
-              className="relative z-10 w-full px-5 pb-10 pt-[72px]"
+              className="relative z-10 w-full px-5"
+              style={{ paddingTop: "90px", paddingBottom: "28px" }}
               variants={container}
               initial="hidden"
               animate="show"
             >
-              {/* PADI badge */}
-              <motion.div variants={fadeUp} className="flex justify-center mb-5">
+              {/* PADI badge — bigger, glowing */}
+              <motion.div variants={fadeUp} className="flex justify-center" style={{ marginBottom: "36px" }}>
                 <div
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full"
-                  style={{ background: "rgba(0,0,0,0.5)", border: "1px solid rgba(0,168,232,0.2)", backdropFilter: "blur(16px)" }}
+                  className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full"
+                  style={{ background: "rgba(0,168,232,0.08)", border: "1px solid rgba(0,168,232,0.25)", backdropFilter: "blur(16px)", boxShadow: "0 0 20px rgba(0,168,232,0.1)" }}
                 >
-                  <i className="fas fa-certificate text-ocean-400 text-[10px]" />
-                  <span className="text-white/90 text-[10px] font-semibold tracking-wide">PADI 5-Star</span>
-                  <span className="w-px h-3 bg-white/15" />
-                  <i className="fas fa-map-marker-alt text-teal-400 text-[8px]" />
-                  <span className="text-white/50 text-[10px]">Havelock Island</span>
+                  <i className="fas fa-certificate text-ocean-400 text-sm" />
+                  <span className="text-white text-xs font-bold tracking-wide">PADI 5-Star</span>
+                  <span className="w-px h-4 bg-white/20" />
+                  <i className="fas fa-map-marker-alt text-teal-400 text-[10px]" />
+                  <span className="text-white/70 text-xs">Havelock Island</span>
                 </div>
               </motion.div>
 
-              {/* H1 */}
-              <motion.h1 variants={titleReveal} className="font-[family-name:var(--font-display)] mb-4 text-center">
-                <span className="block text-[2rem] font-bold text-white leading-[1.1]">
+              {/* H1 — bigger, more dramatic */}
+              <motion.h1 variants={titleReveal} className="font-[family-name:var(--font-display)] text-center" style={{ marginBottom: "32px" }}>
+                <span className="block text-[2.2rem] font-bold text-white leading-[1.08] tracking-tight">
                   Dive Into The
                 </span>
-                <span className="block text-[2.6rem] font-bold leading-[1]">
+                <span className="block text-[3rem] font-bold leading-[0.95] tracking-tight">
                   <span className="text-gradient">Extraordinary</span>
                 </span>
               </motion.h1>
 
-              {/* Subtitle */}
-              <motion.p variants={fadeUp} className="text-white/70 text-[12px] leading-relaxed mb-5 text-center mx-auto max-w-[300px]">
+              {/* Subtitle — slightly bigger */}
+              <motion.p variants={fadeUp} className="text-white/75 text-[13px] leading-relaxed text-center mx-auto max-w-[320px]" style={{ marginBottom: "36px" }}>
                 Andaman&apos;s most trusted dive centre — 13+ years of unforgettable underwater experiences
               </motion.p>
 
-              {/* 3 trust cards */}
-              <motion.div variants={scaleIn} className="grid grid-cols-3 gap-2 mb-3">
+              {/* 3 trust cards — taller, more glow */}
+              <motion.div variants={scaleIn} className="grid grid-cols-3 gap-2.5" style={{ marginBottom: "42px" }}>
                 {[
-                  { icon: "fas fa-award", value: "TripAdvisor", sub: "Choice 2019–2025", color: "rgba(52,224,161,0.15)", borderColor: "rgba(52,224,161,0.2)", iconColor: "text-[#34e0a1]" },
-                  { icon: "fab fa-google", value: "4.9 ★★★★★", sub: "Google Rated", color: "rgba(251,191,36,0.12)", borderColor: "rgba(251,191,36,0.2)", iconColor: "text-gold-400" },
-                  { icon: "fas fa-users", value: "10,000+", sub: "Happy Divers", color: "rgba(0,168,232,0.12)", borderColor: "rgba(0,168,232,0.2)", iconColor: "text-ocean-400" },
+                  { icon: "fas fa-award", value: "TripAdvisor", sub: "Choice 2019–2025", color: "rgba(52,224,161,0.12)", borderColor: "rgba(52,224,161,0.3)", iconColor: "text-[#34e0a1]", glow: "0 0 24px rgba(52,224,161,0.12)" },
+                  { icon: "fab fa-google", value: "4.9 ★★★★★", sub: "Google Rated", color: "rgba(251,191,36,0.1)", borderColor: "rgba(251,191,36,0.3)", iconColor: "text-gold-400", glow: "0 0 24px rgba(251,191,36,0.1)" },
+                  { icon: "fas fa-users", value: "10,000+", sub: "Happy Divers", color: "rgba(0,168,232,0.1)", borderColor: "rgba(0,168,232,0.3)", iconColor: "text-ocean-400", glow: "0 0 24px rgba(0,168,232,0.1)" },
                 ].map((s, i) => (
                   <div
                     key={i}
-                    className="rounded-xl py-2.5 px-2 text-center"
+                    className="rounded-2xl py-4 px-2 text-center"
                     style={{
-                      background: `linear-gradient(180deg, rgba(1,10,19,0.85), ${s.color})`,
+                      background: `linear-gradient(180deg, rgba(1,10,19,0.9), ${s.color})`,
                       border: `1px solid ${s.borderColor}`,
+                      boxShadow: s.glow,
                     }}
                   >
-                    <i className={`${s.icon} ${s.iconColor} text-base mb-1 block`} />
-                    <div className="text-white font-bold text-[10px] font-[family-name:var(--font-display)] leading-tight">{s.value}</div>
-                    <div className="text-white/50 text-[8px] mt-0.5">{s.sub}</div>
+                    <i className={`${s.icon} ${s.iconColor} text-xl mb-2 block`} />
+                    <div className="text-white font-bold text-[11px] font-[family-name:var(--font-display)] leading-tight">{s.value}</div>
+                    <div className="text-white/60 text-[9px] mt-1 leading-tight">{s.sub}</div>
                   </div>
                 ))}
               </motion.div>
 
-              {/* Call + WhatsApp */}
-              <motion.div variants={fadeUp} className="grid grid-cols-2 gap-2">
+              {/* Call + WhatsApp — bigger, bolder */}
+              <motion.div variants={fadeUp} className="grid grid-cols-2 gap-3">
                 <a
                   href="tel:+916364360134"
-                  className="flex items-center justify-center gap-2 py-3 rounded-xl text-[13px] font-semibold text-white bg-gradient-to-r from-ocean-500 to-teal-500 shadow-lg shadow-ocean-500/25"
+                  className="flex items-center justify-center gap-2.5 py-4 rounded-2xl text-sm font-bold text-white bg-gradient-to-r from-ocean-500 to-teal-500 shadow-xl shadow-ocean-500/30"
                 >
-                  <i className="fas fa-phone text-xs" /> Call Now
+                  <i className="fas fa-phone text-sm" /> Call Now
                 </a>
                 <a
                   href="https://wa.me/916364360134?text=Hi%20Experience%20Scuba!%20I'm%20interested%20in%20diving%20in%20Havelock%20Island.%20Could%20you%20share%20more%20details%3F"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 rounded-xl text-[13px] font-semibold text-white"
-                  style={{ background: "rgba(37,211,102,0.2)", border: "1px solid rgba(37,211,102,0.3)" }}
+                  className="flex items-center justify-center gap-2.5 py-4 rounded-2xl text-sm font-bold text-white"
+                  style={{ background: "rgba(37,211,102,0.15)", border: "1px solid rgba(37,211,102,0.4)", boxShadow: "0 0 20px rgba(37,211,102,0.1)" }}
                 >
-                  <i className="fab fa-whatsapp text-[#25D366]" /> WhatsApp
+                  <i className="fab fa-whatsapp text-[#25D366] text-lg" /> WhatsApp
                 </a>
               </motion.div>
             </motion.div>

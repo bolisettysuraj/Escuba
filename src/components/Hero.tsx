@@ -240,9 +240,9 @@ export default function Hero() {
               allowFullScreen
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-deep-950/70 via-deep-950/25 to-deep-950" />
-          <div className="absolute inset-0 bg-deep-950/15" />
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 30%, rgba(1,10,19,0.5) 100%)" }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-950/75 via-deep-950/35 to-deep-950/85" />
+          <div className="absolute inset-0 bg-deep-950/25" />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 25%, rgba(1,10,19,0.5) 100%)" }} />
         </div>
       </motion.div>
 

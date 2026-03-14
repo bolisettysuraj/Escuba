@@ -357,7 +357,7 @@ export default function FloatingButtons() {
                     </div>
 
                     <a
-                      href={`https://wa.me/916364360134?text=${WA_MESSAGE}`}
+                      href={`https://wa.me/916364360134?text=${waMessage}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl text-sm font-semibold text-white border border-[#25D366]/30 hover:bg-[#25D366]/10 transition-all duration-300"

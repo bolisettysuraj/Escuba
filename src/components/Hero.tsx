@@ -122,12 +122,11 @@ function TrustBadges({ mobile = false }: { mobile?: boolean }) {
             </div>
             <div className="min-w-0">
               <div
-                className="text-[9px] leading-none font-medium mb-1"
-                style={{ color: b.borderColor }}
+                className="text-[10px] leading-none font-semibold mb-1.5 text-white/80"
                 dangerouslySetInnerHTML={{ __html: b.label }}
               />
               <div className="flex items-center gap-1.5">
-                <span className="text-white font-bold text-sm font-[family-name:var(--font-display)] leading-none">
+                <span className="text-white font-bold text-base font-[family-name:var(--font-display)] leading-none">
                   {b.value}
                 </span>
                 {b.stars && (
@@ -172,8 +171,7 @@ function TrustBadges({ mobile = false }: { mobile?: boolean }) {
           </div>
           <div>
             <div
-              className="text-[11px] leading-none font-medium mb-1.5"
-              style={{ color: b.borderColor }}
+              className="text-xs leading-none font-semibold mb-1.5 text-white/80"
               dangerouslySetInnerHTML={{ __html: b.label }}
             />
             <div className="flex items-center gap-2">

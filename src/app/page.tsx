@@ -22,9 +22,9 @@ export default function Home() {
       <main>
         <Hero />
         <VideoShowcase />
-        <About />
         <DiveCategories />
         <Experiences />
+        <About />
         <ParallaxDivider />
         <Courses />
         <DiveSites />

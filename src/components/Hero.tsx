@@ -21,6 +21,10 @@ const scaleIn = {
   hidden: { opacity: 0, scale: 0.85 },
   show: { opacity: 1, scale: 1, transition: { duration: 0.7, ease } },
 };
+const badgePop = {
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease } },
+};
 
 function AnimatedCounter({ target, suffix = "+", isRating }: { target: number | string; suffix?: string; isRating?: boolean }) {
   const [count, setCount] = useState(0);
@@ -47,7 +51,7 @@ function AnimatedCounter({ target, suffix = "+", isRating }: { target: number | 
   if (isRating) {
     display = count.toFixed(1);
   } else if (numericTarget >= 1000) {
-    display = `${Math.floor(count / 1000)}k`;
+    display = `${Math.floor(count / 1000)}K`;
   } else {
     display = count;
   }
@@ -57,6 +61,137 @@ function AnimatedCounter({ target, suffix = "+", isRating }: { target: number | 
       {display}
       <span className="text-ocean-400">{suffix}</span>
     </>
+  );
+}
+
+function TrustBadges({ mobile = false }: { mobile?: boolean }) {
+  const badges = [
+    {
+      icon: "fas fa-award",
+      label: "TripAdvisor Travellers&apos; Choice",
+      value: "2019 – 2025",
+      gradient: "from-[#34e0a1] to-[#00af87]",
+      glow: "rgba(52,224,161,0.25)",
+      iconColor: "text-[#34e0a1]",
+      borderColor: "rgba(52,224,161,0.25)",
+      bgColor: "rgba(52,224,161,0.08)",
+    },
+    {
+      icon: "fab fa-google",
+      label: "Google Rated",
+      value: "4.9",
+      stars: true,
+      gradient: "from-gold-400 to-[#f59e0b]",
+      glow: "rgba(251,191,36,0.25)",
+      iconColor: "text-gold-400",
+      borderColor: "rgba(251,191,36,0.25)",
+      bgColor: "rgba(251,191,36,0.08)",
+    },
+    {
+      icon: "fas fa-users",
+      label: "Happy Divers",
+      value: "10,000+",
+      gradient: "from-ocean-400 to-teal-400",
+      glow: "rgba(0,168,232,0.25)",
+      iconColor: "text-ocean-400",
+      borderColor: "rgba(0,168,232,0.25)",
+      bgColor: "rgba(0,168,232,0.08)",
+    },
+  ];
+
+  if (mobile) {
+    return (
+      <div className="flex flex-col gap-2.5">
+        {badges.map((b, i) => (
+          <motion.div
+            key={i}
+            variants={badgePop}
+            className="flex items-center gap-3 rounded-xl px-4 py-3 backdrop-blur-xl"
+            style={{
+              background: `linear-gradient(135deg, rgba(1,10,19,0.85), rgba(1,10,19,0.7))`,
+              border: `1px solid ${b.borderColor}`,
+              boxShadow: `0 0 20px ${b.glow}, 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)`,
+              WebkitBackdropFilter: "blur(24px)",
+            }}
+          >
+            <div
+              className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+              style={{ background: `linear-gradient(135deg, ${b.borderColor}, transparent)` }}
+            >
+              <i className={`${b.icon} ${b.iconColor} text-sm`} />
+            </div>
+            <div className="min-w-0">
+              <div
+                className="text-[9px] leading-none font-medium mb-1"
+                style={{ color: b.borderColor }}
+                dangerouslySetInnerHTML={{ __html: b.label }}
+              />
+              <div className="flex items-center gap-1.5">
+                <span className="text-white font-bold text-sm font-[family-name:var(--font-display)] leading-none">
+                  {b.value}
+                </span>
+                {b.stars && (
+                  <div className="flex items-center gap-0.5">
+                    {Array.from({ length: 5 }).map((_, j) => (
+                      <i key={j} className="fas fa-star text-gold-400 text-sm" />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center justify-center gap-5 lg:gap-6 flex-wrap">
+      {badges.map((b, i) => (
+        <motion.div
+          key={i}
+          variants={badgePop}
+          className="group relative flex items-center gap-3.5 rounded-2xl px-5 py-4 cursor-default backdrop-blur-xl min-w-[200px]"
+          style={{
+            background: `linear-gradient(135deg, rgba(1,10,19,0.85), rgba(1,10,19,0.7))`,
+            border: `1px solid ${b.borderColor}`,
+            boxShadow: `0 0 30px ${b.glow}, 0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08)`,
+            WebkitBackdropFilter: "blur(24px)",
+          }}
+          whileHover={{
+            scale: 1.04,
+            boxShadow: `0 0 50px ${b.glow}, 0 8px 32px ${b.glow}, inset 0 1px 0 rgba(255,255,255,0.12)`,
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        >
+          <div
+            className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+            style={{ background: `linear-gradient(135deg, ${b.borderColor}, rgba(1,10,19,0.5))` }}
+          >
+            <i className={`${b.icon} ${b.iconColor} text-lg`} />
+          </div>
+          <div>
+            <div
+              className="text-[11px] leading-none font-medium mb-1.5"
+              style={{ color: b.borderColor }}
+              dangerouslySetInnerHTML={{ __html: b.label }}
+            />
+            <div className="flex items-center gap-2">
+              <span className="text-white font-bold text-base font-[family-name:var(--font-display)] leading-none">
+                {b.value}
+              </span>
+              {b.stars && (
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: 5 }).map((_, j) => (
+                    <i key={j} className="fas fa-star text-gold-400 text-base" />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
   );
 }
 
@@ -73,12 +208,6 @@ export default function Hero() {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
-
-  const stats = [
-    { value: 15, label: "Dive Sites" },
-    { value: 13, label: "Years Exp" },
-    { value: 10000, label: "Happy Divers" },
-  ];
 
   return (
     <section
@@ -122,15 +251,22 @@ export default function Hero() {
       {/* Ambient orbs with parallax */}
       <motion.div
         className="absolute top-1/4 -left-20 md:-left-32 w-52 md:w-96 h-52 md:h-96 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(0,168,232,0.15), transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(0,168,232,0.2), transparent)" }}
         animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-1/4 -right-16 md:-right-32 w-44 md:w-80 h-44 md:h-80 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(45,212,191,0.12), transparent)" }}
+        style={{ background: "radial-gradient(circle, rgba(45,212,191,0.15), transparent)" }}
         animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
+      {/* Extra accent orb */}
+      <motion.div
+        className="absolute top-1/3 right-1/4 w-40 md:w-72 h-40 md:h-72 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(251,191,36,0.08), transparent)" }}
+        animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
       />
 
       {/* ── CONTENT ── */}
@@ -141,20 +277,12 @@ export default function Hero() {
         {/* ── MOBILE ── */}
         {isMobile && (
           <motion.div
-            className="px-5 pb-10 pt-28"
+            className="px-5 pb-8 pt-28"
             variants={container}
             initial="hidden"
             animate="show"
           >
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-[11px] text-ocean-300 mb-5"
-            >
-              <i className="fas fa-award text-gold-400 text-[10px]" />
-              TripAdvisor Choice 2019 – 2024
-            </motion.div>
-
-            <motion.h1 variants={titleReveal} className="font-[family-name:var(--font-display)] mb-4">
+            <motion.h1 variants={titleReveal} className="font-[family-name:var(--font-display)] mb-3">
               <span className="block text-[1.8rem] sm:text-[2.2rem] font-bold text-white leading-[1.05]">
                 Dive Into
               </span>
@@ -163,70 +291,12 @@ export default function Hero() {
               </span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="text-white/50 text-sm leading-relaxed mb-7 max-w-[280px]">
+            <motion.p variants={fadeUp} className="text-white/80 text-sm leading-relaxed mb-5 max-w-[280px]">
               Explore the Andaman&apos;s underwater world with the most trusted PADI certified dive centre
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex gap-3 mb-8">
-              <motion.a
-                href="#experiences"
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full text-sm font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25"
-                whileTap={{ scale: 0.96 }}
-              >
-                Explore <i className="fas fa-arrow-right text-xs" />
-              </motion.a>
-              <motion.a
-                href="tel:+916364360134"
-                className="w-14 h-[46px] rounded-full glass flex items-center justify-center text-white/80"
-                whileTap={{ scale: 0.92 }}
-              >
-                <i className="fas fa-phone text-sm" />
-              </motion.a>
-              <motion.a
-                href="https://wa.me/916364360134"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-14 h-[46px] rounded-full flex items-center justify-center text-white"
-                style={{ background: "rgba(37,211,102,0.2)", border: "1px solid rgba(37,211,102,0.3)" }}
-                whileTap={{ scale: 0.92 }}
-              >
-                <i className="fab fa-whatsapp text-lg" />
-              </motion.a>
-            </motion.div>
-
-            <motion.div
-              variants={scaleIn}
-              className="flex items-center justify-between glass rounded-2xl px-4 py-3.5"
-            >
-              {stats.map((s, i) => (
-                <div key={i} className="flex items-center gap-1.5 sm:gap-3 min-w-0">
-                  {i > 0 && <div className="w-px h-7 sm:h-8 bg-white/10 shrink-0" />}
-                  <div className="text-center flex-1 min-w-0">
-                    <div className="text-sm sm:text-xl font-bold text-white font-[family-name:var(--font-display)] truncate">
-                      <AnimatedCounter target={s.value} />
-                    </div>
-                    <div className="text-[7px] sm:text-[9px] text-white/35 uppercase tracking-wider mt-0.5 truncate">{s.label}</div>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Google Rating */}
-            <motion.div
-              variants={fadeUp}
-              className="flex items-center justify-center mt-4"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass">
-                <i className="fab fa-google text-white/70 text-xs" />
-                <span className="text-white font-bold text-sm font-[family-name:var(--font-display)] leading-none">4.9</span>
-                <div className="flex items-center gap-px">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <i key={i} className="fas fa-star text-gold-400 text-[8px]" />
-                  ))}
-                </div>
-                <span className="text-white/35 text-[10px] leading-none">on Google</span>
-              </div>
-            </motion.div>
+            {/* Trust Badges - Mobile */}
+            <TrustBadges mobile />
           </motion.div>
         )}
 
@@ -238,14 +308,6 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8 text-sm text-ocean-300"
-            >
-              <i className="fas fa-award text-gold-400 text-xs" />
-              TripAdvisor Travelers&apos; Choice 2019 – 2024
-            </motion.div>
-
             <motion.h1 className="font-[family-name:var(--font-display)] mb-6">
               <motion.span
                 variants={titleReveal}
@@ -263,66 +325,13 @@ export default function Hero() {
 
             <motion.p
               variants={fadeUp}
-              className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-white/50 mb-10 leading-relaxed"
+              className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-white/80 mb-10 leading-relaxed"
             >
               Discover the breathtaking underwater world of the Andaman Islands with the most trusted PADI certified dive centre
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex items-center justify-center gap-4 mb-14">
-              <motion.a
-                href="#experiences"
-                className="group relative flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold bg-gradient-to-r from-ocean-500 to-teal-500 text-white shadow-lg shadow-ocean-500/25 btn-shimmer"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0,168,232,0.4), 0 0 80px rgba(0,168,232,0.15)" }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Explore Experiences
-                <i className="fas fa-arrow-right text-sm group-hover:translate-x-1.5 transition-transform duration-300" />
-              </motion.a>
-              <motion.a
-                href="#about"
-                className="group flex items-center gap-2 px-8 py-4 rounded-full text-base font-semibold text-white/90 border border-white/10 backdrop-blur-md"
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.08)", borderColor: "rgba(255,255,255,0.2)" }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <i className="fas fa-play text-xs opacity-70 group-hover:opacity-100 transition-opacity" />
-                Our Story
-              </motion.a>
-            </motion.div>
-
-            <motion.div
-              variants={scaleIn}
-              className="inline-flex items-center gap-8 lg:gap-12 rounded-2xl px-8 py-5 border border-white/[0.08]"
-              style={{ background: "rgba(1, 10, 19, 0.5)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
-            >
-              {stats.map((s, i) => (
-                <div key={i} className="flex items-center gap-8 lg:gap-12">
-                  {i > 0 && <div className="w-px h-12 bg-white/10" />}
-                  <div className="text-center">
-                    <div className="text-3xl md:text-4xl font-bold text-white font-[family-name:var(--font-display)]">
-                      <AnimatedCounter target={s.value} />
-                    </div>
-                    <div className="text-xs text-white/40 mt-0.5 uppercase tracking-wider">{s.label}</div>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Google Rating */}
-            <motion.div
-              variants={fadeUp}
-              className="flex items-center justify-center mt-6"
-            >
-              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass">
-                <i className="fab fa-google text-white/70 text-sm" />
-                <span className="text-white font-bold text-lg font-[family-name:var(--font-display)] leading-none">4.9</span>
-                <div className="flex items-center gap-0.5">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <i key={i} className="fas fa-star text-gold-400 text-xs" />
-                  ))}
-                </div>
-                <span className="text-white/40 text-sm leading-none">on Google</span>
-              </div>
-            </motion.div>
+            {/* Trust Badges - Desktop */}
+            <TrustBadges />
           </motion.div>
         )}
       </motion.div>

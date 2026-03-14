@@ -128,11 +128,14 @@ export default function Experiences() {
 
                 {/* ── Price badge (top-left glass pill) ── */}
                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
-                  <div className="glass-strong px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2">
-                    <span className="text-white font-bold text-xs sm:text-sm tracking-wide">
+                  <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2" style={{ background: "rgba(0,0,0,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                    <span className="text-white/90 text-[10px] sm:text-xs font-medium">
+                      from
+                    </span>
+                    <span className="text-gold-400 font-bold text-xs sm:text-sm tracking-wide">
                       {exp.price}
                     </span>
-                    <span className="text-white/40 text-[10px] sm:text-xs font-medium">
+                    <span className="text-white/90 text-[10px] sm:text-xs font-medium">
                       / person
                     </span>
                   </div>

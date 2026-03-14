@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { diveSites } from "@/data/diveSites";
+import Testimonials from "@/components/Testimonials";
+import FAQ from "@/components/FAQ";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
@@ -15,6 +17,33 @@ const difficultyColors: Record<string, string> = {
   Advanced: "from-orange-500 to-amber-500",
   "All Levels": "from-teal-400 to-emerald-500",
 };
+
+const similarOptions = [
+  {
+    title: "Non-Swimmers",
+    desc: "Shore diving, boat diving, and snorkeling for absolute beginners.",
+    icon: "fa-water",
+    href: "/non-swimmers",
+    color: "from-cyan-500 to-blue-600",
+    image: "/images/shore-diving.webp",
+  },
+  {
+    title: "PADI Courses",
+    desc: "Get certified — from Open Water to Divemaster.",
+    icon: "fa-certificate",
+    href: "/courses",
+    color: "from-ocean-500 to-teal-500",
+    image: "/images/boat-diving.webp",
+  },
+  {
+    title: "Kids Diving",
+    desc: "PADI Bubble Maker and Seal Team for young adventurers aged 8+.",
+    icon: "fa-child",
+    href: "/kids",
+    color: "from-teal-400 to-emerald-500",
+    image: "/images/kids-diving.webp",
+  },
+];
 
 export default function DiveSitesPage() {
   return (
@@ -65,7 +94,7 @@ export default function DiveSitesPage() {
           </motion.h1>
 
           <motion.p
-            className="text-white/50 text-lg sm:text-xl max-w-2xl"
+            className="text-white/70 text-lg sm:text-xl max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease }}
@@ -116,24 +145,25 @@ export default function DiveSitesPage() {
             <h2 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
               All <span className="text-gradient">Dive Sites</span>
             </h2>
-            <p className="text-white/40 text-lg max-w-xl mx-auto">
+            <p className="text-white/50 text-lg max-w-xl mx-auto">
               Discover our curated collection of spectacular underwater locations
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-6">
             {diveSites.map((site, i) => (
               <motion.div
                 key={site.slug}
                 initial={{ opacity: 0, y: 50, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease }}
+                transition={{ duration: 0.6, delay: (i % 6) * 0.08, ease }}
                 whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
+                className="flex"
               >
                 <Link
                   href={`/dive-sites/${site.slug}`}
-                  className="group relative rounded-2xl overflow-hidden block"
+                  className="group relative rounded-xl sm:rounded-2xl overflow-hidden block flex flex-col w-full"
                 >
                   {/* Image */}
                   <div className="relative aspect-[4/3] overflow-hidden">
@@ -142,41 +172,106 @@ export default function DiveSitesPage() {
                       alt={site.name}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-deep-950 via-deep-950/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
-                    {/* Badges */}
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass text-xs text-ocean-300">
+                    {/* Badges - desktop only */}
+                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex items-center gap-1.5 sm:gap-2">
+                      <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full glass text-xs text-ocean-300">
                         <i className="fas fa-arrows-alt-v" />
                         {site.depth}
                       </span>
-                      <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold text-white bg-gradient-to-r ${difficultyColors[site.difficulty] || "from-ocean-500 to-teal-500"}`}>
+                      <span className={`inline-flex items-center px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[7px] sm:text-xs font-semibold text-white bg-gradient-to-r ${difficultyColors[site.difficulty] || "from-ocean-500 to-teal-500"}`}>
                         {site.difficulty}
                       </span>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="relative p-5 sm:p-6 bg-deep-900/80 backdrop-blur-sm border-t border-white/5">
-                    <h3 className="text-lg font-bold text-white font-[family-name:var(--font-display)] mb-2 group-hover:text-ocean-300 transition-colors">
+                  <div className="relative p-2.5 sm:p-5 lg:p-6 bg-deep-900/80 backdrop-blur-sm border-t border-white/5 flex-1 flex flex-col">
+                    <h3 className="text-[10px] sm:text-lg font-bold text-white font-[family-name:var(--font-display)] mb-1 sm:mb-2 group-hover:text-ocean-300 transition-colors leading-tight">
                       {site.name}
                     </h3>
-                    <p className="text-white/40 text-sm leading-relaxed mb-4 line-clamp-2">
+                    <p className="text-white/40 text-[8px] sm:text-sm leading-relaxed mb-2 sm:mb-4 line-clamp-2 flex-1">
                       {site.description}
                     </p>
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors">
-                      Explore Site
-                      <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" />
+                    <span className="inline-flex items-center gap-1 sm:gap-1.5 text-[8px] sm:text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors mt-auto">
+                      Explore
+                      <i className="fas fa-arrow-right text-[7px] sm:text-xs group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
 
                   {/* Border glow */}
                   <div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                     style={{ boxShadow: "inset 0 0 0 1px rgba(0,168,232,0.15), 0 0 30px rgba(0,168,232,0.05)" }}
                   />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Customer Reviews */}
+      <Testimonials />
+
+      {/* FAQ */}
+      <FAQ />
+
+      {/* Similar Options */}
+      <section className="relative py-16 sm:py-24 overflow-hidden">
+        <div className="section-sep absolute top-0 left-0 right-0" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-ocean-500/5 rounded-full blur-3xl" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease }}
+          >
+            <span className="inline-block text-ocean-400 text-sm font-semibold uppercase tracking-[0.2em] mb-4">
+              Explore More
+            </span>
+            <h2 className="font-[family-name:var(--font-display)] text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+              You Might Also <span className="text-gradient">Like</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-6 lg:gap-8">
+            {similarOptions.map((option, i) => (
+              <motion.div
+                key={option.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease }}
+                whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                className="flex"
+              >
+                <Link
+                  href={option.href}
+                  className="group relative block rounded-xl sm:rounded-2xl overflow-hidden flex flex-col w-full border border-white/[0.06]"
+                  style={{ background: "rgba(255,255,255,0.02)" }}
+                >
+                  <div className="relative h-28 sm:h-48 lg:h-52 overflow-hidden">
+                    <Image src={option.image} alt={option.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" sizes="33vw" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-deep-950 via-deep-950/40 to-transparent" />
+                    <div className={`absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${option.color} shadow-lg`}>
+                      <i className={`fas ${option.icon} text-white text-xs sm:text-sm`} />
+                    </div>
+                  </div>
+                  <div className="p-2.5 sm:p-5 flex-1 flex flex-col">
+                    <h3 className="text-[11px] sm:text-lg font-bold text-white font-[family-name:var(--font-display)] mb-1 sm:mb-2 leading-tight">{option.title}</h3>
+                    <p className="text-white/45 text-[9px] sm:text-sm leading-relaxed mb-2 sm:mb-4 line-clamp-2 sm:line-clamp-none flex-1">{option.desc}</p>
+                    <span className="inline-flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors mt-auto">
+                      Explore <i className="fas fa-arrow-right text-[7px] sm:text-xs group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ boxShadow: "inset 0 0 0 1px rgba(0,168,232,0.2), 0 0 30px rgba(0,168,232,0.06)" }} />
                 </Link>
               </motion.div>
             ))}
@@ -200,7 +295,7 @@ export default function DiveSitesPage() {
             Ready to Explore the <span className="text-gradient">Deep?</span>
           </motion.h2>
           <motion.p
-            className="text-white/40 text-lg mb-8 max-w-xl mx-auto"
+            className="text-white/50 text-lg mb-8 max-w-xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -225,7 +320,7 @@ export default function DiveSitesPage() {
               Call +91 6364360134
             </motion.a>
             <motion.a
-              href="https://wa.me/916364360134"
+              href="https://wa.me/916364360134?text=Hi%20Experience%20Scuba!%20I'm%20interested%20in%20diving%20in%20Havelock%20Island.%20Could%20you%20share%20more%20details%3F"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold glass text-white/80"

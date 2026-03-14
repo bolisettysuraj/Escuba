@@ -274,28 +274,88 @@ export default function Hero() {
       >
         {/* ── MOBILE ── */}
         {isMobile && (
-          <motion.div
-            className="px-5 pb-8 pt-28"
-            variants={container}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.h1 variants={titleReveal} className="font-[family-name:var(--font-display)] mb-3">
-              <span className="block text-[1.8rem] sm:text-[2.2rem] font-bold text-white leading-[1.05]">
-                Dive Into
-              </span>
-              <span className="block text-[2rem] sm:text-[2.5rem] md:text-[2.8rem] font-bold text-gradient leading-[1.05]">
-                The Deep
-              </span>
-            </motion.h1>
+                      {/* Content spread across full height */}
+            <motion.div
+              className="relative z-10 w-full px-5 flex flex-col items-center justify-between min-h-[calc(100svh-64px)] pt-6 pb-6 mt-16"
+              variants={container}
+              initial="hidden"
+              animate="show"
+            >
+              {/* PADI badge — top */}
+              <motion.div variants={fadeUp}>
+                <div
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full"
+                  style={{ background: "rgba(0,0,0,0.5)", border: "1px solid rgba(0,168,232,0.2)", backdropFilter: "blur(16px)" }}
+                >
+                  <i className="fas fa-certificate text-ocean-400 text-[10px]" />
+                  <span className="text-white/90 text-[10px] font-semibold tracking-wide">PADI 5-Star</span>
+                  <span className="w-px h-3 bg-white/15" />
+                  <i className="fas fa-map-marker-alt text-teal-400 text-[8px]" />
+                  <span className="text-white/50 text-[10px]">Havelock Island</span>
+                </div>
+              </motion.div>
 
-            <motion.p variants={fadeUp} className="text-white/80 text-sm leading-relaxed mb-5 max-w-[280px]">
-              Explore the Andaman&apos;s underwater world with the most trusted PADI certified dive centre
-            </motion.p>
+              {/* Heading + Subtitle — middle */}
+              <div className="text-center">
+                <motion.h1 variants={titleReveal} className="font-[family-name:var(--font-display)] mb-3">
+                  <span className="block text-[2rem] font-bold text-white leading-[1.1]">
+                    Dive Into The
+                  </span>
+                  <span className="block text-[2.6rem] font-bold leading-[1]">
+                    <span className="text-gradient">Extraordinary</span>
+                  </span>
+                </motion.h1>
 
-            {/* Trust Badges - Mobile */}
-            <TrustBadges mobile />
-          </motion.div>
+                <motion.p variants={fadeUp} className="text-white/70 text-[12px] leading-relaxed mx-auto max-w-[300px]">
+                  Andaman&apos;s most trusted dive centre — 13+ years of unforgettable underwater experiences
+                </motion.p>
+              </div>
+
+              {/* Bottom section — cards + buttons */}
+              <div className="w-full space-y-3">
+                {/* Trust cards */}
+                <motion.div variants={scaleIn} className="grid grid-cols-3 gap-2">
+                  {[
+                    { icon: "fas fa-award", value: "TripAdvisor", sub: "Choice 2019–2025", color: "rgba(52,224,161,0.15)", borderColor: "rgba(52,224,161,0.2)", iconColor: "text-[#34e0a1]" },
+                    { icon: "fab fa-google", value: "4.9 ★★★★★", sub: "Google Rated", color: "rgba(251,191,36,0.12)", borderColor: "rgba(251,191,36,0.2)", iconColor: "text-gold-400" },
+                    { icon: "fas fa-users", value: "10,000+", sub: "Happy Divers", color: "rgba(0,168,232,0.12)", borderColor: "rgba(0,168,232,0.2)", iconColor: "text-ocean-400" },
+                  ].map((s, i) => (
+                    <div
+                      key={i}
+                      className="rounded-xl py-2.5 px-2 text-center"
+                      style={{
+                        background: `linear-gradient(180deg, rgba(1,10,19,0.85), ${s.color})`,
+                        border: `1px solid ${s.borderColor}`,
+                      }}
+                    >
+                      <i className={`${s.icon} ${s.iconColor} text-base mb-1 block`} />
+                      <div className="text-white font-bold text-[10px] font-[family-name:var(--font-display)] leading-tight">{s.value}</div>
+                      <div className="text-white/50 text-[8px] mt-0.5">{s.sub}</div>
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* CTA buttons */}
+                <motion.div variants={fadeUp} className="grid grid-cols-2 gap-2">
+                  <a
+                    href="tel:+916364360134"
+                    className="flex items-center justify-center gap-2 py-3 rounded-xl text-[13px] font-semibold text-white bg-gradient-to-r from-ocean-500 to-teal-500 shadow-lg shadow-ocean-500/25"
+                  >
+                    <i className="fas fa-phone text-xs" /> Call Now
+                  </a>
+                  <a
+                    href="https://wa.me/916364360134?text=Hi%20Experience%20Scuba!%20I'm%20interested%20in%20diving%20in%20Havelock%20Island.%20Could%20you%20share%20more%20details%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 py-3 rounded-xl text-[13px] font-semibold text-white"
+                    style={{ background: "rgba(37,211,102,0.2)", border: "1px solid rgba(37,211,102,0.3)" }}
+                  >
+                    <i className="fab fa-whatsapp text-[#25D366]" /> WhatsApp
+                  </a>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
 
         {/* ── DESKTOP ── */}
@@ -306,6 +366,18 @@ export default function Hero() {
             initial="hidden"
             animate="show"
           >
+            {/* PADI Badge + Location */}
+            <motion.div variants={fadeUp} className="flex items-center justify-center gap-3 mb-8">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full" style={{ background: "rgba(0,168,232,0.1)", border: "1px solid rgba(0,168,232,0.25)" }}>
+                <i className="fas fa-certificate text-ocean-400 text-xs" />
+                <span className="text-ocean-300 text-xs font-semibold uppercase tracking-wider">PADI 5-Star Dive Centre</span>
+              </div>
+              <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full glass">
+                <i className="fas fa-map-marker-alt text-teal-400 text-xs" />
+                <span className="text-white/60 text-xs font-medium">Havelock Island, Andaman</span>
+              </div>
+            </motion.div>
+
             <motion.h1 className="font-[family-name:var(--font-display)] mb-6">
               <motion.span
                 variants={titleReveal}
@@ -323,10 +395,28 @@ export default function Hero() {
 
             <motion.p
               variants={fadeUp}
-              className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-white/80 mb-10 leading-relaxed"
+              className="max-w-2xl mx-auto text-base md:text-lg lg:text-xl text-white/80 mb-5 leading-relaxed"
             >
               Discover the breathtaking underwater world of the Andaman Islands with the most trusted PADI certified dive centre
             </motion.p>
+
+            {/* Quick stats line */}
+            <motion.div variants={fadeUp} className="flex items-center justify-center gap-4 md:gap-6 mb-10 text-sm text-white/50">
+              <span className="flex items-center gap-1.5">
+                <i className="fas fa-calendar-check text-ocean-400 text-xs" />
+                13+ Years
+              </span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span className="flex items-center gap-1.5">
+                <i className="fas fa-users text-teal-400 text-xs" />
+                10,000+ Divers
+              </span>
+              <span className="w-1 h-1 rounded-full bg-white/20" />
+              <span className="flex items-center gap-1.5">
+                <i className="fas fa-star text-gold-400 text-xs" />
+                4.9 on Google
+              </span>
+            </motion.div>
 
             {/* Trust Badges - Desktop */}
             <TrustBadges />

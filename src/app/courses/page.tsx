@@ -189,9 +189,9 @@ export default function CoursesPage() {
                     {/* Price + CTA */}
                     <div className="flex items-center justify-between pt-4 border-t border-white/5">
                       <div>
-                        <span className="text-white/25 text-[10px] uppercase tracking-wider">From</span>
-                        <div className="text-white font-bold text-lg font-[family-name:var(--font-display)]">
-                          &#8377;{course.price}
+                        <span className="text-white/40 text-[10px] uppercase tracking-wider font-semibold">From</span>
+                        <div className="text-gold-400 font-bold text-lg font-[family-name:var(--font-display)]">
+                          <span className="text-gold-400/60 text-sm">&#8377;</span>{course.price}
                         </div>
                       </div>
                       <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ocean-400 group-hover:text-ocean-300 transition-colors">

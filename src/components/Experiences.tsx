@@ -128,21 +128,21 @@ export default function Experiences() {
 
                 {/* ── Price badge (top-left glass pill) ── */}
                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
-                  <div className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2" style={{ background: "rgba(0,0,0,0.7)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                    <span className="text-white/90 text-[10px] sm:text-xs font-medium">
+                  <div className="px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2" style={{ background: "rgba(0,0,0,0.8)", border: "1px solid rgba(251,191,36,0.3)", boxShadow: "0 4px 16px rgba(0,0,0,0.4)" }}>
+                    <span className="text-white/70 text-[9px] sm:text-xs font-medium">
                       from
                     </span>
-                    <span className="text-gold-400 font-bold text-xs sm:text-sm tracking-wide">
+                    <span className="text-gold-400 font-bold text-sm sm:text-lg tracking-wide font-[family-name:var(--font-display)]">
                       {exp.price}
                     </span>
-                    <span className="text-white/90 text-[10px] sm:text-xs font-medium">
-                      / person
+                    <span className="text-white/70 text-[9px] sm:text-xs font-medium">
+                      /person
                     </span>
                   </div>
                 </div>
 
                 {/* ── Tag badge ── */}
-                <div className="absolute top-11 sm:top-14 left-3 sm:left-4 z-10">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10">
                   <span
                     className={`inline-block px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider bg-gradient-to-r ${exp.color} text-white shadow-lg`}
                   >

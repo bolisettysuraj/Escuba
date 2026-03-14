@@ -1,6 +1,7 @@
 "use client";
 import Preloader from "@/components/Preloader";
 import Hero from "@/components/Hero";
+import TrustStrip from "@/components/TrustStrip";
 import VideoShowcase from "@/components/VideoShowcase";
 import About from "@/components/About";
 import DiveCategories from "@/components/DiveCategories";
@@ -14,6 +15,7 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Articles from "@/components/Articles";
+import SocialProofToast from "@/components/SocialProofToast";
 
 export default function Home() {
   return (
@@ -21,6 +23,7 @@ export default function Home() {
       <Preloader />
       <main>
         <Hero />
+        <TrustStrip />
         <VideoShowcase />
         <DiveCategories />
         <Experiences />
@@ -34,6 +37,7 @@ export default function Home() {
         <FAQ />
         <Contact />
         <Articles />
+        <SocialProofToast />
       </main>
     </>
   );

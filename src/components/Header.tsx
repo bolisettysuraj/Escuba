@@ -343,10 +343,10 @@ export default function Header() {
             mobileOpen ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"
           }`}
         >
-          {/* Close button */}
+          {/* Close button — fixed so it stays visible when menu scrolls */}
           <button
             onClick={() => setMobileOpen(false)}
-            className="absolute top-6 right-6 w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white z-20"
+            className="fixed top-6 right-6 w-11 h-11 rounded-full glass flex items-center justify-center text-white/80 hover:text-white hover:bg-white/10 border border-white/10 z-[160] transition-all duration-200"
             aria-label="Close menu"
           >
             <i className="fas fa-times text-lg" />

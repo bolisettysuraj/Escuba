@@ -91,6 +91,16 @@ export default function FloatingButtons() {
     return () => { document.body.style.overflow = ""; };
   }, [showForm]);
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!showForm) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowForm(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showForm]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -211,7 +221,7 @@ export default function FloatingButtons() {
               exit={{ opacity: 0 }}
             >
               <motion.div
-                className="relative w-full max-w-md rounded-3xl border border-white/10 overflow-hidden"
+                className="relative w-full max-w-md max-h-[90vh] flex flex-col rounded-3xl border border-white/10 overflow-hidden"
                 style={{
                   background: "rgba(2,20,36,0.97)",
                   backdropFilter: "blur(30px)",
@@ -225,18 +235,18 @@ export default function FloatingButtons() {
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Top gradient accent */}
-                <div className="h-1 w-full bg-gradient-to-r from-ocean-500 via-teal-400 to-ocean-500" />
+                <div className="h-1 w-full bg-gradient-to-r from-ocean-500 via-teal-400 to-ocean-500 shrink-0" />
 
-                {/* Close button */}
+                {/* Close button — absolute on container, never scrolls away */}
                 <button
                   onClick={() => setShowForm(false)}
-                  className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all duration-200 z-10"
+                  className="absolute top-4 right-4 w-10 h-10 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-white bg-white/15 hover:bg-white/25 border border-white/15 transition-all duration-200 z-20 shadow-lg shadow-black/20"
                   aria-label="Close"
                 >
-                  <i className="fas fa-times text-sm" />
+                  <i className="fas fa-times text-base sm:text-sm" />
                 </button>
 
-                <div className="p-6 sm:p-8">
+                <div className="p-6 sm:p-8 overflow-y-auto flex-1 min-h-0">
                   {/* Header */}
                   <div className="mb-6">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-ocean-500 to-teal-500 flex items-center justify-center mb-4 shadow-lg shadow-ocean-500/20">
